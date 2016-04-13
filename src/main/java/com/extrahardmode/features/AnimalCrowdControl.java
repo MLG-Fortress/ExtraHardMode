@@ -165,7 +165,6 @@ public class AnimalCrowdControl extends ListenerModule {
                 && animal.getType() != EntityType.WOLF
                 && animal.getType() != EntityType.OCELOT) {
 
-            event.setDroppedExp(0);
             event.getDrops().clear();
         }
     }
