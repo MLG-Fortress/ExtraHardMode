@@ -1,4 +1,3 @@
-
 package com.extrahardmode.features;
 
 import com.extrahardmode.ExtraHardMode;
@@ -26,12 +25,10 @@ import org.bukkit.util.Vector;
  * @author Vanmc
  */
 public class AnimalCrowdControl extends ListenerModule {
-    
-    
+
     private RootConfig CFG;
 
     private MsgModule messenger;
-
 
     public AnimalCrowdControl(ExtraHardMode plugin) {
         super(plugin);
@@ -43,8 +40,15 @@ public class AnimalCrowdControl extends ListenerModule {
         CFG = plugin.getModuleForClass(RootConfig.class);
         messenger = plugin.getModuleForClass(MsgModule.class);
     }
-    
-   /**
+
+    private boolean checkIfAnimal(Entity animal) {
+        return animal instanceof Animals
+                && animal.getType() != EntityType.HORSE
+                && animal.getType() != EntityType.WOLF
+                && animal.getType() != EntityType.OCELOT;
+    }
+
+    /**
      * When farm gets overcrowded
      *
      * Check if overcrowded if so slowly kill farm animals
@@ -58,71 +62,59 @@ public class AnimalCrowdControl extends ListenerModule {
         final int threshold = CFG.getInt(RootNode.ANIMAL_OVERCROWD_THRESHOLD, world.getName());
 
         //First check if config allow this feature
-        if (animalOverCrowdControl) {
-            
-            //Get nearby entities from newly spawn animals
-            List<Entity> cattle = e.getNearbyEntities(3, 3, 3);
-            int density = 0;
+        if (!animalOverCrowdControl) {
+            return;
+        }
 
-          /**
-            *Loop and check if entity is an animal while 
-            *looping count how many animals have spawned
-            * by incrementing density
-            */
-            for (Entity a : cattle) {
-                if (a instanceof Animals
-                        && a.getType() != EntityType.HORSE
-                        && a.getType() != EntityType.WOLF
-                        && a.getType() != EntityType.OCELOT) {
-                    density++;
-                    
-                    //Check if the amount of animals is bigger than the threshold given
-                    if (density > threshold) {
-                        final LivingEntity animal = (LivingEntity) a;
-                        
-                      /**
-                        *This creates a runnable assign to each animals will close once
-                        *if animal is far enough from other animals or animal is dead
-                        */ 
-                        new BukkitRunnable() {
+        //Get nearby entities from newly spawn animals
+        List<Entity> cattle = e.getNearbyEntities(3, 3, 3);
+        int density = 0;
 
-                            boolean firstRun = true;
+        /**
+         * Loop and check if entity is an animal while looping count how many
+         * animals have spawned by incrementing density
+         */
+        for (Entity a : cattle) {
 
-                            @Override
-                            public void run() {
-                                List<Entity> cattle = e.getNearbyEntities(3, 3, 3);
-                                int density = 0;
-
-                                //this will be used to check if animal is far from other animals
-                                for (Entity a : cattle) {
-                                    if (a instanceof Animals
-                                            && a.getType() != EntityType.HORSE
-                                            && a.getType() != EntityType.WOLF
-                                            && a.getType() != EntityType.OCELOT) {
-                                        density++;
-                                    }
-                                }
-                                
-                                if (animal.isDead() || density <= threshold) {
-                                    this.cancel();
-                                } else {
-                                    /**
-                                     *Hack to force animal to move away exploits the default AI of animals
-                                     *the set Velocity make sure that no knockback is given
-                                     */
-                                    if (firstRun) {
-                                        firstRun = false;
-                                        animal.damage(0, animal);
-                                        animal.setVelocity(new Vector());
-                                    } else {
-                                        animal.damage(0.5);
-                                    }
-                                }
-                            }
-                        }.runTaskTimer(this.plugin, 20, 20);
-                    }
-                }
+            if (checkIfAnimal(a)) {
+                density++;
             }
+
+            //Check if the amount of animals is bigger than the threshold given
+            if (density <= threshold) {
+                continue;
+            }
+
+            final LivingEntity animal = (LivingEntity) a;
+
+            /**
+             * This creates a runnable assign to each animals will close once if
+             * animal is far enough from other animals or animal is dead
+             */
+            new BukkitRunnable() {
+
+                @Override
+                public void run() {
+                    List<Entity> cattle = e.getNearbyEntities(3, 3, 3);
+                    int density = 0;
+
+                    //this will be used to check if animal is far from other animals
+                    for (Entity a : cattle) {
+                        if (checkIfAnimal(a)) {
+                            density++;
+                        }
+                    }
+
+                    if (animal.isDead() || density < threshold) {
+                        this.cancel();
+                    } else {
+                        animal.damage(0, animal);
+                        animal.setVelocity(new Vector());
+                        animal.damage(0.5);
+                    }
+
+                }
+            }.runTaskTimer(this.plugin, 100, 100);
         }
     }
 
@@ -133,17 +125,14 @@ public class AnimalCrowdControl extends ListenerModule {
      */
     @EventHandler
     public void onPlayerInteract(PlayerInteractEntityEvent event) {
+
         Player player = event.getPlayer();
         LivingEntity animal = (LivingEntity) event.getRightClicked();
         World world = player.getWorld();
 
         final boolean animalOverCrowdControl = CFG.getBoolean(RootNode.ANIMAL_OVERCROWD_CONTROL, world.getName());
 
-        if (animalOverCrowdControl && animal instanceof Animals 
-                && animal.getType() != EntityType.HORSE
-                && animal.getType() != EntityType.WOLF
-                && animal.getType() != EntityType.OCELOT) {
-
+        if (animalOverCrowdControl && checkIfAnimal(animal)) {
             messenger.send(player, MessageNode.ANIMAL_OVERCROWD_CONTROL);
         }
     }
@@ -155,18 +144,14 @@ public class AnimalCrowdControl extends ListenerModule {
      */
     @EventHandler
     public void onAnimalDeath(EntityDeathEvent event) {
+
         LivingEntity animal = event.getEntity();
         World world = animal.getWorld();
 
         final boolean animalOverCrowdControl = CFG.getBoolean(RootNode.ANIMAL_OVERCROWD_CONTROL, world.getName());
 
-        if (animalOverCrowdControl && animal instanceof Animals && animal.getKiller() == null
-                && animal.getType() != EntityType.HORSE
-                && animal.getType() != EntityType.WOLF
-                && animal.getType() != EntityType.OCELOT) {
-
+        if (animalOverCrowdControl && checkIfAnimal(animal) && animal.getKiller() == null) {
             event.getDrops().clear();
         }
     }
-    
 }
