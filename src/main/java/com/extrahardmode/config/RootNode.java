@@ -783,7 +783,7 @@ public enum RootNode implements ConfigNode
      * Threshold/Number of animals before start damaging animals
      */
     ANIMAL_OVERCROWD_THRESHOLD("Farming.Animal Overcrowding Control.threshold", VarType.INTEGER, SubType.NATURAL_NUMBER, 10, 
-            "The amount of animals before start damaging them"),
+            "Maximum amount of animals allowed in a small area before they start dying"),
     /**
      * #############################
      * # ADDITIONAL FALLING BLOCKS #
