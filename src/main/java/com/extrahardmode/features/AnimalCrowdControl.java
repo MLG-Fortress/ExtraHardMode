@@ -84,9 +84,7 @@ public class AnimalCrowdControl extends ListenerModule {
         //Get nearby entities from newly spawn animals
         
         //Just to check if animal is part of a Pet Plugin assuming spawned pet have nametags already given
-        if(e.getCustomName()!= null) {
-            Bukkit.broadcastMessage(e.getCustomName());
-        }
+        if(e.getCustomName()!= null) return;
         
         List<Entity> cattle = e.getNearbyEntities(3, 3, 3);
         int density = 0;
@@ -112,17 +110,17 @@ public class AnimalCrowdControl extends ListenerModule {
             new BukkitRunnable() {
 
                 int dizzenes = 0;
-                int maxDizzenes = 20;
+                int maxDizzenes = 10; //basically max seconds before getting damaged
                 
                 @Override
                 public void run() {
 
                     
                     if (animal.isDead() || getCurrentDensity(e) <= threshold) {
-                        animal.setMetadata("hasRunnable", new FixedMetadataValue(plugin, false));
-                        animal.setMetadata("isClaustrophobic", new FixedMetadataValue(plugin, 0));
+                        animal.removeMetadata("hasRunnable", plugin);
+                        animal.removeMetadata("isClaustrophobic", plugin);
                         this.cancel();
-                    } else if (animal.hasMetadata("isClaustrophobic") && dizzenes >= maxDizzenes){
+                    } else if (dizzenes >= maxDizzenes) {
                         /**
                          * Hack to force animal to move away exploits the
                          * default AI of animals the set Velocity make sure that
@@ -130,28 +128,19 @@ public class AnimalCrowdControl extends ListenerModule {
                          */
                         animal.damage(0.5, animal);
                         animal.setVelocity(new Vector());
-                        animal.setMetadata("isClaustrophobic", new FixedMetadataValue(plugin, 3));
+                        dizzenes = 0;
                     }
                     
-                    dizzenes++;
-                    if(!(animal.hasMetadata("isClaustrophobic")) && dizzenes < maxDizzenes) {
-                       animal.setMetadata("isClaustrophobic", new FixedMetadataValue(plugin, 1));
-                       
-                       new BukkitRunnable() {
-
-                           @Override
-                           public void run() {
-                               
-                              if(animal.getMetadata("isClaustrophobic").get(0).asInt() == 3 
-                                      || getCurrentDensity(e) <= threshold) {
-                                  this.cancel();
-                              }
-                              world.spigot().playEffect(animal.getLocation(), Effect.POTION_SWIRL_TRANSPARENT, 0, 0, 0, 0, 0, 0, 0, 8);
-                           }
-                       }.runTaskTimer(plugin, 20, 20);
+                    if(!(animal.hasMetadata("isClaustrophobic"))) {
+                        animal.setMetadata("isClaustrophobic", new FixedMetadataValue(plugin, true));
                     }
+                    
+                    if(dizzenes < maxDizzenes) {
+                       world.spigot().playEffect(animal.getLocation(), Effect.VILLAGER_THUNDERCLOUD);
+                    }
+                    dizzenes++;
                 }
-            }.runTaskTimer(this.plugin, 100, 100);
+            }.runTaskTimer(this.plugin, 20, 20);
         }
     }
 
