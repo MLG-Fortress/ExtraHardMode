@@ -287,9 +287,9 @@ public enum MessageNode implements ConfigNode
             ("AntifarmingDesert.Msg", MsgCategory.TUTORIAL, "antifarm_desert",
                     "&cDeserts are really dry and nothing grows here!"),
     ANIMAL_OVERCROWD_CONTROL_MODE
-            ("AnimalOverCrowd.Mode", MsgCategory.TUTORIAL),
+            ("AnimalOverCrowd.Mode", MsgCategory.NOTIFICATION),
     ANIMAL_OVERCROWD_CONTROL
-            ("AnimalOverCrowd.Msg", MsgCategory.TUTORIAL, "animal_overcrowd",
+            ("AnimalOverCrowd.Msg", MsgCategory.NOTIFICATION, "animal_overcrowd",
                 "&cAnimals need space! Consider putting them in a bigger area"),
     
     //General Advice
