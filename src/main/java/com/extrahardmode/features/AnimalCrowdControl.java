@@ -5,6 +5,8 @@ import com.extrahardmode.config.RootConfig;
 import com.extrahardmode.config.RootNode;
 import com.extrahardmode.config.messages.MessageNode;
 import com.extrahardmode.module.MsgModule;
+import com.extrahardmode.module.ParticleEffect;
+import com.extrahardmode.module.ParticleEffect.OrdinaryColor;
 import com.extrahardmode.service.ListenerModule;
 import java.util.List;
 import org.bukkit.World;
@@ -17,6 +19,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
+import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
@@ -77,15 +80,21 @@ public class AnimalCrowdControl extends ListenerModule {
             //Check if the amount of animals is bigger than the threshold given
             if (density < threshold) continue;
             final LivingEntity animal = (LivingEntity) a;
-
+            if(animal.hasMetadata("hasRunnable")) continue;
             /**
              * This creates a runnable assign to each animals will close once if
              * animal is far enough from other animals or animal is dead
              */
+            animal.setMetadata("hasRunnable", new FixedMetadataValue(this.plugin, true));
             new BukkitRunnable() {
 
+                int dizzenes = 0;
+                int maxDizzenes = 20;
+                
                 @Override
                 public void run() {
+                    
+                    
                     List<Entity> cattle = e.getNearbyEntities(3, 3, 3);
                     int density = 0;
 
@@ -93,25 +102,42 @@ public class AnimalCrowdControl extends ListenerModule {
                     for (Entity a : cattle) {
                         if (isEntityAnimal(a)) {
                             density++;
-                        }
+                        } 
                     }
 
                     if (animal.isDead() || density <= threshold) {
+                        animal.setMetadata("hasRunnable", new FixedMetadataValue(plugin, false));
+                        animal.setMetadata("isClaustrophobic", new FixedMetadataValue(plugin, 0));
                         this.cancel();
-                    } else {
+                    } else if (animal.hasMetadata("isClaustrophobic") && dizzenes >= maxDizzenes){
                         /**
                          * Hack to force animal to move away exploits the
                          * default AI of animals the set Velocity make sure that
                          * no knockback is given
                          */
-                        animal.damage(0, animal);
+                        animal.damage(0.5, animal);
                         animal.setVelocity(new Vector());
-                        animal.damage(0.5);
+                        animal.setMetadata("isClaustrophobic", new FixedMetadataValue(plugin, 3));
+                    }
+                    
+                    dizzenes++;
+                    if(!(animal.hasMetadata("isClaustrophobic")) && dizzenes < maxDizzenes) {
+                       animal.setMetadata("isClaustrophobic", new FixedMetadataValue(plugin, 1));
+                       
+                       new BukkitRunnable() {
+
+                           @Override
+                           public void run() {
+                              if(animal.getMetadata("isClaustrophobic").get(0).asInt() == 3) {
+                                  this.cancel();
+                              }
+                              ParticleEffect.SPELL_MOB.display(new OrdinaryColor(34,139,34), animal.getLocation(), 5);
+                           }
+                       }.runTaskTimer(plugin, 20, 20);;
                     }
                 }
             }.runTaskTimer(this.plugin, 100, 100);
         }
-
     }
 
     /**
@@ -127,8 +153,8 @@ public class AnimalCrowdControl extends ListenerModule {
 
         final boolean animalOverCrowdControl = CFG.getBoolean(RootNode.ANIMAL_OVERCROWD_CONTROL, world.getName());
 
-        if (animalOverCrowdControl && isEntityAnimal(animal)) {
-
+        if (animalOverCrowdControl && isEntityAnimal(animal) 
+                && animal.hasMetadata("isClaustrophobic")) {
             messenger.send(player, MessageNode.ANIMAL_OVERCROWD_CONTROL);
         }
     }
@@ -145,7 +171,7 @@ public class AnimalCrowdControl extends ListenerModule {
 
         final boolean animalOverCrowdControl = CFG.getBoolean(RootNode.ANIMAL_OVERCROWD_CONTROL, world.getName());
 
-        if (animalOverCrowdControl && animal.getKiller() == null
+        if (animalOverCrowdControl && animal.hasMetadata("isClaustrophobic")
                 && isEntityAnimal(animal)) {
 
             event.getDrops().clear();
