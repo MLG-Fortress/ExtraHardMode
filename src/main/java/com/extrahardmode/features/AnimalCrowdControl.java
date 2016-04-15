@@ -50,6 +50,21 @@ public class AnimalCrowdControl extends ListenerModule {
                 && a.getType() != EntityType.WOLF
                 && a.getType() != EntityType.OCELOT;
     }
+    
+    private int getCurrentDensity(Entity e) {
+        
+        List<Entity> cattle = e.getNearbyEntities(3, 3, 3);
+        int density = 0;
+
+        //this will be used to check if animal is far from other animals
+        for (Entity a : cattle) {
+            if (isEntityAnimal(a)) {
+                density++;
+            } 
+        }
+        
+        return density;
+    }
 
     /**
      * When farm gets overcrowded
@@ -93,19 +108,9 @@ public class AnimalCrowdControl extends ListenerModule {
                 
                 @Override
                 public void run() {
-                    
-                    
-                    List<Entity> cattle = e.getNearbyEntities(3, 3, 3);
-                    int density = 0;
 
-                    //this will be used to check if animal is far from other animals
-                    for (Entity a : cattle) {
-                        if (isEntityAnimal(a)) {
-                            density++;
-                        } 
-                    }
-
-                    if (animal.isDead() || density <= threshold) {
+                    
+                    if (animal.isDead() || getCurrentDensity(e) <= threshold) {
                         animal.setMetadata("hasRunnable", new FixedMetadataValue(plugin, false));
                         animal.setMetadata("isClaustrophobic", new FixedMetadataValue(plugin, 0));
                         this.cancel();
@@ -128,9 +133,12 @@ public class AnimalCrowdControl extends ListenerModule {
 
                            @Override
                            public void run() {
-                              if(animal.getMetadata("isClaustrophobic").get(0).asInt() == 3) {
+                               
+                              if(animal.getMetadata("isClaustrophobic").get(0).asInt() == 3 
+                                      || getCurrentDensity(e) <= threshold) {
                                   this.cancel();
                               }
+                                
                               ParticleEffect.SPELL_MOB.display(new OrdinaryColor(34,139,34), animal.getLocation(), 5);
                            }
                        }.runTaskTimer(plugin, 20, 20);;
