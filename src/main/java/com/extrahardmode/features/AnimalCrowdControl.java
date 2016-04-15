@@ -5,10 +5,10 @@ import com.extrahardmode.config.RootConfig;
 import com.extrahardmode.config.RootNode;
 import com.extrahardmode.config.messages.MessageNode;
 import com.extrahardmode.module.MsgModule;
-import com.extrahardmode.module.ParticleEffect;
-import com.extrahardmode.module.ParticleEffect.OrdinaryColor;
 import com.extrahardmode.service.ListenerModule;
 import java.util.List;
+import org.bukkit.Bukkit;
+import org.bukkit.Effect;
 import org.bukkit.World;
 import org.bukkit.entity.Animals;
 import org.bukkit.entity.Entity;
@@ -74,7 +74,7 @@ public class AnimalCrowdControl extends ListenerModule {
     @EventHandler
     public void onAnimalOverCrowd(CreatureSpawnEvent event) {
         final Entity e = event.getEntity();
-        World world = e.getWorld();
+        final World world = e.getWorld();
 
         final boolean animalOverCrowdControl = CFG.getBoolean(RootNode.ANIMAL_OVERCROWD_CONTROL, world.getName());
         final int threshold = CFG.getInt(RootNode.ANIMAL_OVERCROWD_THRESHOLD, world.getName());
@@ -82,6 +82,12 @@ public class AnimalCrowdControl extends ListenerModule {
         //First check if config allow this feature
         if (!animalOverCrowdControl) return;
         //Get nearby entities from newly spawn animals
+        
+        //Just to check if animal is part of a Pet Plugin assuming spawned pet have nametags already given
+        if(e.getCustomName()!= null) {
+            Bukkit.broadcastMessage(e.getCustomName());
+        }
+        
         List<Entity> cattle = e.getNearbyEntities(3, 3, 3);
         int density = 0;
 
@@ -92,6 +98,8 @@ public class AnimalCrowdControl extends ListenerModule {
         for (Entity a : cattle) {
             if (!isEntityAnimal(a)) continue;
             density++;
+            
+            
             //Check if the amount of animals is bigger than the threshold given
             if (density < threshold) continue;
             final LivingEntity animal = (LivingEntity) a;
@@ -138,10 +146,9 @@ public class AnimalCrowdControl extends ListenerModule {
                                       || getCurrentDensity(e) <= threshold) {
                                   this.cancel();
                               }
-                                
-                              ParticleEffect.SPELL_MOB.display(new OrdinaryColor(34,139,34), animal.getLocation(), 5);
+                              world.spigot().playEffect(animal.getLocation(), Effect.POTION_SWIRL_TRANSPARENT, 0, 0, 0, 0, 0, 0, 0, 8);
                            }
-                       }.runTaskTimer(plugin, 20, 20);;
+                       }.runTaskTimer(plugin, 20, 20);
                     }
                 }
             }.runTaskTimer(this.plugin, 100, 100);
