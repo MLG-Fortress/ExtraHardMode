@@ -37,7 +37,7 @@
         <project.mainclass>com.extrahardmode.ExtraHardMode</project.mainclass>
         <!--Use a profile to overwrite this-->
         <outputdir>${project.build.outputDirectory}</outputdir>
-        <mc-version>1.9</mc-version>
+        <mc-version>1.9.2</mc-version>
         <bukkit-ver>R0.1-SNAPSHOT</bukkit-ver>
         <testDir>${basedir}/src/test/</testDir>
         <srcDir>${basedir}/src/main/java/</srcDir>
@@ -144,10 +144,10 @@
 
     <!-- Dependencies -->
     <dependencies>
-        <!-- Bukkit -->
+        <!-- Spigot -->
         <dependency>
-            <groupId>org.bukkit</groupId>
-            <artifactId>bukkit</artifactId>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-api</artifactId>
             <version>${mc-version}-${bukkit-ver}</version>
             <scope>compile</scope>
         </dependency>
