@@ -145,8 +145,7 @@ public class AnimalCrowdControl extends ListenerModule {
 
         final boolean animalOverCrowdControl = CFG.getBoolean(RootNode.ANIMAL_OVERCROWD_CONTROL, world.getName());
 
-        if (animalOverCrowdControl && animal instanceof Animals
-                && animal.getKiller() == null
+        if (animalOverCrowdControl && animal.getKiller() == null
                 && isEntityAnimal(animal)) {
 
             event.getDrops().clear();
