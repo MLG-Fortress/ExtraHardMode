@@ -584,7 +584,7 @@ Weak Crops:
 
 ## Animal Crowd Control
 
-Placing animals into small spaces will cause the animals to get claustrophobic this can be indicated by a villager angry effect showing above there heads. Eventually this causes the animals to slowly drive them insane leading to death.
+Placing animals into small spaces will cause the animals to get claustrophobic this can be indicated by a villager angry effect showing above their heads. Eventually this causes the animals to slowly drive them insane leading to death.
 
 Technical: The animal will scan 3x3x3 around him everytime a animal spawns once detected. It will then check if the area is crowded if so will show the effect once it reached 10 seconds and still crowded. It will then damage itself and repeat again the process until its dead or is far away from other animals.
 
