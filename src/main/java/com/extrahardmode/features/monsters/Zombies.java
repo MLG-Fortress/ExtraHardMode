@@ -133,7 +133,7 @@ public class Zombies extends ListenerModule
                         if (!block.getType().isSolid())
                         {
                             Location location = block.getLocation();
-                            location.setY(location.getY() + 1);
+                            location.setY(location.getY());
                             block = location.getBlock();
                         }
                         block.setType(Material.SKULL);
