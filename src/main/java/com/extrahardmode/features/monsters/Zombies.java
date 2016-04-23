@@ -130,10 +130,10 @@ public class Zombies extends ListenerModule
                     {
                         Block block = entity.getLocation().getBlock();
                         //Don't replace blocks that aren't air, but aren't solid either
-                        if (!block.getType().isSolid())
+                        if (block.getType() != Material.AIR)
                         {
                             Location location = block.getLocation();
-                            location.setY(location.getY());
+                            location.setY(location.getY()+1);
                             block = location.getBlock();
                         }
                         block.setType(Material.SKULL);
@@ -143,7 +143,7 @@ public class Zombies extends ListenerModule
                         BlockFace[] faces = BlockModule.getHorizontalAdjacentFaces();
                         skull.setRotation(faces[OurRandom.nextInt(faces.length)]);
                         skull.update();
-                        tempBlock = temporaryBlockHandler.addTemporaryBlock(entity.getLocation(), "respawn_skull");
+                        tempBlock = temporaryBlockHandler.addTemporaryBlock(skull.getLocation(), "respawn_skull");
                     }
                     RespawnZombieTask task = new RespawnZombieTask(plugin, entity.getLocation(), player, tempBlock);
                     int respawnSeconds = plugin.getRandom().nextInt(6) + 3; // 3-8 seconds
