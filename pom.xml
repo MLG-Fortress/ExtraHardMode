@@ -127,16 +127,16 @@
             <id>prism-repo</id>
             <url>http://dhmc.us:8081/nexus/content/repositories/releases/</url>
         </repository>
-        <!-- Spigot Repo -->
+        <!-- Spigot Repo
         <repository>
             <id>spigot-repo</id>
             <url>http://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
-        </repository>
-        <!-- PaperSpigot Repo 
+        </repository>  -->
+        <!--PaperSpigot Repo -->
         <repository>
             <id>destroystokyo-repo</id>
             <url>https://repo.destroystokyo.com/content/groups/public/</url>
-        </repository> -->
+        </repository>
         <!--WorldGuard Repo -->
         <repository>
             <id>sk89q-repo</id>
