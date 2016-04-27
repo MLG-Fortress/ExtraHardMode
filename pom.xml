@@ -130,16 +130,18 @@
         <!-- Spigot Repo -->
         <repository>
             <id>spigot-repo</id>
-            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+            <url>http://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
+        <!-- PaperSpigot Repo 
         <repository>
             <id>destroystokyo-repo</id>
             <url>https://repo.destroystokyo.com/content/groups/public/</url>
-        </repository>
+        </repository> -->
+        <!--WorldGuard Repo -->
         <repository>
-			<id>sk89q-repo</id>
-			<url>http://maven.sk89q.com/repo/</url>
-		</repository>
+            <id>sk89q-repo</id>
+            <url>http://maven.sk89q.com/repo/</url>
+        </repository>
         <!--<repository>
             <id>local</id>
             <url>http://localhost:8081/nexus/content/groups/public/</url>
@@ -150,10 +152,10 @@
     <dependencies>
         <!-- Spigot -->
         <dependency>
-            <groupId>com.destroystokyo.paper</groupId>
-            <artifactId>paper-api</artifactId>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot-api</artifactId>
             <version>${mc-version}-${bukkit-ver}</version>
-            <scope>compile</scope>
+            <scope>provided</scope>
         </dependency>
         <!-- CraftBukkit -> because we are too lazy to add the jar to our build path for runtime debugging :D -->
         <!--<dependency>-->
