@@ -40,7 +40,7 @@ public enum MessageNode implements ConfigNode
     /**
      * Display messages from extrahardmode in the scoreboard instead of spamming the chat?
      */
-    SB_MSG_TITLE("Display Messages In Scoreboard.Scoreboard Title", VarType.STRING, SubType.PLAYER_NAME, "&4ExtraHardMode"),
+    SB_MSG_TITLE("Display Messages In Scoreboard.Scoreboard Title", VarType.STRING, SubType.PLAYER_NAME, "ExtraHardMode"),
     /**
      * Display messages from extrahardmode in the scoreboard instead of spamming the chat?
      */
@@ -56,7 +56,7 @@ public enum MessageNode implements ConfigNode
     /**
      * Display messages from extrahardmode in the scoreboard instead of spamming the chat?
      */
-    SB_MSG_NOTIFICATION_TEXT_CLR("Display Messages In Scoreboard.Notification.Textcolor", VarType.COLOR, "NONE"),
+    SB_MSG_NOTIFICATION_TEXT_CLR("Display Messages In Scoreboard.Notification.Textcolor", VarType.COLOR, "YELLOW"),
 
     /**
      * Display messages from extrahardmode in the scoreboard instead of spamming the chat?
@@ -69,7 +69,7 @@ public enum MessageNode implements ConfigNode
     /**
      * Display messages from extrahardmode in the scoreboard instead of spamming the chat?
      */
-    SB_MSG_TUTORIAL_TEXT_CLR("Display Messages In Scoreboard.Tutorial.Textcolor", VarType.COLOR, "NONE"),
+    SB_MSG_TUTORIAL_TEXT_CLR("Display Messages In Scoreboard.Tutorial.Textcolor", VarType.COLOR, "RED"),
 
     /**
      * Display messages from extrahardmode in the scoreboard instead of spamming the chat?
@@ -82,7 +82,7 @@ public enum MessageNode implements ConfigNode
     /**
      * Display messages from extrahardmode in the scoreboard instead of spamming the chat?
      */
-    SB_MSG_BROADCAST_TEXT_CLR("Display Messages In Scoreboard.Broadcast.Textcolor", VarType.COLOR, "NONE"),
+    SB_MSG_BROADCAST_TEXT_CLR("Display Messages In Scoreboard.Broadcast.Textcolor", VarType.COLOR, "GREEN"),
 
 
     //Mode-Nodes have to be have the exact same name + _MODE
@@ -189,74 +189,74 @@ public enum MessageNode implements ConfigNode
             ("ChargedCreeper.Mode", MsgCategory.TUTORIAL),
     CHARGED_CREEPER_TARGET
             ("ChargedCreeper.Msg", MsgCategory.TUTORIAL, "charged_creeper",
-                    "&cCharged Creepers explode instantly when hit. Run!"),
+                    "Charged Creepers explode instantly when hit. Run!"),
     BLAZE_TARGET_NORMAL_MODE
             ("BlazeOverworld.Mode", MsgCategory.TUTORIAL),
     BLAZE_TARGET_NORMAL
             ("BlazeOverworld.Msg", MsgCategory.TUTORIAL, "blaze_overworld",
-                    "&cBlazes spawn near lava and their fiery breath causes a big explosion on death!"),
+                    "Blazes spawn near lava and their fiery breath causes a big explosion on death!"),
     BLAZE_TARGET_NETHER_MODE
             ("BlazeNether.Mode", MsgCategory.TUTORIAL),
     BLAZE_TARGET_NETHER
             ("BlazeNether.Msg", MsgCategory.TUTORIAL, "blaze_nether",
-                    "&cBlazes spawn everywhere in the Nether and may split on death!"),
+                    "Blazes spawn everywhere in the Nether and may split on death!"),
     MAGMACUBE_TARGET_MODE
             ("Magmacube.Mode", MsgCategory.TUTORIAL),
     MAGMACUBE_TARGET
             ("Magmacube.Msg", MsgCategory.TUTORIAL, "magmacube",
-                    "&cThese small buggers actually are just disguised blazes!"),
+                    "These small buggers actually are just disguised blazes!"),
     GHAST_TARGET_MODE
             ("Ghast.Mode", MsgCategory.TUTORIAL),
     GHAST_TARGET
             ("Ghast.Msg", MsgCategory.TUTORIAL, "ghast_warning",
-                    "&cThese fearsome Ghasts wear invisible arrow deflective armor! Ghasts drop a lot more loot as well."),
+                    "These fearsome Ghasts wear invisible arrow deflective armor! Ghasts drop a lot more loot as well."),
     PIGZOMBIE_TARGET_MODE
             ("PigZombieAlwaysAngry.Mode", MsgCategory.TUTORIAL),
     PIGZOMBIE_TARGET
             ("PigZombieAlwaysAngry.Msg", MsgCategory.TUTORIAL, "pigzombie",
-                    "&cRUN! Pig Zombies are always angry and hungry!"),
+                    "RUN! Pig Zombies are always angry and hungry!"),
     PIGZOMBIE_TARGET_WART_MODE
             ("PigZombieDropNetherwart.Mode", MsgCategory.TUTORIAL),
     PIGZOMBIE_TARGET_WART
             ("PigZombieDropNetherwart.Msg", MsgCategory.TUTORIAL, "pigzombie_wart",
-                    "&cYou can get netherwart from slaying Pig Zombies"),
+                    "You can get netherwart from slaying Pig Zombies"),
 
     //Various Own Events
     ZOMBIE_RESPAWN_MODE
             ("ZombieRespawn.Mode", MsgCategory.TUTORIAL),
     ZOMBIE_RESPAWN
             ("ZombieRespawn.Msg", MsgCategory.TUTORIAL, "zombie_respawn",
-                    "&cZombies might resurrect if not on fire!"),
+                    "Zombies might resurrect if not on fire!"),
     ZOMBIE_SLOW_PLAYERS_MODE
             ("ZombieSlowPlayer.Mode", MsgCategory.TUTORIAL),
     ZOMBIE_SLOW_PLAYERS
             ("ZombieSlowPlayer.Msg", MsgCategory.TUTORIAL, "zombie_slow",
-                    "&cZombies slow you down when hit!"),
+                    "Zombies slow you down when hit!"),
     SKELETON_DEFLECT_MODE
             ("SkeletonDeflectArrows.Mode", MsgCategory.TUTORIAL),
     SKELETON_DEFLECT
             ("SkeletonDeflectArrows.Msg", MsgCategory.TUTORIAL, "skeleton_deflect_arrow",
-                    "&cArrows just pass through Skeletons, you gotta go close combat!"),
+                    "Arrows just pass through Skeletons, you gotta go close combat!"),
     ENDERMAN_GENERAL_MODE
             ("EndermanGeneral.Mode", MsgCategory.TUTORIAL),
     ENDERMAN_GENERAL
             ("EndermanGeneral.Msg", MsgCategory.TUTORIAL, "enderman_teleport",
-                    "&cEnderman can teleport you too!"),
+                    "Enderman can teleport you too!"),
     CREEPER_DROP_TNT_MODE
             ("CreeperDropTnt.Mode", MsgCategory.TUTORIAL),
     CREEPER_DROP_TNT
             ("CreeperDropTnt.Msg", MsgCategory.TUTORIAL, "creeper_drop_tnt",
-                    "&cCreepers may drop activated tnt on death!"),
+                    "Creepers may drop activated tnt on death!"),
     EXTINGUISH_FIRE_MODE
             ("ExtinguishFire.Mode", MsgCategory.TUTORIAL),
     EXTINGUISH_FIRE
             ("ExtinguishFire.Msg", MsgCategory.TUTORIAL, "extinguish_fire",
-                    "&cPutting out fire with your hand will catch you on fire."),
+                    "Putting out fire with your hand will catch you on fire."),
     LOST_ITEMS_MODE
             ("ListLostItemsOnDeath.Mode", MsgCategory.NOTIFICATION),
     LOST_ITEMS
             ("ListLostItemsOnDeath.Msg", MsgCategory.NOTIFICATION, "lost_items_broadcast",
-                    "&eYou managed to lose " + Variables.ITEMS.getVarName()),
+                    "You managed to lose " + Variables.ITEMS.getVarName()),
     LOST_ITEMS_PLAYER_MODE
             ("InformPlayerOnLostItems.Mode", MsgCategory.TUTORIAL),
     LOST_ITEMS_PLAYER
@@ -268,34 +268,34 @@ public enum MessageNode implements ConfigNode
             ("BucketFill.Mode", MsgCategory.TUTORIAL),
     BUCKET_FILL
             ("BucketFill.Msg", MsgCategory.TUTORIAL, "bucket_fill",
-                    "&cYou can pick up water, but once you place it, it evaporates. Get some ice if you want to farm!"),
+                    "You can pick up water, but once you place it, it evaporates. Get some ice if you want to farm!"),
     ANTIFARMING_UNWATERD_MODE
             ("AntifarmingUnwatered.Mode", MsgCategory.TUTORIAL),
     ANTIFARMING_UNWATERD
             ("AntifarmingUnwatered.Msg", MsgCategory.TUTORIAL, "antifarm_unwatered",
-                    "&cYour crops need sufficient water, otherwise they\'ll dry out!"),
+                    "Your crops need sufficient water, otherwise they\'ll dry out!"),
     ANTIFARMING_NO_LIGHT_MODE
             ("AntifarmingNotEnoughLight.Mode", MsgCategory.TUTORIAL),
     ANTIFARMING_NO_LIGHT
             ("AntifarmingNotEnoughLight.Msg", MsgCategory.TUTORIAL, "antifarm_natural_light",
-                    "&cYour crops require natural light to grow!"),
+                    "Your crops require natural light to grow!"),
     ANTIFARMING_DESSERT_WARNING_MODE
             ("AntifarmingDesert.Mode", MsgCategory.TUTORIAL),
     ANTIFARMING_DESSERT_WARNING
             ("AntifarmingDesert.Msg", MsgCategory.TUTORIAL, "antifarm_desert",
-                    "&cDeserts are really dry and nothing grows here!"),
+                    "Deserts are really dry and nothing grows here!"),
     ANIMAL_OVERCROWD_CONTROL_MODE
             ("AnimalOverCrowd.Mode", MsgCategory.NOTIFICATION),
     ANIMAL_OVERCROWD_CONTROL
             ("AnimalOverCrowd.Msg", MsgCategory.NOTIFICATION, "animal_overcrowd",
-                "&cAnimals need space! Consider putting them in a bigger area"),
+                "Animals need space! Consider putting them in a bigger area"),
     
     //General Advice
     NETHER_WARNING_MODE
             ("NetherWarning.Mode", MsgCategory.TUTORIAL),
     NETHER_WARNING
             ("NetherWarning.Msg", MsgCategory.TUTORIAL, "nether_warn",
-                    "&cThis is a dangerous place. Make sure you come prepared with arrows and good gear.");
+                    "This is a dangerous place. Make sure you come prepared with arrows and good gear.");
 
     /**
      * Path in the Config
