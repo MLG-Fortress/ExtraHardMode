@@ -127,11 +127,11 @@
             <id>prism-repo</id>
             <url>http://dhmc.us:8081/nexus/content/repositories/releases/</url>
         </repository>
-        <!-- Spigot Repo
+        <!-- Spigot Repo -->
         <repository>
             <id>spigot-repo</id>
             <url>http://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
-        </repository>  -->
+        </repository>
         <!--PaperSpigot Repo -->
         <repository>
             <id>destroystokyo-repo</id>
@@ -152,8 +152,8 @@
     <dependencies>
         <!-- Spigot -->
         <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-api</artifactId>
+            <groupId>com.destroystokyo.paper</groupId>
+            <artifactId>paper-api</artifactId>
             <version>${mc-version}-${bukkit-ver}</version>
             <scope>provided</scope>
         </dependency>
