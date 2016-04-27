@@ -24,8 +24,6 @@ package com.extrahardmode.config.messages;
 
 
 import com.extrahardmode.service.config.ConfigNode;
-import org.bukkit.ChatColor;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -42,7 +40,7 @@ public enum MessageNode implements ConfigNode
     /**
      * Display messages from extrahardmode in the scoreboard instead of spamming the chat?
      */
-    SB_MSG_TITLE("Display Messages In Scoreboard.Scoreboard Title", VarType.STRING, SubType.PLAYER_NAME, ChatColor.RED + "ExtraHardMode"),
+    SB_MSG_TITLE("Display Messages In Scoreboard.Scoreboard Title", VarType.STRING, SubType.PLAYER_NAME, "&4ExtraHardMode"),
     /**
      * Display messages from extrahardmode in the scoreboard instead of spamming the chat?
      */
