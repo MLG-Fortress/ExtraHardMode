@@ -131,6 +131,8 @@ public class MsgModule extends EHMModule
             case BROADCAST:
                 plugin.getServer().broadcastMessage(message);
                 break;
+            case DISABLED:
+                break;
             default:
                 throw new UnsupportedOperationException(messages.getCat(node) + " not implemented");
         }
