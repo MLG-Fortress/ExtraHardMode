@@ -26,7 +26,7 @@
     <!-- Project properties. -->
     <groupId>com.extrahardmode</groupId>
     <artifactId>ExtraHardMode</artifactId>
-    <version>3.8.9</version>
+    <version>3.9.0</version>
     <name>ExtraHardMode</name>
     <description>New game rules and mechanics for Minecraft.</description>
     <url>http://dev.bukkit.org/server-mods/fun-hard-mode</url>
@@ -37,7 +37,7 @@
         <project.mainclass>com.extrahardmode.ExtraHardMode</project.mainclass>
         <!--Use a profile to overwrite this-->
         <outputdir>${project.build.outputDirectory}</outputdir>
-        <mc-version>1.11</mc-version>
+        <mc-version>1.11.2</mc-version>
         <bukkit-ver>R0.1-SNAPSHOT</bukkit-ver>
         <testDir>${basedir}/src/test/</testDir>
         <srcDir>${basedir}/src/main/java/</srcDir>
@@ -219,7 +219,7 @@
         <dependency>
             <groupId>com.sk89q</groupId>
             <artifactId>worldguard</artifactId>
-            <version>5.8.1-SNAPSHOT</version>
+            <version>6.1.1-SNAPSHOT</version>
         </dependency>
 
         <!-- Block Loggers -->
