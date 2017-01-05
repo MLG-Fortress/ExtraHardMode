@@ -716,6 +716,11 @@ public enum RootNode implements ConfigNode
     ENDER_DRAGON_ADDITIONAL_ATTACKS("EnderDragon.Harder Battle", VarType.BOOLEAN, true,
             "Dragon summons minions including blazes and zombies. Can also aggro nearby endermen!"),
     /**
+     * whether the dragon spits fireballs and summons minions
+     */
+    ALTERNATIVE_FIREBALL("EnderDragon.Harder Battle", VarType.BOOLEAN, true,
+            "More diverse mobs are spawned from fireball (blaze,zombie and skeletons)"), 
+    /**
      * whether server wide messages will broadcast player victories and defeats
      */
     ENDER_DRAGON_COMBAT_ANNOUNCEMENTS("EnderDragon.Battle Announcements", VarType.BOOLEAN, true,
