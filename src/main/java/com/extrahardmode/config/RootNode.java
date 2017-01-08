@@ -719,7 +719,7 @@ public enum RootNode implements ConfigNode
      * whether the dragon spits fireballs and summons minions
      */
     ALTERNATIVE_FIREBALL("EnderDragon.Harder Battle", VarType.BOOLEAN, true,
-            "More diverse mobs are spawned from fireball (blaze,zombie and skeletons)"), 
+            "More diverse mobs are spawned from fireball (blaze,zombie and skeletons)"),  
     /**
      * whether server wide messages will broadcast player victories and defeats
      */
