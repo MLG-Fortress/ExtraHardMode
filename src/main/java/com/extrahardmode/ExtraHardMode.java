@@ -39,6 +39,8 @@ import com.extrahardmode.task.ArmorWeightTask;
 import com.extrahardmode.task.MoreMonstersTask;
 import com.extrahardmode.task.WeightCheckTask;
 import org.bukkit.World;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -53,7 +55,7 @@ import java.util.Random;
  */
 public class ExtraHardMode extends JavaPlugin
 {
-
+	private FileConfiguration config = getConfig();
     /**
      * Plugin tag.
      */
@@ -76,17 +78,16 @@ public class ExtraHardMode extends JavaPlugin
     @Override
     public void onEnable()
     {
+
         // Register modules
         registerModule(RootConfig.class, new RootConfig(this));
         registerModule(MessageConfig.class, new MessageConfig(this));
-
-        File rootFolder = new File(getDataFolder().getPath() + File.separator + "persistence" + File.separator);
-        rootFolder.mkdirs();
-        registerModule(MsgPersistModule.class, new MsgPersistModule(this, rootFolder + File.separator + "messages_count.db"));
-
         registerModule(MsgModule.class, new MsgModule(this));
 
-        registerModule(DataStoreModule.class, new DataStoreModule(this));
+        
+		registerModule(DataStoreModule.class, new DataStoreModule(this));
+        
+        
         registerModule(BlockModule.class, new BlockModule(this));
         registerModule(UtilityModule.class, new UtilityModule(this));
         registerModule(PlayerModule.class, new PlayerModule(this));
@@ -98,16 +99,27 @@ public class ExtraHardMode extends JavaPlugin
         registerModule(AntiFarming.class, new AntiFarming(this));
         registerModule(AnimalCrowdControl.class, new AnimalCrowdControl(this));
         registerModule(AntiGrinder.class, new AntiGrinder(this));
-        registerModule(DebugMode.class, new DebugMode(this));
+        boolean ddb = config.getBoolean("ExtraHardMode.Disable.Debug",false);
+		if(!ddb){
+	        registerModule(DebugMode.class, new DebugMode(this));
+		}
+
         registerModule(Explosions.class, new Explosions(this));
         registerModule(HardenedStone.class, new HardenedStone(this));
         registerModule(LimitedBuilding.class, new LimitedBuilding(this));
         registerModule(MoreTnt.class, new MoreTnt(this));
         registerModule(Physics.class, new Physics(this));
         registerModule(Players.class, new Players(this));
-        registerModule(Torches.class, new Torches(this));
-        registerModule(Water.class, new Water(this));
 
+        
+        boolean dtor = config.getBoolean("ExtraHardMode.Disable.Torch",false);
+		if(!dtor){
+	        registerModule(Torches.class, new Torches(this));
+		}
+        boolean dwat = config.getBoolean("ExtraHardMode.Disable.Water",false);
+		if(!dwat){
+			registerModule(Water.class, new Water(this));
+		}
         //Utils
         registerModule(TemporaryBlockHandler.class, new TemporaryBlockHandler(this));
 
@@ -125,7 +137,10 @@ public class ExtraHardMode extends JavaPlugin
         {
         }
         registerModule(MonsterRules.class, new MonsterRules(this));
-        registerModule(PigMen.class, new PigMen(this));
+        boolean dpz = config.getBoolean("ExtraHardMode.Disable.Pigzombie",false);
+		if(!dpz){
+	        registerModule(PigMen.class, new PigMen(this));
+		}
         registerModule(RealisticChopping.class, new RealisticChopping(this));
         registerModule(Silverfish.class, new Silverfish(this));
         registerModule(Skeletors.class, new Skeletors(this));
@@ -137,8 +152,18 @@ public class ExtraHardMode extends JavaPlugin
         registerModule(CompatHandler.class, new CompatHandler(this));
         registerModule(ExplosionCompatStorage.class, new ExplosionCompatStorage(this));
 
-        //TODO make modules
-        registerModule(Tutorial.class, new Tutorial(this));
+        boolean dtut = config.getBoolean("ExtraHardMode.Disable.Tutorial",false);
+		if(!dtut){
+
+	        File rootFolder = new File(getDataFolder().getPath() + File.separator + "persistence" + File.separator);
+	        rootFolder.mkdirs();
+
+			registerModule(MsgPersistModule.class, new MsgPersistModule(this, rootFolder + File.separator + "messages_count.db"));
+
+	        //TODO make modules
+			registerModule(Tutorial.class, new Tutorial(this));
+		}
+
 
         OurRandom.reload();
 
