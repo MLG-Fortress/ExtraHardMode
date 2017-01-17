@@ -142,7 +142,6 @@ public class Witches extends ListenerModule
                 if (!zombieNearby)
                 {
                     Zombie zombie = (Zombie) EntityHelper.spawn(location, EntityType.ZOMBIE);
-                    zombie.setVillager(true);
                     zombie.setBaby(true);
                     if (zombie.getTarget() != null)
                     {

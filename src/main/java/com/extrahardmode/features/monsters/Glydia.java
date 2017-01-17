@@ -557,7 +557,6 @@ public class Glydia extends ListenerModule
                              spawnedMonster = entity.getWorld().spawnEntity(entity.getLocation(), EntityType.ZOMBIE);
                              EntityHelper.markLootLess(plugin, (LivingEntity) spawnedMonster);
                              Zombie zombie = (Zombie) spawnedMonster;
-                             zombie.setVillager(true);
                          }
                      } else
                      {
