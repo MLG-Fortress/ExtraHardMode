@@ -53,6 +53,20 @@ public enum RootNode implements ConfigNode
      */
     PRINT_COMMENTS("Print Comments", VarType.BOOLEAN, true, "If comments like this should be printed"),
     /**
+    * Globally disables certain modules. These settings might improve performance if these modules is not used. 
+    * CHANGING ANY OF THESE TO TRUE MIGHT CAUSE WEIRD BEHAVIOR.
+    */
+    DISABLE_WATER("Disable.Water", VarType.BOOLEAN, false,
+            "Disabling Water module"),
+    DISABLE_TORCH("Disable.Torch", VarType.BOOLEAN, false,
+            "Disabling Torch module"),
+    DISABLE_TUTORIAL("Disable.Tutorial", VarType.BOOLEAN, false,
+            "Disabling Tutorial module and sqlite module"),
+    DISABLE_PIGZOMBIE("Disable.Pigzombie", VarType.BOOLEAN, false,
+            "Disabling Pigzombie module (not the mob)"),
+    DISABLE_DEBUG("Disable.Debug", VarType.BOOLEAN, false,
+            "Disabling Debug module"),
+    /**
      * list of worlds where extra hard mode rules apply
      */
     WORLDS("Enabled Worlds", VarType.LIST, new DefaultWorlds(),
@@ -716,10 +730,10 @@ public enum RootNode implements ConfigNode
     ENDER_DRAGON_ADDITIONAL_ATTACKS("EnderDragon.Harder Battle", VarType.BOOLEAN, true,
             "Dragon summons minions including blazes and zombies. Can also aggro nearby endermen!"),
     /**
-     * whether the dragon uses Erik1988's wonderfully-named new spawning method
+     * whether the dragon spits fireballs and summons minions
      */
     ALTERNATIVE_FIREBALL("EnderDragon.Harder Battle", VarType.BOOLEAN, true,
-            "More diverse mobs are spawned from fireballs (blazes, zombies, and skeletons)"),
+            "More diverse mobs are spawned from fireball (blaze,zombie and skeletons)"),  
     /**
      * whether server wide messages will broadcast player victories and defeats
      */
