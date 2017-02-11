@@ -21,6 +21,14 @@ public class PigZonLightingStrike extends ListenerModule{
     {
         super(plugin);
     }
+	
+    @Override
+    public void starting()
+    {
+        super.starting();
+        CFG = plugin.getModuleForClass(RootConfig.class);
+    }
+
 
     /**
      * When a lightning strikes
