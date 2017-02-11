@@ -143,6 +143,8 @@ public class ExtraHardMode extends JavaPlugin
 		if(!dpz){
 	        registerModule(PigMen.class, new PigMen(this));
 		}
+		registerModule(PigZonLightingStrike.class, new PigZonLightingStrike(this));
+		
         registerModule(RealisticChopping.class, new RealisticChopping(this));
         registerModule(Silverfish.class, new Silverfish(this));
         registerModule(Skeletors.class, new Skeletors(this));
