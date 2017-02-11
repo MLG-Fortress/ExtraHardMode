@@ -154,7 +154,6 @@ public class ExtraHardMode extends JavaPlugin
         registerModule(CompatHandler.class, new CompatHandler(this));
         registerModule(ExplosionCompatStorage.class, new ExplosionCompatStorage(this));
 
-        boolean dtut = config.getBoolean("ExtraHardMode.Disable.Tutorial",false);
 		if(!dtut){
 
 	        File rootFolder = new File(getDataFolder().getPath() + File.separator + "persistence" + File.separator);
