@@ -159,49 +159,5 @@ public class PigMen extends ListenerModule
     }
 
 
-    /**
-     * When a lightning strikes
-     * <p/>
-     * spawn pigmen
-     */
-    @EventHandler
-    public void onLightingStrike(LightningStrikeEvent event)
-    {
-        LightningStrike strike = event.getLightning();
 
-        Location loc = strike.getLocation();
-        World world = loc.getWorld();
-
-        final boolean spawnPigsOnLightning = CFG.getBoolean(RootNode.LIGHTNING_SPAWNS_PIGMEN, world.getName());
-
-        if (spawnPigsOnLightning && EntityHelper.simpleIsLocSafeSpawn(loc))
-        {
-            int rdm = plugin.getRandom().nextInt(10);
-            int amount = 1;
-            switch (rdm)
-            {
-                case 0:
-                case 1: //20%
-                {
-                    amount = 2;
-                    break;
-                }
-                case 2:
-                case 3: //20%
-                {
-                    amount = 3;
-                    break;
-                }
-                default:       //60%
-                {
-                    amount = 1;
-                }
-            }
-            for (int i = 0; i < amount; i++)
-            {
-                PigZombie pigZombie = world.spawn(loc, PigZombie.class);
-                pigZombie.setAnger(Integer.MAX_VALUE);
-            }
-        }
-    }
 }

@@ -93,7 +93,7 @@ public class Explosions extends ListenerModule
     //   |   / _| (_ | |_| | |__ / _ \|   / | |__ | |\__ \ | | | _|| .` | _||   /
     //   |_|_\___\___|\___/|____/_/ \_\_|_\ |____|___|___/ |_| |___|_|\_|___|_|_\
     //
-    @EventHandler(ignoreCancelled = true)
+    @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGH) //High priority to allow plugins to clear the blocklist if they so choose
     public void regularExplosions(EntityExplodeEvent event)
     {
         if (event instanceof FakeEntityExplodeEvent || !(event.getEntity() instanceof Ghast || event.getEntity() instanceof TNTPrimed))
@@ -115,7 +115,7 @@ public class Explosions extends ListenerModule
         // TNT
         if (sourceEntity instanceof TNTPrimed)
         {
-            if (customTntExplosion && event.blockList().size() != 0 && (flyOtherPlugins || event.getYield() == 0.25)) //getYield value of 0.25 somewhat ensures this is a vanilla TNT explosion.
+            if (customTntExplosion && event.blockList().size() > 0 && (flyOtherPlugins || event.getYield() == 0.25)) //getYield value of 0.25 somewhat ensures this is a vanilla TNT explosion.
             {
                 if (!multipleExplosions)
                 {

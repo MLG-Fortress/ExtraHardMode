@@ -26,7 +26,7 @@
     <!-- Project properties. -->
     <groupId>com.extrahardmode</groupId>
     <artifactId>ExtraHardMode</artifactId>
-    <version>3.9.0</version>
+    <version>3.10</version>
     <name>ExtraHardMode</name>
     <description>New game rules and mechanics for Minecraft.</description>
     <url>http://dev.bukkit.org/server-mods/fun-hard-mode</url>
@@ -123,10 +123,10 @@
             <id>github-snapshots</id>
             <url>http://di3mex.github.io/repo_bukkit/snapshots/</url>
         </repository>
-        <repository>
-            <id>prism-repo</id>
-            <url>http://dhmc.us:8081/nexus/content/repositories/releases/</url>
-        </repository>
+        <!--<repository>-->
+            <!--<id>prism-repo</id>-->
+            <!--<url>http://dhmc.us:8081/nexus/content/repositories/releases/</url>-->
+        <!--</repository>-->
         <repository>
             <id>md_5-releases</id>
             <url>http://repo.md-5.net/content/repositories/releases/</url>
@@ -224,11 +224,12 @@
 
         <!-- Block Loggers -->
         <!-- Prism -->
-        <dependency>
-            <groupId>me.botsko</groupId>
-            <artifactId>prism</artifactId>
-            <version>2.0.6</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>me.botsko</groupId>-->
+            <!--<artifactId>prism</artifactId>-->
+            <!--<version>2.0</version>-->
+            <!--&lt;!&ndash;<version>2.0.6</version>&ndash;&gt;-->
+        <!--</dependency>-->
         <!-- CoreProtect -->
         <dependency>
             <groupId>net.coreprotect.CoreProtect</groupId>

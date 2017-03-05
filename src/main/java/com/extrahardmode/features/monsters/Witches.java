@@ -128,10 +128,10 @@ public class Witches extends ListenerModule
                 boolean zombieNearby = false;
                 for (Entity entity : location.getChunk().getEntities())
                 {
-                    if (entity.getType() == EntityType.ZOMBIE)
+                    if (entity.getType() == EntityType.ZOMBIE_VILLAGER)
                     {
-                        Zombie zombie = (Zombie) entity;
-                        if (zombie.isVillager() && zombie.isBaby())
+                        ZombieVillager zombie = (ZombieVillager) entity;
+                        if (zombie.isBaby())
                         {
                             zombieNearby = true;
                             break;
@@ -141,8 +141,7 @@ public class Witches extends ListenerModule
 
                 if (!zombieNearby)
                 {
-                    Zombie zombie = (Zombie) EntityHelper.spawn(location, EntityType.ZOMBIE);
-                    zombie.setVillager(true);
+                    ZombieVillager zombie = (ZombieVillager) EntityHelper.spawn(location, EntityType.ZOMBIE_VILLAGER);
                     zombie.setBaby(true);
                     if (zombie.getTarget() != null)
                     {
