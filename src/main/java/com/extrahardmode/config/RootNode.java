@@ -745,7 +745,7 @@ public enum RootNode implements ConfigNode
     /**
      * percentage of squids which spawn as Guardians in ocean and deep ocean.
      */
-    BONUS_GUARDIANS_SPAWN_PERCENT("Guardians.Bonus Spawn Percent", VarType.INTEGER, SubType.PERCENTAGE, 10),
+    BONUS_GUARDIANS_SPAWN_PERCENT("Guardians.Bonus Spawn Percent", VarType.INTEGER, SubType.PERCENTAGE, 20),
     /**
      * ###########
      * # VEX #
@@ -754,7 +754,7 @@ public enum RootNode implements ConfigNode
     /**
      * percentage of bats which spawn as Vex.
      */
-    BONUS_VEX_SPAWN_PERCENT("Guardians.Bonus Spawn Percent", VarType.INTEGER, SubType.PERCENTAGE, 5),
+    BONUS_VEX_SPAWN_PERCENT("Vex.Bonus Spawn Percent", VarType.INTEGER, SubType.PERCENTAGE, 5),
     /**
      * ################
      * # ENDER DRAGON #
