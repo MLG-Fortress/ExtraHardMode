@@ -151,7 +151,15 @@ public class ExtraHardMode extends JavaPlugin
         registerModule(Spiders.class, new Spiders(this));
         registerModule(Zombies.class, new Zombies(this));
         registerModule(Witches.class, new Witches(this));
-
+        
+        boolean dvar = config.getBoolean("ExtraHardMode.Disable.MobVariation",false);
+		if(!dvar){
+        registerModule(KillerBunny.class, new KillerBunny(this));
+        registerModule(Vindicator.class, new Vindicator(this));
+        registerModule(CaveSpider.class, new CaveSpider(this));
+        registerModule(Guardians.class, new Guardians(this));
+        registerModule(Vex.class, new Vex(this));
+		}
         //Compatibility
         registerModule(CompatHandler.class, new CompatHandler(this));
         registerModule(ExplosionCompatStorage.class, new ExplosionCompatStorage(this));
