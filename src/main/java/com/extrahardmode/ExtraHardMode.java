@@ -55,7 +55,6 @@ import java.util.Random;
  */
 public class ExtraHardMode extends JavaPlugin
 {
-
 	private FileConfiguration config = getConfig();
     /**
      * Plugin tag.
@@ -79,18 +78,16 @@ public class ExtraHardMode extends JavaPlugin
     @Override
     public void onEnable()
     {
+
         // Register modules
         registerModule(RootConfig.class, new RootConfig(this));
         registerModule(MessageConfig.class, new MessageConfig(this));
-        boolean dtut = config.getBoolean("ExtraHardMode.Disable.Tutorial",false);
-		if(!dtut){
-        File rootFolder = new File(getDataFolder().getPath() + File.separator + "persistence" + File.separator);
-        rootFolder.mkdirs();
-        registerModule(MsgPersistModule.class, new MsgPersistModule(this, rootFolder + File.separator + "messages_count.db"));
-        }
         registerModule(MsgModule.class, new MsgModule(this));
 
-        registerModule(DataStoreModule.class, new DataStoreModule(this));
+        
+		registerModule(DataStoreModule.class, new DataStoreModule(this));
+        
+        
         registerModule(BlockModule.class, new BlockModule(this));
         registerModule(UtilityModule.class, new UtilityModule(this));
         registerModule(PlayerModule.class, new PlayerModule(this));
@@ -106,6 +103,7 @@ public class ExtraHardMode extends JavaPlugin
 		if(!ddb){
 	        registerModule(DebugMode.class, new DebugMode(this));
 		}
+
         registerModule(Explosions.class, new Explosions(this));
         registerModule(HardenedStone.class, new HardenedStone(this));
         registerModule(LimitedBuilding.class, new LimitedBuilding(this));
@@ -143,8 +141,6 @@ public class ExtraHardMode extends JavaPlugin
 		if(!dpz){
 	        registerModule(PigMen.class, new PigMen(this));
 		}
-		registerModule(PigZonLightingStrike.class, new PigZonLightingStrike(this));
-		
         registerModule(RealisticChopping.class, new RealisticChopping(this));
         registerModule(Silverfish.class, new Silverfish(this));
         registerModule(Skeletors.class, new Skeletors(this));
@@ -164,6 +160,7 @@ public class ExtraHardMode extends JavaPlugin
         registerModule(CompatHandler.class, new CompatHandler(this));
         registerModule(ExplosionCompatStorage.class, new ExplosionCompatStorage(this));
 
+        boolean dtut = config.getBoolean("ExtraHardMode.Disable.Tutorial",false);
 		if(!dtut){
 
 	        File rootFolder = new File(getDataFolder().getPath() + File.separator + "persistence" + File.separator);
@@ -174,6 +171,7 @@ public class ExtraHardMode extends JavaPlugin
 	        //TODO make modules
 			registerModule(Tutorial.class, new Tutorial(this));
 		}
+
 
         OurRandom.reload();
 
