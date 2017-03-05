@@ -71,7 +71,7 @@ public class PigZonLightingStrike extends ListenerModule{
             for (int i = 0; i < amount; i++)
             {
                 PigZombie pigZombie = world.spawn(loc, PigZombie.class);
-                pigZombie.setAnger(Integer.MAX_VALUE);
+                pigZombie.setAngry(true);
             }
         }
     }
