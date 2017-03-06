@@ -39,8 +39,7 @@ import com.extrahardmode.task.ArmorWeightTask;
 import com.extrahardmode.task.MoreMonstersTask;
 import com.extrahardmode.task.WeightCheckTask;
 import org.bukkit.World;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
+
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -55,7 +54,6 @@ import java.util.Random;
  */
 public class ExtraHardMode extends JavaPlugin
 {
-	private FileConfiguration config = getConfig();
     /**
      * Plugin tag.
      */
@@ -99,7 +97,13 @@ public class ExtraHardMode extends JavaPlugin
         registerModule(AntiFarming.class, new AntiFarming(this));
         registerModule(AnimalCrowdControl.class, new AnimalCrowdControl(this));
         registerModule(AntiGrinder.class, new AntiGrinder(this));
-        boolean ddb = config.getBoolean("ExtraHardMode.Disable.Debug",false);
+        
+
+        boolean ddb = false;
+        for (World world : getServer().getWorlds())
+            if (getModuleForClass(RootConfig.class).getBoolean(RootNode.DISABLE_DEBUG, world.getName()))
+            	ddb = true;
+        
 		if(!ddb){
 	        registerModule(DebugMode.class, new DebugMode(this));
 		}
@@ -110,13 +114,20 @@ public class ExtraHardMode extends JavaPlugin
         registerModule(MoreTnt.class, new MoreTnt(this));
         registerModule(Physics.class, new Physics(this));
         registerModule(Players.class, new Players(this));
-
         
-        boolean dtor = config.getBoolean("ExtraHardMode.Disable.Torch",false);
+        boolean dtor = false;
+        for (World world : getServer().getWorlds())
+            if (getModuleForClass(RootConfig.class).getBoolean(RootNode.DISABLE_TORCH, world.getName()))
+            	dtor = true;
+
 		if(!dtor){
 	        registerModule(Torches.class, new Torches(this));
 		}
-        boolean dwat = config.getBoolean("ExtraHardMode.Disable.Water",false);
+        boolean dwat = false;
+        for (World world : getServer().getWorlds())
+            if (getModuleForClass(RootConfig.class).getBoolean(RootNode.DISABLE_WATER, world.getName()))
+            	dwat = true;
+
 		if(!dwat){
 			registerModule(Water.class, new Water(this));
 		}
@@ -137,8 +148,13 @@ public class ExtraHardMode extends JavaPlugin
         {
         }
         registerModule(MonsterRules.class, new MonsterRules(this));
-        boolean dpz = config.getBoolean("ExtraHardMode.Disable.Pigzombie",false);
-		if(!dpz){
+        boolean dpz = false;
+        for (World world : getServer().getWorlds())
+            if (getModuleForClass(RootConfig.class).getBoolean(RootNode.DISABLE_PIGZOMBIE, world.getName()))
+            	dpz = true;
+        
+        
+        if(!dpz){
 	        registerModule(PigMen.class, new PigMen(this));
 		}
         registerModule(RealisticChopping.class, new RealisticChopping(this));
@@ -149,7 +165,11 @@ public class ExtraHardMode extends JavaPlugin
         registerModule(Witches.class, new Witches(this));
         
         //Disables MobVariation
-        boolean dvar = config.getBoolean("ExtraHardMode.Disable.MobVariation",false);
+        boolean dvar = false;
+        for (World world : getServer().getWorlds())
+            if (getModuleForClass(RootConfig.class).getBoolean(RootNode.DISABLE_MOBVARIATION, world.getName()))
+            	dvar = true;
+
 		if(!dvar){
         registerModule(KillerBunny.class, new KillerBunny(this));
         registerModule(Vindicator.class, new Vindicator(this));
@@ -161,7 +181,10 @@ public class ExtraHardMode extends JavaPlugin
         registerModule(CompatHandler.class, new CompatHandler(this));
         registerModule(ExplosionCompatStorage.class, new ExplosionCompatStorage(this));
 
-        boolean dtut = config.getBoolean("ExtraHardMode.Disable.Tutorial",false);
+        boolean dtut = false;
+        for (World world : getServer().getWorlds())
+            if (getModuleForClass(RootConfig.class).getBoolean(RootNode.DISABLE_TUTORIAL, world.getName()))
+            	dtut = true;
 		if(!dtut){
 
 	        File rootFolder = new File(getDataFolder().getPath() + File.separator + "persistence" + File.separator);
