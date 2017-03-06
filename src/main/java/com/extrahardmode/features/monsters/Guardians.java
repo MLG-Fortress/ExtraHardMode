@@ -39,7 +39,6 @@ public class Guardians extends ListenerModule
         CFG = plugin.getModuleForClass(RootConfig.class);
     }
 
-
     /**
      * When an Entity spawns: Spawn a Guardians sometimes instead of a Squid
      *
@@ -57,7 +56,7 @@ public class Guardians extends ListenerModule
 
         final int guardiansSpawnPercent = CFG.getInt(RootNode.BONUS_GUARDIANS_SPAWN_PERCENT, world.getName());
 
-        // FEATURE: killer bunnies spawns naturally 
+        // FEATURE: Guardians spawns naturally 
         if (entityType == EntityType.SQUID && world.getEnvironment() == World.Environment.NORMAL
                 && entity.getLocation().getBlock().getBiome() == Biome.DEEP_OCEAN 
                 || entity.getLocation().getBlock().getBiome() == Biome.OCEAN

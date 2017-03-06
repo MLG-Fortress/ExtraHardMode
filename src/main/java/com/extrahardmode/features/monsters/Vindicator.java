@@ -39,7 +39,6 @@ public class Vindicator extends ListenerModule
         CFG = plugin.getModuleForClass(RootConfig.class);
     }
 
-
     /**
      * When an Entity spawns: Spawn a Vindicator sometimes instead of a Skeleton
      *
@@ -57,7 +56,7 @@ public class Vindicator extends ListenerModule
 
         final int vindicatorSpawnPercent = CFG.getInt(RootNode.BONUS_VINDICATOR_SPAWN_PERCENT, world.getName());
 
-        // FEATURE: killer bunnies spawns naturally 
+        // FEATURE: Vindicator spawns naturally 
         if (entityType == EntityType.SKELETON && world.getEnvironment() == World.Environment.NORMAL
                 && entity.getLocation().getBlock().getBiome() == Biome.ROOFED_FOREST 
                 || entity.getLocation().getBlock().getBiome() == Biome.MUTATED_ROOFED_FOREST

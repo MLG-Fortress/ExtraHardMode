@@ -41,7 +41,7 @@ public class Vex extends ListenerModule
 
 
     /**
-     * When an Entity spawns: Spawn a Guardians sometimes instead of a Squid
+     * When an Entity spawns: Spawn a Vex sometimes instead of a bat
      *
      * @param event which occurred
      */
@@ -57,7 +57,7 @@ public class Vex extends ListenerModule
 
         final int vexSpawnPercent = CFG.getInt(RootNode.BONUS_VEX_SPAWN_PERCENT, world.getName());
 
-        // FEATURE: killer bunnies spawns naturally 
+        // FEATURE: vex spawns naturally 
         if (entityType == EntityType.BAT && world.getEnvironment() == World.Environment.NORMAL
                 && event.getSpawnReason() == CreatureSpawnEvent.SpawnReason.NATURAL)
         {

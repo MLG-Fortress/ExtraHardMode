@@ -97,7 +97,6 @@ public class ExtraHardMode extends JavaPlugin
         registerModule(AntiFarming.class, new AntiFarming(this));
         registerModule(AnimalCrowdControl.class, new AnimalCrowdControl(this));
         registerModule(AntiGrinder.class, new AntiGrinder(this));
-        
 
         boolean ddb = false;
         for (World world : getServer().getWorlds())
@@ -152,7 +151,6 @@ public class ExtraHardMode extends JavaPlugin
         for (World world : getServer().getWorlds())
             if (getModuleForClass(RootConfig.class).getBoolean(RootNode.DISABLE_PIGZOMBIE, world.getName()))
             	dpz = true;
-        
         
         if(!dpz){
 	        registerModule(PigMen.class, new PigMen(this));
