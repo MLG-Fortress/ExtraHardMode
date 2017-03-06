@@ -53,6 +53,22 @@ public enum RootNode implements ConfigNode
      */
     PRINT_COMMENTS("Print Comments", VarType.BOOLEAN, true, "If comments like this should be printed"),
     /**
+    * Globally disables certain modules. These settings might improve performance if these modules is not used. 
+    * CHANGING ANY OF THESE TO TRUE MIGHT CAUSE WEIRD BEHAVIOR.
+    */
+    DISABLE_WATER("Disable.Water", VarType.BOOLEAN, false,
+            "Disabling Water module"),
+    DISABLE_TORCH("Disable.Torch", VarType.BOOLEAN, false,
+            "Disabling Torch module"),
+    DISABLE_TUTORIAL("Disable.Tutorial", VarType.BOOLEAN, false,
+            "Disabling Tutorial module and sqlite module"),
+    DISABLE_PIGZOMBIE("Disable.Pigzombie", VarType.BOOLEAN, false,
+            "Disabling Pigzombie module (not the mob)"),
+    DISABLE_DEBUG("Disable.Debug", VarType.BOOLEAN, false,
+            "Disabling Debug module"),
+    DISABLE_MOBVARIATION("Disable.MobVariation", VarType.BOOLEAN, false,
+            "Disabling the mobvariation module"),
+    /**
      * list of worlds where extra hard mode rules apply
      */
     WORLDS("Enabled Worlds", VarType.LIST, new DefaultWorlds(),
