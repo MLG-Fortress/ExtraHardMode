@@ -62,11 +62,7 @@ public enum RootNode implements ConfigNode
             "Disabling Torch module"),
     DISABLE_TUTORIAL("Disable.Tutorial", VarType.BOOLEAN, false,
             "Disabling Tutorial module and sqlite module"),
-    DISABLE_PIGZOMBIE("Disable.Pigzombie", VarType.BOOLEAN, false,
-            "Disabling Pigzombie module (not the mob)"),
-    DISABLE_MOBVARIATION("Disable.MobVariation", VarType.BOOLEAN, false,
-            "Disabling the mobvariation module"),
-    DISABLE_DEBUG("Disable.Debug", VarType.BOOLEAN, false,
+    DISABLE_DEBUG("Disable.Debug", VarType.BOOLEAN, true,
             "Disabling Debug module"),
     /**
      * list of worlds where extra hard mode rules apply

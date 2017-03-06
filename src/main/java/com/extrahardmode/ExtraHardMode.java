@@ -39,6 +39,7 @@ import com.extrahardmode.task.ArmorWeightTask;
 import com.extrahardmode.task.MoreMonstersTask;
 import com.extrahardmode.task.WeightCheckTask;
 import org.bukkit.World;
+import org.bukkit.configuration.file.FileConfiguration;
 
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -54,7 +55,8 @@ import java.util.Random;
  */
 public class ExtraHardMode extends JavaPlugin
 {
-    /**
+	private FileConfiguration config = getConfig();
+	/**
      * Plugin tag.
      */
     public static final String TAG = "[EHM]";
@@ -98,12 +100,7 @@ public class ExtraHardMode extends JavaPlugin
         registerModule(AnimalCrowdControl.class, new AnimalCrowdControl(this));
         registerModule(AntiGrinder.class, new AntiGrinder(this));
 
-        boolean ddb = false;
-        for (World world : getServer().getWorlds())
-            if (getModuleForClass(RootConfig.class).getBoolean(RootNode.DISABLE_DEBUG, world.getName()))
-            	ddb = true;
-        
-		if(!ddb){
+	    if(!config.getBoolean("ExtraHardMode.Disable.Debug",true)){
 	        registerModule(DebugMode.class, new DebugMode(this));
 		}
 
@@ -114,20 +111,10 @@ public class ExtraHardMode extends JavaPlugin
         registerModule(Physics.class, new Physics(this));
         registerModule(Players.class, new Players(this));
         
-        boolean dtor = false;
-        for (World world : getServer().getWorlds())
-            if (getModuleForClass(RootConfig.class).getBoolean(RootNode.DISABLE_TORCH, world.getName()))
-            	dtor = true;
-
-		if(!dtor){
+		if(!config.getBoolean("ExtraHardMode.Disable.Torch",false)){
 	        registerModule(Torches.class, new Torches(this));
 		}
-        boolean dwat = false;
-        for (World world : getServer().getWorlds())
-            if (getModuleForClass(RootConfig.class).getBoolean(RootNode.DISABLE_WATER, world.getName()))
-            	dwat = true;
-
-		if(!dwat){
+	    if(!config.getBoolean("ExtraHardMode.Disable.Water",false)){
 			registerModule(Water.class, new Water(this));
 		}
         //Utils
@@ -146,15 +133,9 @@ public class ExtraHardMode extends JavaPlugin
         } catch (ClassNotFoundException ignored)
         {
         }
-        registerModule(MonsterRules.class, new MonsterRules(this));
-        boolean dpz = false;
-        for (World world : getServer().getWorlds())
-            if (getModuleForClass(RootConfig.class).getBoolean(RootNode.DISABLE_PIGZOMBIE, world.getName()))
-            	dpz = true;
-        
-        if(!dpz){
-	        registerModule(PigMen.class, new PigMen(this));
-		}
+
+	    registerModule(PigMen.class, new PigMen(this));
+
         registerModule(RealisticChopping.class, new RealisticChopping(this));
         registerModule(Silverfish.class, new Silverfish(this));
         registerModule(Skeletors.class, new Skeletors(this));
@@ -162,28 +143,17 @@ public class ExtraHardMode extends JavaPlugin
         registerModule(Zombies.class, new Zombies(this));
         registerModule(Witches.class, new Witches(this));
         
-        //Disables MobVariation
-        boolean dvar = false;
-        for (World world : getServer().getWorlds())
-            if (getModuleForClass(RootConfig.class).getBoolean(RootNode.DISABLE_MOBVARIATION, world.getName()))
-            	dvar = true;
-
-		if(!dvar){
         registerModule(KillerBunny.class, new KillerBunny(this));
         registerModule(Vindicator.class, new Vindicator(this));
         registerModule(CaveSpider.class, new CaveSpider(this));
         registerModule(Guardians.class, new Guardians(this));
         registerModule(Vex.class, new Vex(this));
-		}
+
         //Compatibility
         registerModule(CompatHandler.class, new CompatHandler(this));
         registerModule(ExplosionCompatStorage.class, new ExplosionCompatStorage(this));
 
-        boolean dtut = false;
-        for (World world : getServer().getWorlds())
-            if (getModuleForClass(RootConfig.class).getBoolean(RootNode.DISABLE_TUTORIAL, world.getName()))
-            	dtut = true;
-		if(!dtut){
+		if(!config.getBoolean("ExtraHardMode.Disable.Tutorial",false)){
 
 	        File rootFolder = new File(getDataFolder().getPath() + File.separator + "persistence" + File.separator);
 	        rootFolder.mkdirs();
