@@ -22,7 +22,6 @@
 
 package com.extrahardmode;
 
-
 import com.extrahardmode.command.Commander;
 import com.extrahardmode.compatibility.CompatHandler;
 import com.extrahardmode.config.RootConfig;
@@ -48,7 +47,6 @@ import java.io.File;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Random;
-
 
 /**
  * Main plugin class.
@@ -78,15 +76,12 @@ public class ExtraHardMode extends JavaPlugin
     @Override
     public void onEnable()
     {
-
         // Register modules
         registerModule(RootConfig.class, new RootConfig(this));
         registerModule(MessageConfig.class, new MessageConfig(this));
         registerModule(MsgModule.class, new MsgModule(this));
 
-        
 		registerModule(DataStoreModule.class, new DataStoreModule(this));
-        
         
         registerModule(BlockModule.class, new BlockModule(this));
         registerModule(UtilityModule.class, new UtilityModule(this));
@@ -164,7 +159,6 @@ public class ExtraHardMode extends JavaPlugin
 			registerModule(Tutorial.class, new Tutorial(this));
 		}
 
-
         OurRandom.reload();
 
         // FEATURE: monsters spawn in the light under a configurable Y level
@@ -191,7 +185,6 @@ public class ExtraHardMode extends JavaPlugin
         //Metrics Plotter, this gets included by maven
         new ConfigPlotter(this, getModuleForClass(RootConfig.class));
     }
-
 
     @Override
     public void onDisable()
