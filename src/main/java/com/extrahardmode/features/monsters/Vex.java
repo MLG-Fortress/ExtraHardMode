@@ -45,7 +45,7 @@ public class Vex extends ListenerModule
      *
      * @param event which occurred
      */
-    @EventHandler(priority = EventPriority.LOW)
+    @EventHandler(ignoreCancelled = true, priority = EventPriority.LOW)
     public void onEntitySpawn(CreatureSpawnEvent event)
     {
         LivingEntity entity = event.getEntity();

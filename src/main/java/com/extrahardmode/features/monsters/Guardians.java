@@ -19,7 +19,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 
 /**
- * Vindicator
+ * Guardians
  */
 public class Guardians extends ListenerModule
 {
@@ -44,7 +44,7 @@ public class Guardians extends ListenerModule
      *
      * @param event which occurred
      */
-    @EventHandler(priority = EventPriority.LOW)
+    @EventHandler(ignoreCancelled = true, priority = EventPriority.LOW)
     public void onEntitySpawn(CreatureSpawnEvent event)
     {
         LivingEntity entity = event.getEntity();
