@@ -142,7 +142,7 @@ public class ExtraHardMode extends JavaPlugin
         } catch (ClassNotFoundException ignored)
         {
         }
-
+        registerModule(MonsterRules.class, new MonsterRules(this));
 	    registerModule(PigMen.class, new PigMen(this));
 
         registerModule(RealisticChopping.class, new RealisticChopping(this));
