@@ -233,7 +233,7 @@ public class ExtraHardMode extends JavaPlugin
     {
         boolean node2 = true;
         for (World world : getServer().getWorlds())
-            if (!getModuleForClass(RootConfig.class).getBoolean(node, world.getName()))
+            if (getModuleForClass(RootConfig.class).getBoolean(node, world.getName()))
             	node2 = false;
 
 		return node2;
