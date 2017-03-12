@@ -79,10 +79,8 @@ public class ExtraHardMode extends JavaPlugin
         registerModule(MessageConfig.class, new MessageConfig(this));
         
         //Disable tutorial if it is disable in all worlds.
-        boolean dtut = true;
-        for (World world : getServer().getWorlds())
-            if (!getModuleForClass(RootConfig.class).getBoolean(RootNode.DISABLE_TUTORIAL, world.getName()))
-            	dtut = false;
+        
+        boolean dtut = checkNode(RootNode.DISABLE_TUTORIAL);
         if (dtut){
 
 	        File rootFolder = new File(getDataFolder().getPath() + File.separator + "persistence" + File.separator);
@@ -111,10 +109,7 @@ public class ExtraHardMode extends JavaPlugin
         registerModule(AntiGrinder.class, new AntiGrinder(this));
 
         //Disable debug if debug is disabled in all worlds. 
-        boolean ddbug = true;
-        for (World world : getServer().getWorlds())
-            if (!getModuleForClass(RootConfig.class).getBoolean(RootNode.DISABLE_DEBUG, world.getName()))
-            	ddbug = false;
+        boolean ddbug = checkNode(RootNode.DISABLE_DEBUG);
         if (ddbug){
 	        registerModule(DebugMode.class, new DebugMode(this));
 		}
@@ -234,7 +229,15 @@ public class ExtraHardMode extends JavaPlugin
         return TAG;
     }
 
+    public boolean checkNode(RootNode node)
+    {
+        boolean node2 = true;
+        for (World world : getServer().getWorlds())
+            if (!getModuleForClass(RootConfig.class).getBoolean(node, world.getName()))
+            	node2 = false;
 
+		return node2;
+    }
     /**
      * Register a module.
      *
