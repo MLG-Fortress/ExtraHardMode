@@ -125,22 +125,7 @@ public class ExtraHardMode extends JavaPlugin
         registerModule(MoreTnt.class, new MoreTnt(this));
         registerModule(Physics.class, new Physics(this));
         registerModule(Players.class, new Players(this));
-        
-        //Only register Torch module if at least one world has at least one torch feature active.
-        boolean dtorch = false;
-        for (World world : getServer().getWorlds()){
-        	final int torchMinY = getModuleForClass(RootConfig.class).getInt(RootNode.STANDARD_TORCH_MIN_Y, world.getName());
-        	final boolean limitedTorchPlacement = getModuleForClass(RootConfig.class).getBoolean(RootNode.LIMITED_TORCH_PLACEMENT, world.getName());
-            final boolean soundFizzEnabled = getModuleForClass(RootConfig.class).getBoolean(RootNode.SOUNDS_TORCH_FIZZ, world.getName());
-            final boolean rainBreaksTorchesEnabled = getModuleForClass(RootConfig.class).getBoolean(RootNode.RAIN_BREAKS_TORCHES, world.getName());
-        	if (torchMinY > 0 || rainBreaksTorchesEnabled || soundFizzEnabled || limitedTorchPlacement){
-            dtorch = true;
-        	}
-        }
-        if (dtorch){
-    	    registerModule(Torches.class, new Torches(this));
-        }
-
+        registerModule(Torches.class, new Torches(this));
 		registerModule(Water.class, new Water(this));
 		
         //Utils
