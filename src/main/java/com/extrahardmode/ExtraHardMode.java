@@ -77,6 +77,23 @@ public class ExtraHardMode extends JavaPlugin
         // Register modules
         registerModule(RootConfig.class, new RootConfig(this));
         registerModule(MessageConfig.class, new MessageConfig(this));
+        
+        //Disable tutorial if it is disable in all worlds.
+        boolean dtut = true;
+        for (World world : getServer().getWorlds())
+            if (!getModuleForClass(RootConfig.class).getBoolean(RootNode.DISABLE_TUTORIAL, world.getName()))
+            	dtut = false;
+        if (dtut){
+
+	        File rootFolder = new File(getDataFolder().getPath() + File.separator + "persistence" + File.separator);
+	        rootFolder.mkdirs();
+
+			registerModule(MsgPersistModule.class, new MsgPersistModule(this, rootFolder + File.separator + "messages_count.db"));
+
+	        //TODO make modules
+			registerModule(Tutorial.class, new Tutorial(this));
+		}
+        
         registerModule(MsgModule.class, new MsgModule(this));
 
 		registerModule(DataStoreModule.class, new DataStoreModule(this));
@@ -161,22 +178,6 @@ public class ExtraHardMode extends JavaPlugin
         //Compatibility
         registerModule(CompatHandler.class, new CompatHandler(this));
         registerModule(ExplosionCompatStorage.class, new ExplosionCompatStorage(this));
-        
-        //Disable tutorial if it is disable in all worlds.
-        boolean dtut = true;
-        for (World world : getServer().getWorlds())
-            if (!getModuleForClass(RootConfig.class).getBoolean(RootNode.DISABLE_TUTORIAL, world.getName()))
-            	dtut = false;
-        if (dtut){
-
-	        File rootFolder = new File(getDataFolder().getPath() + File.separator + "persistence" + File.separator);
-	        rootFolder.mkdirs();
-
-			registerModule(MsgPersistModule.class, new MsgPersistModule(this, rootFolder + File.separator + "messages_count.db"));
-
-	        //TODO make modules
-			registerModule(Tutorial.class, new Tutorial(this));
-		}
 
         OurRandom.reload();
 
