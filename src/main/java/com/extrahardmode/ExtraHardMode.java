@@ -105,13 +105,9 @@ public class ExtraHardMode extends JavaPlugin
         registerModule(MoreTnt.class, new MoreTnt(this));
         registerModule(Physics.class, new Physics(this));
         registerModule(Players.class, new Players(this));
-        
-		if(!config.getBoolean("ExtraHardMode.Disable.Torch",false)){
-	        registerModule(Torches.class, new Torches(this));
-		}
-	    if(!config.getBoolean("ExtraHardMode.Disable.Water",false)){
-			registerModule(Water.class, new Water(this));
-		}
+	    registerModule(Torches.class, new Torches(this));
+		registerModule(Water.class, new Water(this));
+		
         //Utils
         registerModule(TemporaryBlockHandler.class, new TemporaryBlockHandler(this));
 
