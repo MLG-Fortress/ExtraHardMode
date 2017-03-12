@@ -38,7 +38,6 @@ import com.extrahardmode.task.ArmorWeightTask;
 import com.extrahardmode.task.MoreMonstersTask;
 import com.extrahardmode.task.WeightCheckTask;
 import org.bukkit.World;
-import org.bukkit.configuration.file.FileConfiguration;
 
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -53,7 +52,6 @@ import java.util.Random;
  */
 public class ExtraHardMode extends JavaPlugin
 {
-	private FileConfiguration config = getConfig();
 	/**
      * Plugin tag.
      */
@@ -95,7 +93,12 @@ public class ExtraHardMode extends JavaPlugin
         registerModule(AnimalCrowdControl.class, new AnimalCrowdControl(this));
         registerModule(AntiGrinder.class, new AntiGrinder(this));
 
-	    if(!config.getBoolean("ExtraHardMode.Disable.Debug",true)){
+        //Disable debug if debug is disabled in at least one world.
+        boolean ddbug = false;
+        for (World world : getServer().getWorlds())
+            if (getModuleForClass(RootConfig.class).getBoolean(RootNode.DISABLE_DEBUG, world.getName()))
+            	ddbug = true;
+        if (!ddbug){
 	        registerModule(DebugMode.class, new DebugMode(this));
 		}
 
@@ -143,8 +146,13 @@ public class ExtraHardMode extends JavaPlugin
         //Compatibility
         registerModule(CompatHandler.class, new CompatHandler(this));
         registerModule(ExplosionCompatStorage.class, new ExplosionCompatStorage(this));
-
-		if(!config.getBoolean("ExtraHardMode.Disable.Tutorial",false)){
+        
+        //Disable tutorial if tutorial is disabled in at least one world.
+        boolean dtut = false;
+        for (World world : getServer().getWorlds())
+            if (getModuleForClass(RootConfig.class).getBoolean(RootNode.DISABLE_TUTORIAL, world.getName()))
+            	dtut = true;
+        if (!dtut){
 
 	        File rootFolder = new File(getDataFolder().getPath() + File.separator + "persistence" + File.separator);
 	        rootFolder.mkdirs();
