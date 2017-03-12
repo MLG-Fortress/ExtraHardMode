@@ -93,12 +93,12 @@ public class ExtraHardMode extends JavaPlugin
         registerModule(AnimalCrowdControl.class, new AnimalCrowdControl(this));
         registerModule(AntiGrinder.class, new AntiGrinder(this));
 
-        //Disable debug if debug is disabled in at least one world.
-        boolean ddbug = false;
+        //Disable debug if debug is disabled in all worlds. 
+        boolean ddbug = true;
         for (World world : getServer().getWorlds())
-            if (getModuleForClass(RootConfig.class).getBoolean(RootNode.DISABLE_DEBUG, world.getName()))
-            	ddbug = true;
-        if (!ddbug){
+            if (!getModuleForClass(RootConfig.class).getBoolean(RootNode.DISABLE_DEBUG, world.getName()))
+            	ddbug = false;
+        if (ddbug){
 	        registerModule(DebugMode.class, new DebugMode(this));
 		}
 
@@ -108,7 +108,19 @@ public class ExtraHardMode extends JavaPlugin
         registerModule(MoreTnt.class, new MoreTnt(this));
         registerModule(Physics.class, new Physics(this));
         registerModule(Players.class, new Players(this));
-	    registerModule(Torches.class, new Torches(this));
+        
+        //Only register Torch module if at least one world has it active.
+        boolean dtorch = false;
+        for (World world : getServer().getWorlds()){
+        	final int torchMinY = getModuleForClass(RootConfig.class).getInt(RootNode.STANDARD_TORCH_MIN_Y, world.getName());
+        	if (torchMinY > 0){
+            dtorch = true;
+        	}
+        }
+        if (dtorch){
+    	    registerModule(Torches.class, new Torches(this));
+        }
+
 		registerModule(Water.class, new Water(this));
 		
         //Utils
@@ -147,12 +159,12 @@ public class ExtraHardMode extends JavaPlugin
         registerModule(CompatHandler.class, new CompatHandler(this));
         registerModule(ExplosionCompatStorage.class, new ExplosionCompatStorage(this));
         
-        //Disable tutorial if tutorial is disabled in at least one world.
-        boolean dtut = false;
+        //Disable tutorial if it is disable in all worlds.
+        boolean dtut = true;
         for (World world : getServer().getWorlds())
-            if (getModuleForClass(RootConfig.class).getBoolean(RootNode.DISABLE_TUTORIAL, world.getName()))
-            	dtut = true;
-        if (!dtut){
+            if (!getModuleForClass(RootConfig.class).getBoolean(RootNode.DISABLE_TUTORIAL, world.getName()))
+            	dtut = false;
+        if (dtut){
 
 	        File rootFolder = new File(getDataFolder().getPath() + File.separator + "persistence" + File.separator);
 	        rootFolder.mkdirs();
