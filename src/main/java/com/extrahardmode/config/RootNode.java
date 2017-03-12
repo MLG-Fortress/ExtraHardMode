@@ -823,6 +823,10 @@ public enum RootNode implements ConfigNode
      */
     SHEEP_REGROW_WHITE_WOOL("Farming.Sheep Grow Only White Wool", VarType.BOOLEAN, true),
     /**
+     * whether squid will only be able to spawn in ocean biomes
+     */
+    SQUID_ONLY_SPAWN_IN_OCEAN("Farming.Squid Only Spawn In Ocean", VarType.BOOLEAN, true),
+    /**
      * whether players may move water source blocks
      */
     DONT_MOVE_WATER_SOURCE_BLOCKS("Farming.Buckets Dont Move Water Sources", VarType.BOOLEAN, true),

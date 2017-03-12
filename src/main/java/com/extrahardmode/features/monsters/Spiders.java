@@ -73,7 +73,7 @@ public class Spiders extends ListenerModule
      * <p/>
      * More spiders in caves
      */
-    @EventHandler(priority = EventPriority.LOW)
+    @EventHandler(ignoreCancelled = true, priority = EventPriority.LOW)
     public void onEntitySpawn(CreatureSpawnEvent event)
     {
         LivingEntity entity = event.getEntity();

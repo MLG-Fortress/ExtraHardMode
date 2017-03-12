@@ -118,7 +118,6 @@ public class BlockModule extends EHMModule
         CompatHandler.logFallingBlockFall(block);
         block.setType(Material.AIR);
 
-        /*
         final boolean breakTorches = CFG.getBoolean(RootNode.MORE_FALLING_BLOCKS_BREAK_TORCHES, block.getWorld().getName());
         //TODO expand on this, it's only rudimentary, doesnt break torches if there are multiple fallingblocks (only breaks the first)
         if (breakTorches)
@@ -140,7 +139,6 @@ public class BlockModule extends EHMModule
                 below = current.getRelative(BlockFace.DOWN);
             }
         }
-        */
 
         if (damageEntities) //mark so we know the block is from us
             EntityHelper.markForProcessing(plugin, fallingBlock);
@@ -214,7 +212,7 @@ public class BlockModule extends EHMModule
             if (newDataValue.getData() >= 7)
             {
                 Material material = block.getType();
-                if (material == Material.CROPS || material == Material.CARROT || material == Material.POTATO || material == Material.BEETROOT)
+                if (material == Material.CROPS || material == Material.CARROT || material == Material.POTATO || material == Material.BEETROOT_BLOCK)
                 {
                     int deathProbability = lossRate;
 
@@ -354,7 +352,7 @@ public class BlockModule extends EHMModule
                 || material.equals(Material.CARROT)
                 || material.equals(Material.MELON_STEM)
                 || material.equals(Material.PUMPKIN_STEM)
-                || material.equals(Material.BEETROOT);
+                || material.equals(Material.BEETROOT_BLOCK);
     }
 
 

@@ -75,7 +75,7 @@ public class Blazes extends ListenerModule
      * <p/>
      * handles all the extra spawns for Blazes in the OverWorld and Nether
      */
-    @EventHandler(priority = EventPriority.LOW)
+    @EventHandler(ignoreCancelled = true, priority = EventPriority.LOW)
     public void onEntitySpawn(CreatureSpawnEvent event)
     {
         Location location = event.getLocation();

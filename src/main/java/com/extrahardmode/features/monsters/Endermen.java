@@ -70,7 +70,7 @@ public class Endermen extends ListenerModule
      *
      * @param event - Event that occurred.
      */
-    @EventHandler
+    @EventHandler(ignoreCancelled = true)
     public void onEntityTeleport(EntityTeleportEvent event)
     {
         Entity entity = event.getEntity();

@@ -85,6 +85,7 @@ public class Torches extends ListenerModule
     {
         Player player = placeEvent.getPlayer();
         Block block = placeEvent.getBlock();
+        Material blockType = null; //cached only if either feature is enabled. Helps minimize extra calls to this semi-expensive(?) method
         World world = block.getWorld();
 
         final boolean limitedTorchPlacement = CFG.getBoolean(RootNode.LIMITED_TORCH_PLACEMENT, world.getName());
@@ -92,32 +93,47 @@ public class Torches extends ListenerModule
         final int torchMinY = CFG.getInt(RootNode.STANDARD_TORCH_MIN_Y, world.getName());
         final boolean playerBypasses = playerModule.playerBypasses(player, Feature.TORCHES);
 
-        // FEATURE: players can't attach torches to common "soft" blocks
-        if (block.getType().equals(Material.TORCH) && limitedTorchPlacement && !playerBypasses)
-        {
-            Torch torch = new Torch(Material.TORCH, block.getData());
-            Material attachmentMaterial = block.getRelative(torch.getAttachedFace()).getType();
-
-            if (attachmentMaterial == Material.DIRT || attachmentMaterial == Material.GRASS || attachmentMaterial == Material.LONG_GRASS
-                    || attachmentMaterial == Material.SAND || attachmentMaterial == Material.GRAVEL)
-            {
-                if (soundFizzEnabled)
-                    messenger.send(player, MessageNode.LIMITED_TORCH_PLACEMENTS, PermissionNode.SILENT_LIMITED_TORCH_PLACEMENT, Sound.ENTITY_GENERIC_EXTINGUISH_FIRE , 20);
-                placeEvent.setCancelled(true);
-            }
-        }
-
         // FEATURE: no standard torches, jack o lanterns, or fire on top of netherrack near diamond level
         if (torchMinY > 0 && !playerBypasses)
         {
-            if (world.getEnvironment() == World.Environment.NORMAL
-                    && block.getY() < torchMinY
-                    && (block.getType() == Material.TORCH || block.getType() == Material.JACK_O_LANTERN || (block.getType() == Material.FIRE && block
-                    .getRelative(BlockFace.DOWN).getType() == Material.NETHERRACK)))
+            if (world.getEnvironment() == World.Environment.NORMAL && block.getY() < torchMinY)
             {
-                messenger.send(player, MessageNode.NO_TORCHES_HERE, PermissionNode.SILENT_NO_TORCHES_HERE, Sound.ENTITY_GENERIC_EXTINGUISH_FIRE , 20);
-                placeEvent.setCancelled(true);
-                return;
+                blockType = block.getType();
+                switch (blockType)
+                {
+                    case FIRE:
+                        if (block.getRelative(BlockFace.DOWN).getType() != Material.NETHERRACK)
+                            break;
+                    case TORCH:
+                    case JACK_O_LANTERN:
+                        messenger.send(player, MessageNode.NO_TORCHES_HERE, PermissionNode.SILENT_NO_TORCHES_HERE, Sound.ENTITY_GENERIC_EXTINGUISH_FIRE , 20);
+                        placeEvent.setCancelled(true);
+                        return;
+                }
+            }
+        }
+
+        // FEATURE: players can't attach torches to common "soft" blocks
+        if (limitedTorchPlacement && !playerBypasses)
+        {
+            if (blockType == null)
+                blockType = block.getType();
+
+            if (blockType == Material.TORCH)
+            {
+                Torch torch = new Torch(Material.TORCH, block.getData());
+                Material attachmentMaterial = block.getRelative(torch.getAttachedFace()).getType();
+                switch (attachmentMaterial)
+                {
+                    case DIRT:
+                    case GRASS:
+                    case LONG_GRASS:
+                    case SAND:
+                    case GRAVEL:
+                        if (soundFizzEnabled)
+                            messenger.send(player, MessageNode.LIMITED_TORCH_PLACEMENTS, PermissionNode.SILENT_LIMITED_TORCH_PLACEMENT, Sound.ENTITY_GENERIC_EXTINGUISH_FIRE , 20);
+                        placeEvent.setCancelled(true);
+                }
             }
         }
     }

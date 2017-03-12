@@ -93,7 +93,7 @@ public class Explosions extends ListenerModule
     //   |   / _| (_ | |_| | |__ / _ \|   / | |__ | |\__ \ | | | _|| .` | _||   /
     //   |_|_\___\___|\___/|____/_/ \_\_|_\ |____|___|___/ |_| |___|_|\_|___|_|_\
     //
-    @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGH) //High priority to allow plugins to clear the blocklist if they so choose
+    @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGH) //RoboMWM - High priority to allow plugins to clear the blocklist if they so choose
     public void regularExplosions(EntityExplodeEvent event)
     {
         if (event instanceof FakeEntityExplodeEvent || !(event.getEntity() instanceof Ghast || event.getEntity() instanceof TNTPrimed))
@@ -186,6 +186,8 @@ public class Explosions extends ListenerModule
     }
 
 
+    //RoboMWM - remove "compatibility" (see com.extrahardmode.module.ExplosionCompatStorage for more details)
+    /*
     /**
      * Provide compatibility for block protection and logging plugins.
      * <pre>
@@ -199,12 +201,13 @@ public class Explosions extends ListenerModule
      *     5. this code will break blocks manually as a workaround,
      *     because the actual explosion that would break the blocks has to be cancelled
      * </pre>
-     */
+     *
     //     ___ ___  __  __ ___  _ _____ ___ ___ ___ _    ___ _______   __
     //    / __/ _ \|  \/  | _ \/_\_   _|_ _| _ )_ _| |  |_ _|_   _\ \ / /
     //   | (_| (_) | |\/| |  _/ _ \| |  | || _ \| || |__ | |  | |  \ V /
     //    \___\___/|_|  |_|_|/_/ \_\_| |___|___/___|____|___| |_|   |_|
     //
+
     @EventHandler(priority = EventPriority.LOWEST)
     public void provideCompatibility(EntityExplodeEvent event)
     {
@@ -253,6 +256,7 @@ public class Explosions extends ListenerModule
             }
         }
     }
+    */
 
 
     //    _      _   _  _ ___ ___ _  _  ___   ___ _    ___   ___ _  _____
@@ -284,7 +288,9 @@ public class Explosions extends ListenerModule
                     else
                     {
                         Material type = BlockModule.getDroppedMaterial(fallBaby.getMaterial());
-                        if (type.isBlock())
+                        if (type.isBlock() && type == fallBaby.getMaterial()) //preserve blockdata. See issue #69 //Alternatively could block#setType in second condition
+                            return;
+                        else if (type.isBlock())
                             block.setType(type);
                         else //if block doesnt drop something that can be placed again... thin glass, redstone ore
                             block.setType(Material.AIR);

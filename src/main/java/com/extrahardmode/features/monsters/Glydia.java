@@ -396,7 +396,7 @@ public class Glydia extends ListenerModule
      *
      * @param event - Event that occurred.
      */
-    @EventHandler
+    @EventHandler(ignoreCancelled = true)
     public void onEntityTarget(EntityTargetEvent event)
     {
         // FEATURE: monsters don't target the ender dragon

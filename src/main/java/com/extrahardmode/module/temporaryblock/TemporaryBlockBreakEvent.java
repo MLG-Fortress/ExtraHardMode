@@ -1,34 +1,44 @@
 package com.extrahardmode.module.temporaryblock;
 
 
+import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
-import org.bukkit.event.block.BlockBreakEvent;
 
-public class TemporaryBlockBreakEvent extends Event
+public class TemporaryBlockBreakEvent extends Event implements Cancellable
 {
-    private final BlockBreakEvent event;
-    private final TemporaryBlock block;
+    //private final BlockEvent event;
+    private final TemporaryBlock temporaryBlock;
+    private boolean cancel = false;
 
-
-    public TemporaryBlockBreakEvent(TemporaryBlock block, BlockBreakEvent event)
+    @Override
+    public void setCancelled(boolean cancel)
     {
-        this.block = block;
-        this.event = event;
+        this.cancel = cancel;
+    }
+
+    @Override
+    public boolean isCancelled()
+    {
+        return this.cancel;
+    }
+
+    public TemporaryBlockBreakEvent(TemporaryBlock temporaryBlock)
+    {
+        this.temporaryBlock = temporaryBlock;
     }
 
 
-    public TemporaryBlock getBlock()
+    public TemporaryBlock getTemporaryBlock()
     {
-        return block;
+        return temporaryBlock;
     }
 
 
-    public BlockBreakEvent getBlockBreakEvent()
-    {
-        return event;
-    }
-
+//    public BlockBreakEvent getBlockBreakEvent()
+//    {
+//        return event;
+//    }
 
     private static final HandlerList HANDLERS = new HandlerList();
 

@@ -66,7 +66,7 @@ public class MonsterRules extends ListenerModule
      * <p/>
      * more Monsters in caves
      */
-    @EventHandler(priority = EventPriority.LOW)
+    @EventHandler(ignoreCancelled = true, priority = EventPriority.LOW)
     public void onEntitySpawn(CreatureSpawnEvent event)
     {
         Location location = event.getLocation();
@@ -114,7 +114,7 @@ public class MonsterRules extends ListenerModule
      *
      * @param event - Event that occurred.
      */
-    @EventHandler
+    @EventHandler(ignoreCancelled = true)
     public void onEntityTarget(EntityTargetEvent event)
     {
         Entity entity = event.getEntity();

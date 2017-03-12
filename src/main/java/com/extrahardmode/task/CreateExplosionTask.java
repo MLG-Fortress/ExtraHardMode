@@ -175,8 +175,13 @@ public class CreateExplosionTask implements Runnable
         //{
         //if (CompatHandler.isExplosionProtected(loc))
         //    damageWorld = false;
+
+        //RoboMWM - we no longer provide "compatibility" for block logging plugins - they can listen to BlockExplodeEvent
+        //Said "compatibility" also seemed to break some plugins like Creeperheal????
+        /*
         if (explosionCause != null) //ignore pure "visual" explosions
             plugin.getModuleForClass(ExplosionCompatStorage.class).queueExplosion(location, explosionCause);
+        */
 
 
         //entity should be ignored so our code doesn't think that it's a regular creeper etc.

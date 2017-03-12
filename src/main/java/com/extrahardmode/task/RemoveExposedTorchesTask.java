@@ -131,6 +131,7 @@ public class RemoveExposedTorchesTask implements Runnable
                             case RED_ROSE:
                             case YELLOW_FLOWER:
                             case LONG_GRASS:
+                            case BEETROOT_BLOCK:
                             {
                                 if (snowBreaksCrops && temperature <= 0.15) //cold biomes in which snow falls
                                 {

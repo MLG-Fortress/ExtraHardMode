@@ -100,7 +100,7 @@ public class PigMen extends ListenerModule
      * <p/>
      * Makes Pigmen always angry
      */
-    @EventHandler(priority = EventPriority.LOW)
+    @EventHandler(ignoreCancelled = true, priority = EventPriority.LOW)
     public void onEntitySpawn(CreatureSpawnEvent event)
     {
         Location location = event.getLocation();
@@ -152,9 +152,12 @@ public class PigMen extends ListenerModule
     @EventHandler
     public void onPlayerDamaged(EntityDamageByEntityEvent event)
     {
+        int damagePercentage = CFG.getInt(RootNode.PIG_ZOMBIE_DMG_PERCENT, event.getEntity().getWorld().getName()) / 100;
+        if (damagePercentage <= 0)
+            return;
         if (event.getEntity() instanceof Player && event.getDamager() instanceof PigZombie)
         {
-            event.setDamage(event.getDamage() * CFG.getInt(RootNode.PIG_ZOMBIE_DMG_PERCENT, event.getEntity().getWorld().getName()) / 100);
+            event.setDamage(event.getDamage() * damagePercentage);
         }
     }
 

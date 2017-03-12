@@ -44,6 +44,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.*;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.event.entity.SheepRegrowWoolEvent;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
@@ -89,7 +90,7 @@ public class AntiFarming extends ListenerModule
      *
      * @param event - Event that occurred.
      */
-    @EventHandler(priority = EventPriority.LOWEST)
+    @EventHandler(ignoreCancelled = true, priority = EventPriority.LOWEST)
     void onPlayerInteract(PlayerInteractEvent event)
     {
         Player player = event.getPlayer();
@@ -266,7 +267,7 @@ public class AntiFarming extends ListenerModule
      *
      * @param event - Event that occurred.
      */
-    @EventHandler
+    @EventHandler(ignoreCancelled = true)
     public void onSheepRegrowWool(SheepRegrowWoolEvent event)
     {
         World world = event.getEntity().getWorld();
@@ -283,7 +284,7 @@ public class AntiFarming extends ListenerModule
     }
 
 
-    @EventHandler(priority = EventPriority.LOW)
+    @EventHandler(ignoreCancelled = true, priority = EventPriority.LOW)
     public void onEntitySpawn(CreatureSpawnEvent event)
     {
         LivingEntity entity = event.getEntity();
@@ -293,13 +294,36 @@ public class AntiFarming extends ListenerModule
         final boolean sheepRegrowWhiteEnabled = CFG.getBoolean(RootNode.SHEEP_REGROW_WHITE_WOOL, world.getName());
 
         //Breed Sheep spawn white
-        if (sheepRegrowWhiteEnabled && entity instanceof Sheep)
+        if (sheepRegrowWhiteEnabled && entity.getType() == EntityType.SHEEP)
         {
             Sheep sheep = (Sheep) entity;
             if (reason.equals(CreatureSpawnEvent.SpawnReason.BREEDING))
             {
                 sheep.setColor(DyeColor.WHITE);
                 return;
+            }
+        }
+    }
+
+
+    @EventHandler(ignoreCancelled = true, priority = EventPriority.LOW)
+    public void onSquidSpawn(CreatureSpawnEvent event)
+    {
+        LivingEntity entity = event.getEntity();
+        CreatureSpawnEvent.SpawnReason reason = event.getSpawnReason();
+        World world = event.getLocation().getWorld();
+
+        final boolean restrictedSquidSpawns = CFG.getBoolean(RootNode.SQUID_ONLY_SPAWN_IN_OCEAN, world.getName());
+
+        if (restrictedSquidSpawns && entity.getType() == EntityType.SQUID && reason.equals(CreatureSpawnEvent.SpawnReason.NATURAL))
+        {
+            switch (entity.getLocation().getBlock().getBiome())
+            {
+                case DEEP_OCEAN:
+                case OCEAN:
+                    return;
+                default:
+                    event.setCancelled(true);
             }
         }
     }
@@ -404,7 +428,7 @@ public class AntiFarming extends ListenerModule
      * <p/>
      * prevent players from quickly picking up buckets again (around lava etc.)
      */
-    @EventHandler
+    @EventHandler(ignoreCancelled = true)
     public void onPlayerFillBucket(PlayerBucketFillEvent event)
     {
         Block block = event.getBlockClicked().getRelative(event.getBlockFace());

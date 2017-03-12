@@ -125,7 +125,7 @@ public class Skeletors extends ListenerModule
     }
 
 
-    @EventHandler
+    @EventHandler(ignoreCancelled = true)
     public void onSkeliDamagedByArrow(EntityDamageByEntityEvent event)
     {
         Entity entity = event.getEntity();
@@ -169,7 +169,7 @@ public class Skeletors extends ListenerModule
      *
      * @param event - Event that occurred.
      */
-    @EventHandler
+    @EventHandler(ignoreCancelled = true)
     public void onShootProjectile(ProjectileLaunchEvent event)
     {
         Location location = event.getEntity().getLocation();
@@ -241,7 +241,7 @@ public class Skeletors extends ListenerModule
     }
 
 
-    @EventHandler
+    @EventHandler(ignoreCancelled = true)
     public void onSilverfishSpawn(CreatureSpawnEvent event)
     {
         final boolean tempFix = CFG.getBoolean(RootNode.SILVERFISH_TEMP_POTION_EFFECT_FIX, event.getLocation().getWorld().getName());

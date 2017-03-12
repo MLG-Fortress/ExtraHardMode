@@ -210,7 +210,7 @@ public class Zombies extends ListenerModule
 
 
     /** Flag Zombies that have been called in as reinforcements to not respawn */
-    @EventHandler
+    @EventHandler(ignoreCancelled = true)
     public void onZombieReinforcements(CreatureSpawnEvent event)
     {
         if (hasReinforcements && event.getEntity() instanceof Zombie && event.getSpawnReason() == CreatureSpawnEvent.SpawnReason.REINFORCEMENTS)
@@ -223,16 +223,17 @@ public class Zombies extends ListenerModule
     @EventHandler
     public void onSkullBroken(TemporaryBlockBreakEvent event)
     {
-        final int dropPercentage = CFG.getInt(RootNode.ZOMBIE_REANIMATE_SKULLS_DROP_PERCENTAGE, event.getBlock().getLoc().getWorld().getName());
-        TemporaryBlock temporaryBlock = event.getBlock();
+        final int dropPercentage = CFG.getInt(RootNode.ZOMBIE_REANIMATE_SKULLS_DROP_PERCENTAGE, event.getTemporaryBlock().getLoc().getWorld().getName());
+        TemporaryBlock temporaryBlock = event.getTemporaryBlock();
         Object[] data = temporaryBlock.getData();
         if (data.length == 1 && data[0] instanceof String && data[0].equals("respawn_skull"))
         {
             //Clear item drops: this is the only way
             if (dropPercentage == 0 || !OurRandom.percentChance(dropPercentage))
             {
-                event.getBlockBreakEvent().setCancelled(true);
-                event.getBlockBreakEvent().getBlock().setType(Material.AIR);
+//                event.getBlockBreakEvent().setCancelled(true);
+//                event.getBlockBreakEvent().getBlock().setType(Material.AIR);
+                event.setCancelled(true); //Let the handler take care of it
             }
         }
     }

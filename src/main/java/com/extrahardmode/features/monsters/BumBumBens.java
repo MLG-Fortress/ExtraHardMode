@@ -74,7 +74,7 @@ public class BumBumBens extends ListenerModule
      * <p/>
      * naturally spawning Charged Creepers
      */
-    @EventHandler(priority = EventPriority.LOW)
+    @EventHandler(ignoreCancelled = true, priority = EventPriority.LOW)
     public void onEntitySpawn(CreatureSpawnEvent event)
     {
         LivingEntity entity = event.getEntity();

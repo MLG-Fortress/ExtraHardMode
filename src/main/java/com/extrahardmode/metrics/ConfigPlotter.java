@@ -107,6 +107,7 @@ public class ConfigPlotter
                     case SUPER_HARD_STONE:
                     case SUPER_HARD_STONE_PHYSICS:
                     case SPIDERS_DROP_WEB_ON_DEATH:
+                    case SQUID_ONLY_SPAWN_IN_OCEAN:
                     case WEAK_FOOD_CROPS:
                     case WITCHES_ADDITIONAL_ATTACKS:
                     case ZOMBIES_DEBILITATE_PLAYERS:
