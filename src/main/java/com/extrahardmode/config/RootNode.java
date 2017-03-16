@@ -53,6 +53,22 @@ public enum RootNode implements ConfigNode
      */
     PRINT_COMMENTS("Print Comments", VarType.BOOLEAN, true, "If comments like this should be printed"),
     /**
+    * Globally disables certain modules. These settings might improve performance if these modules is not used. 
+    * CHANGING ANY OF THESE TO TRUE MIGHT CAUSE WEIRD BEHAVIOR.
+    */
+    DISABLE_WATER("Disable.Water", VarType.BOOLEAN, false,
+            "Disabling Water module"),
+    DISABLE_TORCH("Disable.Torch", VarType.BOOLEAN, false,
+            "Disabling Torch module"),
+    DISABLE_TUTORIAL("Disable.Tutorial", VarType.BOOLEAN, false,
+            "Disabling Tutorial module and sqlite module"),
+    DISABLE_PIGZOMBIE("Disable.Pigzombie", VarType.BOOLEAN, false,
+            "Disabling Pigzombie module (not the mob)"),
+    DISABLE_MOBVARIATION("Disable.MobVariation", VarType.BOOLEAN, false,
+            "Disabling the mobvariation module"),
+    DISABLE_DEBUG("Disable.Debug", VarType.BOOLEAN, false,
+            "Disabling Debug module"),
+    /**
      * list of worlds where extra hard mode rules apply
      */
     WORLDS("Enabled Worlds", VarType.LIST, new DefaultWorlds(),
@@ -693,6 +709,52 @@ public enum RootNode implements ConfigNode
      */
     BONUS_WITCH_SPAWN_PERCENT("Witches.Bonus Spawn Percent", VarType.INTEGER, SubType.PERCENTAGE, 5),
 
+    /**
+     * ###########
+     * # KillerBunny #
+     * ###########
+     */
+    /**
+     * percentage of rabbits which spawn as killerbunnies
+     */
+    BONUS_KILLERBUNNY_SPAWN_PERCENT("KillerBunny.Bonus Spawn Percent", VarType.INTEGER, SubType.PERCENTAGE, 1),
+    
+    /**
+     * ###########
+     * # Vindicator #
+     * ###########
+     */
+    /**
+     * percentage of skeletons which spawn as vindicators in roofed forests.
+     */
+    BONUS_VINDICATOR_SPAWN_PERCENT("Vindicator.Bonus Spawn Percent", VarType.INTEGER, SubType.PERCENTAGE, 20),
+    /**
+     * ###########
+     * # Cave Spider #
+     * ###########
+     */
+    /**
+     * percentage of spiders which spawn as cave spiders in swamplands.
+     */
+    BONUS_CAVESPIDER_SPAWN_PERCENT("CaveSpider.Bonus Spawn Percent", VarType.INTEGER, SubType.PERCENTAGE, 5),
+    /**
+     * ###########
+     * # Guardians #
+     * ###########
+     */
+    /**
+     * percentage of squids which spawn as Guardians in ocean and deep ocean.
+     */
+    BONUS_GUARDIANS_SPAWN_PERCENT("Guardians.Bonus Spawn Percent", VarType.INTEGER, SubType.PERCENTAGE, 20),
+    /**
+     * ###########
+     * # VEX #
+     * ###########
+     */
+    /**
+     * percentage of bats which spawn as Vex.
+     */
+    BONUS_VEX_SPAWN_PERCENT("Vex.Bonus Spawn Percent", VarType.INTEGER, SubType.PERCENTAGE, 5),
     /**
      * ################
      * # ENDER DRAGON #
