@@ -80,9 +80,17 @@ public class ExtraHardMode extends JavaPlugin
         registerModule(RootConfig.class, new RootConfig(this));
         registerModule(MessageConfig.class, new MessageConfig(this));
 
-        File rootFolder = new File(getDataFolder().getPath() + File.separator + "persistence" + File.separator);
-        rootFolder.mkdirs();
-        registerModule(MsgPersistModule.class, new MsgPersistModule(this, rootFolder + File.separator + "messages_count.db"));
+        //TODO: add these in a global config?
+        if (!isNodeEnabled(RootNode.DISABLE_TUTORIAL))
+        {
+            File rootFolder = new File(getDataFolder().getPath() + File.separator + "persistence" + File.separator);
+            rootFolder.mkdirs();
+            registerModule(MsgPersistModule.class, new MsgPersistModule(this, rootFolder + File.separator + "messages_count.db"));
+            registerModule(Tutorial.class, new Tutorial(this));
+        }
+
+        if (!isNodeEnabled(RootNode.DISABLE_DEBUG))
+            registerModule(DebugMode.class, new DebugMode(this));
 
         registerModule(MsgModule.class, new MsgModule(this));
 
@@ -98,7 +106,6 @@ public class ExtraHardMode extends JavaPlugin
         registerModule(AntiFarming.class, new AntiFarming(this));
         registerModule(AnimalCrowdControl.class, new AnimalCrowdControl(this));
         registerModule(AntiGrinder.class, new AntiGrinder(this));
-        registerModule(DebugMode.class, new DebugMode(this));
         registerModule(Explosions.class, new Explosions(this));
         registerModule(HardenedStone.class, new HardenedStone(this));
         registerModule(LimitedBuilding.class, new LimitedBuilding(this));
@@ -137,8 +144,6 @@ public class ExtraHardMode extends JavaPlugin
         registerModule(CompatHandler.class, new CompatHandler(this));
         registerModule(ExplosionCompatStorage.class, new ExplosionCompatStorage(this));
 
-        //TODO make modules
-        registerModule(Tutorial.class, new Tutorial(this));
 
         OurRandom.reload();
 
@@ -282,5 +287,18 @@ public class ExtraHardMode extends JavaPlugin
     public Map<Class<? extends IModule>, IModule> getModules()
     {
         return modules;
+    }
+
+    /**
+     * Determines if a config node is enabled in any world
+     * @param node
+     * @return True if enabled in a world, false if disabled everywhere
+     */
+    public boolean isNodeEnabled(RootNode node)
+    {
+        for (World world : getServer().getWorlds())
+            if (getModuleForClass(RootConfig.class).getBoolean(node, world.getName()))
+                return true;
+        return false;
     }
 }
