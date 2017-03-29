@@ -162,16 +162,21 @@ public class AntiGrinder extends ListenerModule
         final boolean inhibitMonsterGrindersEnabled = CFG.getBoolean(RootNode.INHIBIT_MONSTER_GRINDERS, world.getName());
 
         // FEATURE: monsters which take environmental damage or spawn from spawners don't drop loot and exp (monster grinder inhibitor)
-        if (inhibitMonsterGrindersEnabled && entity instanceof Monster && entity.getType() != EntityType.SQUID && entity.getType() != EntityType.WITHER && entity.getType() != EntityType.GUARDIAN && entity.getType() != EntityType.ELDER_GUARDIAN)
+        if (inhibitMonsterGrindersEnabled && entity instanceof Monster)
         {
             if (EntityHelper.isLootLess(entity))
             {
                 clearDrops(event);
                 return false;
-            } else
+            }
+            else
             {   //Evaluate if this kill was a too easy kill
                 switch (entity.getType())
                 {
+                    case WITHER:
+                    case GUARDIAN:
+                    case ELDER_GUARDIAN:
+                        return true;
                     case SKELETON:
                     case ENDERMAN:
                     {
