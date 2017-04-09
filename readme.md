@@ -265,9 +265,10 @@ No Swimming When Too Heavy:
 Rules affecting all types of monsters.
 
 ### Inhibit Monster Grinders
-
+This does not affect Wither, Guardian, Elder Guardian and Squid.
 Players should go out adventuring while taking risks to gain rewards. The use of monster grinders imbalances the game
 and makes good weapons "worthless", because they are easily obtainable. By forcing players to work for their gear, they will treasure it more.
+
 This module completely removes drops if it recognizes grinders or when a player has a great advantage over a monster.
 
 A great advantage can be:
@@ -517,7 +518,51 @@ Witches:
     Bonus Spawn Percent: 5
 
 ```
+### Killer Bunny
+This allows killer bunnies to spawn naturally by replacing some of the rabbit spawns. 
 
+``` yaml 
+
+  KillerBunny:
+    Bonus Spawn Percent: 1
+    
+```
+### Vidicator
+This allows Vidicator to spawn naturally in roofed forests by replacing some of the skeletons spawns. 
+
+``` yaml 
+
+  Vindicator:
+    Bonus Spawn Percent: 20
+    
+```
+### Cave Spider
+This allows Cavespiders to spawn naturally in swamplands by replacing some of the spider spawns. 
+
+``` yaml 
+
+  CaveSpider:
+    Bonus Spawn Percent: 5
+    
+```
+### Guardians
+This allows Guardians to spawn naturally in ocean and deep ocean by replacing some of the squid spawns.  
+
+``` yaml 
+
+  Guardians:
+    Bonus Spawn Percent: 10
+    
+```
+### Vex
+This allows Vex to spawn naturally by replacing some of the bat spawns.
+
+``` yaml 
+
+  Vex:
+    Bonus Spawn Percent: 5
+    
+```
 ### EnderDragon
 
 Is the EnderDragon boring, just flying around and doing nothing? No more! This dragon is really tough. She spawns lots of minions and can call enderman to help her out. Good gear will be required to beat her, but the rewards are great.
