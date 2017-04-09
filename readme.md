@@ -555,7 +555,7 @@ This allows Guardians to spawn naturally in ocean and deep ocean by replacing so
     
 ```
 ### Vex
-This allows Vex to spawn naturally by replacing some of the bat spawns.
+This allows Vexes to spawn naturally by replacing some of the bat spawns.
 
 ``` yaml 
 
