@@ -265,7 +265,7 @@ No Swimming When Too Heavy:
 Rules affecting all types of monsters.
 
 ### Inhibit Monster Grinders
-This does not affect Wither, Guardian, Elder Guardian and Squid.
+
 Players should go out adventuring while taking risks to gain rewards. The use of monster grinders imbalances the game
 and makes good weapons "worthless", because they are easily obtainable. By forcing players to work for their gear, they will treasure it more.
 
