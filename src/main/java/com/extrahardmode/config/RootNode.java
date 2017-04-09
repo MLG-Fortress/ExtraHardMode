@@ -57,9 +57,9 @@ public enum RootNode implements ConfigNode
     * 
     */
     DISABLE_TUTORIAL("Disable.Tutorial", VarType.BOOLEAN, false,
-            "Disabling Tutorial module and sqlite module"),
+            "Disables the tutorial and persistence module"),
     DISABLE_DEBUG("Disable.Debug", VarType.BOOLEAN, true,
-            "Disabling Debug module"),
+            "Disables the debug module"),
     /**
      * list of worlds where extra hard mode rules apply
      */
