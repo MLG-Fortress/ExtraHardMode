@@ -361,7 +361,7 @@ public class Glydia extends ListenerModule
             // if he's there, full health
             if (enderDragon != null)
             {
-                enderDragon.setMaxHealth(600);
+                enderDragon.setMaxHealth(800);
             	enderDragon.setHealth(enderDragon.getMaxHealth());
             }
 
@@ -381,7 +381,7 @@ public class Glydia extends ListenerModule
     public void onEnderDragonSpawn(final CreatureSpawnEvent event) {
         if (event.getEntityType() == EntityType.ENDER_DRAGON) {
         	
-            	event.getEntity().setMaxHealth(600);
+            	event.getEntity().setMaxHealth(800);
             	event.getEntity().setHealth(event.getEntity().getMaxHealth());
             
         }

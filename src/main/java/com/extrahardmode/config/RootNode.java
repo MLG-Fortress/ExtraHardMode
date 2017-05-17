@@ -740,6 +740,15 @@ public enum RootNode implements ConfigNode
      */
     BONUS_VEX_SPAWN_PERCENT("Vex.Bonus Spawn Percent", VarType.INTEGER, SubType.PERCENTAGE, 5),
     /**
+     * ###########
+     * # VEX #
+     * ###########
+     */
+    /**
+     * percentage of bats which spawn as Vex.
+     */
+    BONUS_SKELETON_SPAWN_PERCENT("Skeletons.Spawn in End Percent", VarType.INTEGER, SubType.PERCENTAGE, 10),
+    /**
      * ################
      * # ENDER DRAGON #
      * ################

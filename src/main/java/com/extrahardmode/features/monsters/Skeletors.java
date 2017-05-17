@@ -30,7 +30,11 @@ import com.extrahardmode.module.EntityHelper;
 import com.extrahardmode.service.ListenerModule;
 import com.extrahardmode.service.OurRandom;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.World;
+import org.bukkit.World.Environment;
+import org.bukkit.block.Biome;
+import org.bukkit.block.BlockFace;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -437,5 +441,33 @@ public class Skeletors extends ListenerModule
                 return (UUID) metaVal.value();
         }
         return minion.getUniqueId();
+    }
+    /**
+     * When an Entity spawns: Spawn a Skeleton sometimes instead of a EnderMan in the end.
+     *
+     * @param event which occurred
+     */
+    @EventHandler(ignoreCancelled = true, priority = EventPriority.LOW)
+    public void onEntitySpawn(CreatureSpawnEvent event)
+    {
+        LivingEntity entity = event.getEntity();
+        if (EntityHelper.isMarkedAsOurs(entity))
+            return;
+        Location location = event.getLocation();
+        World world = location.getWorld();
+        EntityType entityType = entity.getType();
+
+        final int cavespiderSpawnPercent = CFG.getInt(RootNode.BONUS_SKELETON_SPAWN_PERCENT, world.getName());
+
+        // FEATURE: Skeletons spawns naturally in The End.
+        if (entityType == EntityType.ENDERMAN && world.getEnvironment() == World.Environment.THE_END
+                && event.getSpawnReason() == CreatureSpawnEvent.SpawnReason.NATURAL)
+        {
+            if (plugin.random(cavespiderSpawnPercent))
+            {
+                event.setCancelled(true);
+                EntityHelper.spawn(location, EntityType.SKELETON);
+            }
+        }
     }
 }
