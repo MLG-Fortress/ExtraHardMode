@@ -360,7 +360,9 @@ public class Glydia extends ListenerModule
             // if he's there, full health
             if (enderDragon != null)
             {
-                enderDragon.setHealth(enderDragon.getMaxHealth());
+            	final int enderDragonHealth = CFG.getInt(RootNode.ENDER_DRAGON_HEALTH, world.getName());
+            	enderDragon.setMaxHealth(enderDragonHealth);
+            	enderDragon.setHealth(enderDragon.getMaxHealth());
             }
 
             // otherwise, spawn one
