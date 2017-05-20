@@ -438,4 +438,32 @@ public class Skeletors extends ListenerModule
         }
         return minion.getUniqueId();
     }
+    /**
+     * When an Entity spawns: Spawn a Skeleton sometimes instead of a EnderMan in the end.
+     *
+     * @param event which occurred
+     */
+    @EventHandler(ignoreCancelled = true, priority = EventPriority.LOW)
+    public void onEntitySpawn(CreatureSpawnEvent event)
+    {
+        LivingEntity entity = event.getEntity();
+        if (EntityHelper.isMarkedAsOurs(entity))
+            return;
+        Location location = event.getLocation();
+        World world = location.getWorld();
+        EntityType entityType = entity.getType();
+
+        final int cavespiderSpawnPercent = CFG.getInt(RootNode.BONUS_SKELETON_SPAWN_PERCENT, world.getName());
+
+        // FEATURE: Skeletons spawns naturally in The End.
+        if (entityType == EntityType.ENDERMAN && world.getEnvironment() == World.Environment.THE_END
+                && event.getSpawnReason() == CreatureSpawnEvent.SpawnReason.NATURAL)
+        {
+            if (plugin.random(cavespiderSpawnPercent))
+            {
+                event.setCancelled(true);
+                EntityHelper.spawn(location, EntityType.SKELETON);
+            }
+        }
+    }
 }

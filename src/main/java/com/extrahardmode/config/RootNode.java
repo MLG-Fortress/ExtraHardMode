@@ -516,6 +516,10 @@ public enum RootNode implements ConfigNode
      * whether or not arrows will pass harmlessly through skeletons
      */
     SKELETONS_DEFLECT_ARROWS("Skeletons.Deflect Arrows Percent", VarType.INTEGER, SubType.PERCENTAGE, 100),
+    /**
+     * percentage of EnderMan which spawn as Skeletons in the end.
+     */
+    BONUS_SKELETON_SPAWN_PERCENT("Skeletons.Spawn in End Percent", VarType.INTEGER, SubType.PERCENTAGE, 10),
 
     /**
      * ##############
