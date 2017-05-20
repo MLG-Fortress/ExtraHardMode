@@ -370,7 +370,21 @@ public class Glydia extends ListenerModule
             }
         }
     }
-
+    /**
+     * when ender dragon spawns
+     * set new max health
+     * 
+     */
+    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
+    public void onEnderDragonSpawn(final CreatureSpawnEvent event) {
+        if (event.getEntityType() == EntityType.ENDER_DRAGON) {
+        	Location location = event.getLocation();
+        	World world = location.getWorld();
+        	final int enderDragonHealth = CFG.getInt(RootNode.ENDER_DRAGON_HEALTH, world.getName());
+            	event.getEntity().setMaxHealth(enderDragonHealth);
+            	event.getEntity().setHealth(event.getEntity().getMaxHealth());
+        }
+    }
 
     /**
      * when an item spawns
