@@ -328,6 +328,7 @@ public class Glydia extends ListenerModule
      *
      * @param event - Event that occurred.
      */
+
     @EventHandler(priority = EventPriority.MONITOR)
     void onPlayerChangeWorld(PlayerChangedWorldEvent event)
     {
@@ -360,7 +361,8 @@ public class Glydia extends ListenerModule
             // if he's there, full health
             if (enderDragon != null)
             {
-                enderDragon.setHealth(enderDragon.getMaxHealth());
+                enderDragon.setMaxHealth(800);
+            	enderDragon.setHealth(enderDragon.getMaxHealth());
             }
 
             // otherwise, spawn one
@@ -370,8 +372,22 @@ public class Glydia extends ListenerModule
             }
         }
     }
+    /**
+     * when ender dragon spawns
+     * set new max health
+     * 
+     */
+    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
+    public void onEnderDragonSpawn(final CreatureSpawnEvent event) {
+        if (event.getEntityType() == EntityType.ENDER_DRAGON) {
+        	
+            	event.getEntity().setMaxHealth(800);
+            	event.getEntity().setHealth(event.getEntity().getMaxHealth());
+            
+        }
+    }
 
-
+    
     /**
      * when an item spawns
      *
