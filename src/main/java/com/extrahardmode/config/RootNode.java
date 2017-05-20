@@ -779,7 +779,7 @@ public enum RootNode implements ConfigNode
     /**
      * Sets the health of the Ender Dragon (200 is vanilla)
      */
-    ENDER_DRAGON_HEALTH("EnderDragon.Health", VarType.INTEGER, 800,
+    ENDER_DRAGON_HEALTH("EnderDragon.Health", VarType.INTEGER, SubType.NATURAL_NUMBER, Disable.ZERO, 800,
             "Sets the health of the Ender Dragon"),
     /**
      * ###########
