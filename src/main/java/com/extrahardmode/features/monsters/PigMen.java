@@ -152,8 +152,8 @@ public class PigMen extends ListenerModule
     @EventHandler
     public void onPlayerDamaged(EntityDamageByEntityEvent event)
     {
-        int damagePercentage = CFG.getInt(RootNode.PIG_ZOMBIE_DMG_PERCENT, event.getEntity().getWorld().getName()) / 100;
-        if (damagePercentage <= 0)
+        double damagePercentage = CFG.getInt(RootNode.PIG_ZOMBIE_DMG_PERCENT, event.getEntity().getWorld().getName()) / 100.0;
+        if (damagePercentage <= 0.0)
             return;
         if (event.getEntity() instanceof Player && event.getDamager() instanceof PigZombie)
         {
