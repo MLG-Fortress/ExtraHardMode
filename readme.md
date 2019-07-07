@@ -144,6 +144,17 @@ Torches:
 
 ```
 
+### Campfires
+
+* Campfires left out in the rain will burn out and will need to be manually re-lit.
+
+``` yaml
+Campfires:
+    # When it rains there is a chance that campfires will be extinguished in a chunk.
+    # Any kind of block above the campfire is enough to protect the campfire
+    Rain Extinguishes Campfires: true
+```
+
 ### Play Sounds
 
 Warn player when a creeper is about to drop tnt and play a fizzing when torch goes out. Sounds only play if appropriate options are activated.
