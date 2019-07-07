@@ -30,6 +30,7 @@ import org.bukkit.Chunk;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.block.data.type.Campfire;
 import org.bukkit.block.data.type.Snow;
 
 /**
@@ -89,6 +90,7 @@ public class RemoveExposedTorchesTask implements Runnable
     public void run()
     {
         final boolean rainBreaksTorches = CFG.getBoolean(RootNode.RAIN_BREAKS_TORCHES, this.chunk.getWorld().getName());
+        final boolean rainExtinguishesCampfires = CFG.getBoolean(RootNode.RAIN_EXTINGUISHES_CAMPFIRES, this.chunk.getWorld().getName());
         final boolean snowBreaksCrops = CFG.getBoolean(RootNode.WEAK_FOOD_CROPS, this.chunk.getWorld().getName()) && CFG.getBoolean(RootNode.SNOW_BREAKS_CROPS, this.chunk.getWorld().getName());
 
         if (this.chunk.getWorld().hasStorm() || force)
@@ -125,6 +127,17 @@ public class RemoveExposedTorchesTask implements Runnable
                                 }
                                 break loopDown;
                             }
+                            case CAMPFIRE:
+                            {
+                                if (rainExtinguishesCampfires && temperature < 1.0)
+                                {
+                                    Campfire campfire = (Campfire) block.getBlockData();
+                                    campfire.setLit(false);
+                                    block.setBlockData(campfire);
+                                }
+                                break loopDown;
+                            }
+                            case WHEAT_SEEDS: //TODO: 1.13: need to confirm if = CROPS and below
                             case MELON_STEM:
                             case ATTACHED_MELON_STEM:
                             case MELON:

@@ -159,11 +159,12 @@ public class Torches extends ListenerModule
         plugin.debug(world, "WeatherChangeEvent called");
 
         final boolean rainBreaksTorchesEnabled = CFG.getBoolean(RootNode.RAIN_BREAKS_TORCHES, world.getName());
+        final boolean rainExtinguishesCampfiresEnabled = CFG.getBoolean(RootNode.RAIN_EXTINGUISHES_CAMPFIRES, world.getName());
         final boolean snowBreaksCrops = CFG.getBoolean(RootNode.SNOW_BREAKS_CROPS, world.getName());
 
         if (event.toWeatherState()) //is it raining
         {
-            if (rainBreaksTorchesEnabled || snowBreaksCrops)
+            if (rainBreaksTorchesEnabled || rainExtinguishesCampfiresEnabled || snowBreaksCrops)
             {
                 plugin.debug(world, "WeatherChangeEvent says the sky is now falling and will proceed to massacre torches (and exposed crops in snow biomes)");
                 // plan to remove torches chunk by chunk gradually throughout the rainperiod

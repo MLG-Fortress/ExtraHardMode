@@ -156,6 +156,18 @@ public enum RootNode implements ConfigNode
             "Any kind of block above the torch is enough to protect the torch"),
 
     /**
+     * #############
+     * # CAMPFIRES #
+     * #############
+     */
+    /**
+     * whether rain should extinguish campfires
+     */
+    RAIN_EXTINGUISHES_CAMPFIRES("World Rules.Campfires.Rain Extinguishes Campfires", VarType.BOOLEAN, true,
+            "When it rains there is a chance that campfires will be extinguished in a chunk.",
+            "Any kind of block above the campfire is enough to protect the campfire"),
+
+    /**
      * ##########
      * # SOUNDS #
      * ##########
