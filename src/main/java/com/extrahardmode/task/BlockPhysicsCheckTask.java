@@ -94,8 +94,9 @@ public class BlockPhysicsCheckTask implements Runnable
 
         Material material = block.getType();
         Block underBlock = block.getRelative(BlockFace.DOWN);
+        Material underType = underBlock.getType();
 
-        if ((underBlock.getType() == Material.AIR || underBlock.isLiquid() || underBlock.getType() == Material.TORCH)
+        if ((underType == Material.AIR || underType == Material.CAVE_AIR || underBlock.isLiquid() || underType == Material.TORCH)
                 && (material == Material.SAND || material == Material.GRAVEL || fallingBlocks.contains(block.getType())
                 && fallingBlocksEnabled && material != Material.AIR))
         {
