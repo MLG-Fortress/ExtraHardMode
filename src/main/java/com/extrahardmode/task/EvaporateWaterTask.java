@@ -37,14 +37,9 @@ public class EvaporateWaterTask implements Runnable
 {
 
     /**
-     * Target block.
+     * Target block. Water source or waterlogging blocks.
      */
     private final Block block;
-
-    /**
-     * The clicked block, in case it waterlogged it (1.13)
-     */
-    private final Block clickedBlock;
 
     /**
      * Module for Metadata
@@ -57,10 +52,9 @@ public class EvaporateWaterTask implements Runnable
      *
      * @param block - Target block.
      */
-    public EvaporateWaterTask(Block block, Block clickedBlock, ExtraHardMode plugin)
+    public EvaporateWaterTask(Block block, ExtraHardMode plugin)
     {
         this.block = block;
-        this.clickedBlock = clickedBlock;
         blockModule = plugin.getModuleForClass(BlockModule.class);
     }
 
@@ -74,7 +68,7 @@ public class EvaporateWaterTask implements Runnable
             waterLevel.setLevel(1);
             block.setBlockData(waterLevel, true);
         }
-        else if (clickedBlock.getBlockData() instanceof Waterlogged)
+        else if (block.getBlockData() instanceof Waterlogged)
         {
             Waterlogged wowWater = (Waterlogged)block.getBlockData();
             wowWater.setWaterlogged(false);
@@ -83,6 +77,5 @@ public class EvaporateWaterTask implements Runnable
 
         //Finished processing
         blockModule.removeMark(block);
-        blockModule.removeMark(clickedBlock);
     }
 }

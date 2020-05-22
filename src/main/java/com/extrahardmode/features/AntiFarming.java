@@ -44,7 +44,6 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.*;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.event.entity.SheepRegrowWoolEvent;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.player.PlayerBucketEmptyEvent;
@@ -53,7 +52,6 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.world.StructureGrowEvent;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.util.Vector;
 
 /**
  * Antifarming module
@@ -240,7 +238,7 @@ public class AntiFarming extends ListenerModule
             {
                 // plan to evaporate the water next tick
                 Block block = event.getVelocity().toLocation(world).getBlock();
-                EvaporateWaterTask task = new EvaporateWaterTask(block, block, plugin);
+                EvaporateWaterTask task = new EvaporateWaterTask(block, plugin);
                 plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, task, 1L);
             }
         }
@@ -400,10 +398,9 @@ public class AntiFarming extends ListenerModule
         if (!playerBypasses && dontMoveWaterEnabled && event.getBucket().equals(Material.WATER_BUCKET))
         {
             // plan to change this block into a non-source block on the next tick
-            Block block = event.getBlockClicked().getRelative(event.getBlockFace());
+            Block block = event.getBlock();
             blockModule.mark(block);
-            blockModule.mark(event.getBlockClicked());
-            EvaporateWaterTask task = new EvaporateWaterTask(block, event.getBlockClicked(), plugin);
+            EvaporateWaterTask task = new EvaporateWaterTask(block, plugin);
             plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, task, 10L);
         }
     }
