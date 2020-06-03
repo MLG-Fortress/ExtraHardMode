@@ -7,7 +7,6 @@ import com.extrahardmode.config.messages.MessageNode;
 import com.extrahardmode.module.MsgModule;
 import com.extrahardmode.service.ListenerModule;
 import java.util.List;
-import org.bukkit.Effect;
 import org.bukkit.Particle;
 import org.bukkit.World;
 import org.bukkit.entity.Animals;

@@ -23,8 +23,6 @@ package com.extrahardmode.task;
 
 
 import java.util.AbstractMap.SimpleEntry;
-import java.util.Collection;
-import java.util.List;
 
 import org.bukkit.Location;
 import org.bukkit.World;

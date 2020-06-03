@@ -25,12 +25,7 @@ package com.extrahardmode.task;
 import com.extrahardmode.ExtraHardMode;
 import com.extrahardmode.module.BlockModule;
 import org.apache.commons.lang.Validate;
-import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Gradually let's Logs which have been marked as loose fall down.
