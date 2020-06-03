@@ -154,11 +154,6 @@
             <id>spigot-repo</id>
             <url>http://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
-        <!--WorldGuard Repo -->
-        <repository>
-            <id>sk89q-repo</id>
-            <url>http://maven.sk89q.com/repo/</url>
-        </repository>
         <repository>
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
@@ -219,14 +214,6 @@
             <artifactId>powermock-module-junit4</artifactId>
             <version>1.5</version>
             <scope>test</scope>
-        </dependency>
-
-        <!-- Compatibility Dependencies -->
-        <!-- WorldGuard -->
-        <dependency>
-            <groupId>com.sk89q</groupId>
-            <artifactId>worldguard</artifactId>
-            <version>6.1.1-SNAPSHOT</version>
         </dependency>
 
         <!-- Block Loggers -->
