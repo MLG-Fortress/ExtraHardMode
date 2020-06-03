@@ -198,7 +198,7 @@ public class AntiGrinder extends ListenerModule
                         Block block = entity.getLocation().getBlock();
                         Block underBlock = block.getRelative(BlockFace.DOWN);
 
-                        BlockFace[] adjacentFaces = blockModule.getHorizontalAdjacentFaces();
+                        BlockFace[] adjacentFaces = BlockModule.getHorizontalAdjacentFaces();
                         Block[] adjacentBlocks = new Block[adjacentFaces.length * 2 + 1];
 
                         //All Blocks directly surrounding the Monster
