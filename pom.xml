@@ -71,34 +71,6 @@
                 </configuration>
             </plugin>
 
-            <!-- Shade Metrics -->
-            <!--<plugin>-->
-                <!--<groupId>org.apache.maven.plugins</groupId>-->
-                <!--<artifactId>maven-shade-plugin</artifactId>-->
-                <!--<version>1.5</version>-->
-                <!--<executions>-->
-                    <!--<execution>-->
-                        <!--<phase>package</phase>-->
-                        <!--<goals>-->
-                            <!--<goal>shade</goal>-->
-                        <!--</goals>-->
-                        <!--<configuration>-->
-                            <!--<artifactSet>-->
-                                <!--<includes>-->
-                                    <!--<include>org.mcstats.bukkit:metrics</include>-->
-                                <!--</includes>-->
-                            <!--</artifactSet>-->
-                            <!--<relocations>-->
-                                <!--<relocation>-->
-                                    <!--<pattern>org.mcstats</pattern>-->
-                                    <!--<shadedPattern>com.extrahardmode.metrics</shadedPattern>-->
-                                <!--</relocation>-->
-                            <!--</relocations>-->
-                            <!--&lt;!&ndash;<minimizeJar>true</minimizeJar>&ndash;&gt;-->
-                        <!--</configuration>-->
-                    <!--</execution>-->
-                <!--</executions>-->
-            <!--</plugin>-->
 
             <!-- Use a profile to override the outputdir, e.g. to a local testserver-->
             <!--<plugin>-->
@@ -110,6 +82,7 @@
                 <!--</configuration>-->
             <!--</plugin>-->
 
+            <!-- Shade Metrics -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
@@ -160,48 +133,31 @@
 
     <!-- Repositories -->
     <repositories>
+        <!-- di3mex repo for hawkeye -->
         <repository>
             <id>github-releases</id>
             <url>http://di3mex.github.io/repo_bukkit/releases/</url>
         </repository>
+        <!-- CoreProtect repo -->
         <repository>
-            <id>github-snapshots</id>
-            <url>http://di3mex.github.io/repo_bukkit/snapshots/</url>
+            <id>coreprotect-repo</id>
+            <url>http://maven.playpro.com</url>
         </repository>
-        <!--<repository>-->
-            <!--<id>prism-repo</id>-->
-            <!--<url>http://dhmc.us:8081/nexus/content/repositories/releases/</url>-->
-        <!--</repository>-->
+        <!-- LogBlock repo -->
         <repository>
             <id>md_5-releases</id>
             <url>http://repo.md-5.net/content/repositories/releases/</url>
-        </repository>
-        <repository>
-            <id>md_5-snapshots</id>
-            <url>http://repo.md-5.net/content/repositories/snapshots/</url>
         </repository>
         <!-- Spigot Repo -->
         <repository>
             <id>spigot-repo</id>
             <url>http://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
-        <!--WorldGuard Repo -->
-        <repository>
-            <id>sk89q-repo</id>
-            <url>http://maven.sk89q.com/repo/</url>
-        </repository>
-        <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
-        </repository>
+        <!--bstats Repo -->
         <repository>
             <id>CodeMC</id>
             <url>https://repo.codemc.org/repository/maven-public/</url>
         </repository>
-        <!--<repository>
-            <id>local</id>
-            <url>http://localhost:8081/nexus/content/groups/public/</url>
-        </repository>-->
     </repositories>
 
     <!-- Dependencies -->
@@ -213,95 +169,70 @@
             <version>${mc-version}-${bukkit-ver}</version>
             <scope>provided</scope>
         </dependency>
-        <!-- CraftBukkit -> because we are too lazy to add the jar to our build path for runtime debugging :D -->
-        <!--<dependency>-->
-            <!--<groupId>org.bukkit</groupId>-->
-            <!--<artifactId>craftbukkit</artifactId>-->
-            <!--<version>${mc-version}-${bukkit-ver}</version>-->
-            <!--<scope>provided</scope>-->
-        <!--</dependency>-->
         <!-- Metrics for stats -->
-        <!--<dependency>-->
-            <!--<groupId>org.mcstats.bukkit</groupId>-->
-            <!--<artifactId>metrics</artifactId>-->
-            <!--<version>R7</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>org.bstats</groupId>
+            <artifactId>bstats-bukkit</artifactId>
+            <version>1.6</version>
+            <scope>compile</scope>
+        </dependency>
 
         <!-- Unit testing dependencies -->
         <!-- JUnit: Assertions and test framework -->
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.11</version>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.7.0-M1</version>
             <scope>test</scope>
         </dependency>
         <!-- Mock bukkit's interfaces -->
         <dependency>
             <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-            <version>1.9.5</version>
+            <artifactId>mockito-core</artifactId>
+            <version>3.3.3</version>
             <scope>test</scope>
         </dependency>
         <!-- Mock final methods and stuff -->
         <dependency>
             <groupId>org.powermock</groupId>
-            <artifactId>powermock-api-mockito</artifactId>
-            <version>1.5</version>
+            <artifactId>powermock-api-mockito2</artifactId>
+            <version>2.0.7</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.powermock</groupId>
             <artifactId>powermock-core</artifactId>
-            <version>1.5</version>
+            <version>2.0.7</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.powermock</groupId>
             <artifactId>powermock-module-junit4</artifactId>
-            <version>1.5</version>
+            <version>2.0.7</version>
             <scope>test</scope>
         </dependency>
 
-        <!-- Compatibility Dependencies -->
-        <!-- WorldGuard -->
-        <dependency>
-            <groupId>com.sk89q</groupId>
-            <artifactId>worldguard</artifactId>
-            <version>6.1.1-SNAPSHOT</version>
-        </dependency>
-
         <!-- Block Loggers -->
-        <!-- Prism -->
-        <!--<dependency>-->
-            <!--<groupId>me.botsko</groupId>-->
-            <!--<artifactId>prism</artifactId>-->
-            <!--<version>2.0</version>-->
-            <!--&lt;!&ndash;<version>2.0.6</version>&ndash;&gt;-->
-        <!--</dependency>-->
         <!-- CoreProtect -->
         <dependency>
-            <groupId>net.coreprotect.CoreProtect</groupId>
-            <artifactId>CoreProtect</artifactId>
-            <version>2.0.8</version>
+            <groupId>net.coreprotect</groupId>
+            <artifactId>coreprotect</artifactId>
+            <version>2.15.0</version>
+            <scope>provided</scope>
         </dependency>
         <!-- LogBlock -->
         <dependency>
             <groupId>de.diddiz</groupId>
             <artifactId>logblock</artifactId>
-            <version>1.8</version>
+            <version>1.94</version>
+            <scope>provided</scope>
         </dependency>
         <!-- HawkEye -->
         <dependency>
             <groupId>uk.co.oliwali</groupId>
             <artifactId>HawkEye</artifactId>
             <version>1.6.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.bstats</groupId>
-            <artifactId>bstats-bukkit</artifactId>
-            <version>1.6</version>
-            <scope>compile</scope>
+            <scope>provided</scope>
         </dependency>
 
     </dependencies>
