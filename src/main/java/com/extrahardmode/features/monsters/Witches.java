@@ -38,7 +38,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.PotionSplashEvent;
-import org.bukkit.projectiles.ProjectileSource;
 
 /**
  * All the changes to Witches

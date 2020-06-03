@@ -27,7 +27,6 @@ import com.extrahardmode.config.ExplosionType;
 import com.extrahardmode.config.RootConfig;
 import com.extrahardmode.config.RootNode;
 import com.extrahardmode.module.EntityHelper;
-import com.extrahardmode.module.ExplosionCompatStorage;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 

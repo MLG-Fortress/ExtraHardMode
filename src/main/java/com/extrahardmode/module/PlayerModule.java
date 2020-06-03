@@ -27,13 +27,11 @@ import com.extrahardmode.config.RootConfig;
 import com.extrahardmode.config.RootNode;
 import com.extrahardmode.service.EHMModule;
 import com.extrahardmode.service.Feature;
-import org.apache.commons.lang.Validate;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
-import org.bukkit.scheduler.BukkitScheduler;
 
 /**
  * Player centric actions
