@@ -35,8 +35,8 @@ import org.junit.runner.RunWith;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-@RunWith(PowerMockRunner.class)
-@PrepareForTest({MultiWorldConfig.class, JavaPlugin.class, PluginLogger.class})
+// @RunWith(PowerMockRunner.class)
+// @PrepareForTest({MultiWorldConfig.class, JavaPlugin.class, PluginLogger.class})
 public class TestMultiWorldConfig
 {
     private final ExtraHardMode plugin = new MockExtraHardMode().get();
