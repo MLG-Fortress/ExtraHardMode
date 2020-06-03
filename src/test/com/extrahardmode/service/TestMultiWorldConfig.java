@@ -21,92 +21,81 @@
 
 package com.extrahardmode.service;
 
-
-import com.extrahardmode.ExtraHardMode;
-import com.extrahardmode.mocks.MockExtraHardMode;
-import com.extrahardmode.service.config.Mode;
-import com.extrahardmode.service.config.MultiWorldConfig;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.plugin.PluginLogger;
-import org.bukkit.plugin.java.JavaPlugin;
-import org.junit.Before;
-import org.junit.runner.RunWith;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
-
-@RunWith(PowerMockRunner.class)
-@PrepareForTest({MultiWorldConfig.class, JavaPlugin.class, PluginLogger.class})
+// @RunWith(PowerMockRunner.class)
+// @PrepareForTest({MultiWorldConfig.class, JavaPlugin.class, PluginLogger.class})
 public class TestMultiWorldConfig
 {
-    private final ExtraHardMode plugin = new MockExtraHardMode().get();
 
+    // TODO: test
 
-    //Because MultiworldConfig has a constructor and is an interface
-    private class Mock extends MultiWorldConfig
-    {
-        public Mock(ExtraHardMode plugin)
-        {
-            super(plugin);
-        }
-
-
-        @Override
-        public void load()
-        {
-        }
-
-
-        @Override
-        public void starting()
-        {
-        }
-
-
-        @Override
-        public void closing()
-        {
-        }
-    }
-
-
-    /**
-     * Our Config<pre>
-     * BOOL_TRUE = false
-     * BOOL_FALSE = false
-     * INT_0 = 4
-     * INT_9 = 9
-     * STR_0 = inherit
-     * <p/>
-     * NOTFOUND_X = all not set in the config
-     * INHERITS_X = all "inherit"
-     * </pre>
-     */
-    private final FileConfiguration config = new YamlConfiguration();
-
-
-    @Before
-    public void prepare()
-    {
-        //normal values
-        config.set(MockConfigNode.BOOL_TRUE.getPath(), false);
-        config.set(MockConfigNode.BOOL_FALSE.getPath(), false);
-        config.set(MockConfigNode.INT_0.getPath(), 4);
-        config.set(MockConfigNode.INT_9.getPath(), 9);
-        config.set(MockConfigNode.STR_0.getPath(), Mode.INHERIT.name());
-
-        //inherited values
-        config.set(MockConfigNode.INHERITS_BOOL.getPath(), Mode.INHERIT.name());
-        config.set(MockConfigNode.INHERITS_INT.getPath(), Mode.INHERIT.name());
-        config.set(MockConfigNode.INHERITS_DOUBLE.getPath(), Mode.INHERIT.name().toLowerCase());//just to test if that also works
-        config.set(MockConfigNode.INHERITS_STR.getPath(), Mode.INHERIT.name());
-        config.set(MockConfigNode.INHERITS_LIST.getPath(), Mode.INHERIT.name().toLowerCase());
-    }
-
-
-    private final MultiWorldConfig module = new Mock(plugin);
-
-
+//    private final ExtraHardMode plugin = new MockExtraHardMode().get();
+//
+//
+//    //Because MultiworldConfig has a constructor and is an interface
+//    private class Mock extends MultiWorldConfig
+//    {
+//        public Mock(ExtraHardMode plugin)
+//        {
+//            super(plugin);
+//        }
+//
+//
+//        @Override
+//        public void load()
+//        {
+//        }
+//
+//
+//        @Override
+//        public void starting()
+//        {
+//        }
+//
+//
+//        @Override
+//        public void closing()
+//        {
+//        }
+//    }
+//
+//
+//    /**
+//     * Our Config<pre>
+//     * BOOL_TRUE = false
+//     * BOOL_FALSE = false
+//     * INT_0 = 4
+//     * INT_9 = 9
+//     * STR_0 = inherit
+//     * <p/>
+//     * NOTFOUND_X = all not set in the config
+//     * INHERITS_X = all "inherit"
+//     * </pre>
+//     */
+//    private final FileConfiguration config = new YamlConfiguration();
+//
+//
+//    @Before
+//    public void prepare()
+//    {
+//        //normal values
+//        config.set(MockConfigNode.BOOL_TRUE.getPath(), false);
+//        config.set(MockConfigNode.BOOL_FALSE.getPath(), false);
+//        config.set(MockConfigNode.INT_0.getPath(), 4);
+//        config.set(MockConfigNode.INT_9.getPath(), 9);
+//        config.set(MockConfigNode.STR_0.getPath(), Mode.INHERIT.name());
+//
+//        //inherited values
+//        config.set(MockConfigNode.INHERITS_BOOL.getPath(), Mode.INHERIT.name());
+//        config.set(MockConfigNode.INHERITS_INT.getPath(), Mode.INHERIT.name());
+//        config.set(MockConfigNode.INHERITS_DOUBLE.getPath(), Mode.INHERIT.name().toLowerCase());//just to test if that also works
+//        config.set(MockConfigNode.INHERITS_STR.getPath(), Mode.INHERIT.name());
+//        config.set(MockConfigNode.INHERITS_LIST.getPath(), Mode.INHERIT.name().toLowerCase());
+//    }
+//
+//
+//    private final MultiWorldConfig module = new Mock(plugin);
+//
+//
 //    /**
 //     * Test if normal retrieval of nodes which are present int the config is possible
 //     */
