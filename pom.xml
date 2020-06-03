@@ -138,10 +138,6 @@
             <url>http://di3mex.github.io/repo_bukkit/releases/</url>
         </repository>
         <repository>
-            <id>github-snapshots</id>
-            <url>http://di3mex.github.io/repo_bukkit/snapshots/</url>
-        </repository>
-        <repository>
             <id>coreprotect-repo</id>
             <url>http://maven.playpro.com</url>
         </repository>
@@ -149,18 +145,10 @@
             <id>md_5-releases</id>
             <url>http://repo.md-5.net/content/repositories/releases/</url>
         </repository>
-        <repository>
-            <id>md_5-snapshots</id>
-            <url>http://repo.md-5.net/content/repositories/snapshots/</url>
-        </repository>
         <!-- Spigot Repo -->
         <repository>
             <id>spigot-repo</id>
             <url>http://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
-        </repository>
-        <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
         </repository>
         <repository>
             <id>CodeMC</id>
