@@ -142,6 +142,10 @@
             <url>http://di3mex.github.io/repo_bukkit/snapshots/</url>
         </repository>
         <repository>
+            <id>coreprotect-repo</id>
+            <url>http://maven.playpro.com</url>
+        </repository>
+        <repository>
             <id>md_5-releases</id>
             <url>http://repo.md-5.net/content/repositories/releases/</url>
         </repository>
@@ -184,56 +188,59 @@
         <!-- Unit testing dependencies -->
         <!-- JUnit: Assertions and test framework -->
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.11</version>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.7.0-M1</version>
             <scope>test</scope>
         </dependency>
         <!-- Mock bukkit's interfaces -->
         <dependency>
             <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-            <version>1.9.5</version>
+            <artifactId>mockito-core</artifactId>
+            <version>3.3.3</version>
             <scope>test</scope>
         </dependency>
         <!-- Mock final methods and stuff -->
         <dependency>
             <groupId>org.powermock</groupId>
-            <artifactId>powermock-api-mockito</artifactId>
-            <version>1.5</version>
+            <artifactId>powermock-api-mockito2</artifactId>
+            <version>2.0.7</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.powermock</groupId>
             <artifactId>powermock-core</artifactId>
-            <version>1.5</version>
+            <version>2.0.7</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.powermock</groupId>
             <artifactId>powermock-module-junit4</artifactId>
-            <version>1.5</version>
+            <version>2.0.7</version>
             <scope>test</scope>
         </dependency>
 
         <!-- Block Loggers -->
         <!-- CoreProtect -->
         <dependency>
-            <groupId>net.coreprotect.CoreProtect</groupId>
-            <artifactId>CoreProtect</artifactId>
-            <version>2.0.8</version>
+            <groupId>net.coreprotect</groupId>
+            <artifactId>coreprotect</artifactId>
+            <version>2.15.0</version>
+            <scope>provided</scope>
         </dependency>
         <!-- LogBlock -->
         <dependency>
             <groupId>de.diddiz</groupId>
             <artifactId>logblock</artifactId>
-            <version>1.8</version>
+            <version>1.94</version>
+            <scope>provided</scope>
         </dependency>
         <!-- HawkEye -->
         <dependency>
             <groupId>uk.co.oliwali</groupId>
             <artifactId>HawkEye</artifactId>
             <version>1.6.0</version>
+            <scope>provided</scope>
         </dependency>
 
     </dependencies>
