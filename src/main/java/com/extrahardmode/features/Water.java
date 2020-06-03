@@ -122,7 +122,7 @@ public class Water extends ListenerModule
                     // if no cached value, calculate
                     if (playerData.cachedWeightStatus <= 0)
                     {
-                        playerData.cachedWeightStatus = playerModule.inventoryWeight(player, armorPoints, inventoryPoints, toolPoints);
+                        playerData.cachedWeightStatus = PlayerModule.inventoryWeight(player, armorPoints, inventoryPoints, toolPoints);
                     }
                     // if too heavy let player feel the weight by pulling them down, if in boat can always swim
                     if (playerData.cachedWeightStatus > maxWeight && !player.isInsideVehicle())
@@ -135,7 +135,7 @@ public class Water extends ListenerModule
                 {
                     if (playerData.cachedWeightStatus <= 0)
                     {
-                        playerData.cachedWeightStatus = playerModule.inventoryWeight(player, armorPoints, inventoryPoints, toolPoints);
+                        playerData.cachedWeightStatus = PlayerModule.inventoryWeight(player, armorPoints, inventoryPoints, toolPoints);
                     } else if (playerData.cachedWeightStatus > maxWeight)
                     {
                         //Detect waterfalls
