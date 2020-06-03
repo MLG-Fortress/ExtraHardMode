@@ -133,14 +133,17 @@
 
     <!-- Repositories -->
     <repositories>
+        <!-- di3mex repo for hawkeye -->
         <repository>
             <id>github-releases</id>
             <url>http://di3mex.github.io/repo_bukkit/releases/</url>
         </repository>
+        <!-- CoreProtect repo -->
         <repository>
             <id>coreprotect-repo</id>
             <url>http://maven.playpro.com</url>
         </repository>
+        <!-- LogBlock repo -->
         <repository>
             <id>md_5-releases</id>
             <url>http://repo.md-5.net/content/repositories/releases/</url>
@@ -150,6 +153,7 @@
             <id>spigot-repo</id>
             <url>http://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
+        <!--bstats Repo -->
         <repository>
             <id>CodeMC</id>
             <url>https://repo.codemc.org/repository/maven-public/</url>
