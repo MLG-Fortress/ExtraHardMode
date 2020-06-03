@@ -146,8 +146,8 @@ public class Physics extends ListenerModule
     public void whenBlockLands(EntityChangeBlockEvent event)
     {
         Entity entity = event.getEntity();
-        World world = entity.getWorld();
-
+//        World world = entity.getWorld();
+//
 //        final int damageAmount = CFG.getInt(RootNode.MORE_FALLING_BLOCKS_DMG_AMOUNT, world.getName());
 //        final boolean environmentalDmg = CFG.getBoolean(RootNode.ENHANCED_ENVIRONMENTAL_DAMAGE, world.getName());
 //
@@ -168,7 +168,7 @@ public class Physics extends ListenerModule
 //            }
 //        }
 
-        if (event.getEntity() instanceof FallingBlock && EntityHelper.isMarkedAsOurs(event.getEntity()))
+        if (entity instanceof FallingBlock && EntityHelper.isMarkedAsOurs(entity))
         {
             BlockState newState = event.getBlock().getState();
             newState.setType(event.getTo());
