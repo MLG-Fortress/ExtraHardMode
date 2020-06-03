@@ -47,7 +47,7 @@ public class ConfigPlotter
                 }
             }));
 
-            final int percent = CFG.getEnabledWorlds().length > 0 ? (plugin.getServer().getWorlds().size() * 100 / CFG.getEnabledWorlds().length) : 0;
+//            final int percent = CFG.getEnabledWorlds().length > 0 ? (plugin.getServer().getWorlds().size() * 100 / CFG.getEnabledWorlds().length) : 0;
 //            Metrics.Graph graph = metrics.createGraph("Enabled for % of worlds");
 //            graph.addPlotter(
 //                    new Metrics.Plotter("0-25%")
