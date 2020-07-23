@@ -395,7 +395,7 @@ public class AntiFarming extends ListenerModule
         final boolean playerBypasses = playerModule.playerBypasses(player, Feature.ANTIFARMING);
 
         // FEATURE: can't move water source blocks
-        if (!playerBypasses && dontMoveWaterEnabled && event.getBucket().equals(Material.WATER_BUCKET))
+        if (!playerBypasses && dontMoveWaterEnabled && (event.getBucket() != Material.LAVA_BUCKET && event.getBucket() != Material.MILK_BUCKET))
         {
             // plan to change this block into a non-source block on the next tick
             Block block = event.getBlock();
@@ -429,6 +429,20 @@ public class AntiFarming extends ListenerModule
                         player.updateInventory();
                 }
             });
+        }
+    }
+
+    /**
+     * When a player place kelp or seagrass in markd water.
+     * 
+     * @param event Event that occurred.
+     */
+    @EventHandler(ignoreCancelled = true)
+    public void onPlaceKelpOrSeaGrass(BlockPlaceEvent event) {
+        Block placedBlock = event.getBlockPlaced();
+        if ((placedBlock.getType() == Material.KELP || placedBlock.getType() == Material.SEAGRASS)
+                && blockModule.isMarked(placedBlock)) {
+            event.setCancelled(true);
         }
     }
 }
