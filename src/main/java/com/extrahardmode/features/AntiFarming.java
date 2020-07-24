@@ -497,7 +497,7 @@ public class AntiFarming extends ListenerModule
 
         if (event.getSource().getType() == Material.KELP)
         {
-            BlockData replaced = event.getNewState().getBlockData();
+            BlockData replaced = event.getBlock().getBlockData();
             if (replaced instanceof Levelled && ((Levelled) replaced).getLevel() != 0)
             {
                 event.setCancelled(true);
