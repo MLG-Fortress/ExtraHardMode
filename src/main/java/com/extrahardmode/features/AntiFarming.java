@@ -234,7 +234,12 @@ public class AntiFarming extends ListenerModule
         if (dontMoveWaterEnabled)
         {
             // only care about water
-            if (event.getItem().getType() == Material.WATER_BUCKET)
+            Material item = event.getItem().getType();
+            if (item == Material.WATER_BUCKET
+                    || item == Material.COD_BUCKET
+                    || item == Material.SALMON_BUCKET
+                    || item == Material.TROPICAL_FISH_BUCKET
+                    || item == Material.PUFFERFISH_BUCKET)
             {
                 // plan to evaporate the water next tick
                 Block block = event.getVelocity().toLocation(world).getBlock();
