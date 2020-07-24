@@ -22,6 +22,8 @@
 package com.extrahardmode.features;
 
 
+import java.util.Iterator;
+
 import com.extrahardmode.ExtraHardMode;
 import com.extrahardmode.config.RootConfig;
 import com.extrahardmode.config.RootNode;
@@ -32,12 +34,16 @@ import com.extrahardmode.module.PlayerModule;
 import com.extrahardmode.service.Feature;
 import com.extrahardmode.service.ListenerModule;
 import com.extrahardmode.task.EvaporateWaterTask;
+
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Biome;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.block.BlockState;
+import org.bukkit.block.data.BlockData;
+import org.bukkit.block.data.Levelled;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -384,6 +390,26 @@ public class AntiFarming extends ListenerModule
         }
     }
 
+    /**
+     * Check if the feature {@code DontMoveWater} is enabled.
+     * 
+     * @param world world to check the feature is enabled.
+     * @return If enabled return true. Otherwise false.
+     */
+    private boolean isDontMoveWaterEnabled(World world) {
+        return CFG.getBoolean(RootNode.DONT_MOVE_WATER_SOURCE_BLOCKS, world.getName());
+    }
+
+    /**
+     * Check if player can move or generate water without ice.
+     * 
+     * @param player Player to check.
+     * @return If player can move water without ice, return true. Otherwise false.
+     */
+    private boolean canPlayerMoveWater(Player player) {
+        final boolean playerBypasses = playerModule.playerBypasses(player, Feature.ANTIFARMING);
+        return playerBypasses || !isDontMoveWaterEnabled(player.getWorld());
+    }
 
     /**
      * when a player empties a bucket...
@@ -393,14 +419,8 @@ public class AntiFarming extends ListenerModule
     @EventHandler(priority = EventPriority.NORMAL)
     public void onPlayerEmptyBucket(PlayerBucketEmptyEvent event)
     {
-        Player player = event.getPlayer();
-        World world = player.getWorld();
-
-        final boolean dontMoveWaterEnabled = CFG.getBoolean(RootNode.DONT_MOVE_WATER_SOURCE_BLOCKS, world.getName());
-        final boolean playerBypasses = playerModule.playerBypasses(player, Feature.ANTIFARMING);
-
         // FEATURE: can't move water source blocks
-        if (!playerBypasses && dontMoveWaterEnabled && (event.getBucket() != Material.LAVA_BUCKET && event.getBucket() != Material.MILK_BUCKET))
+        if (!canPlayerMoveWater(event.getPlayer()) && (event.getBucket() != Material.LAVA_BUCKET && event.getBucket() != Material.MILK_BUCKET))
         {
             // plan to change this block into a non-source block on the next tick
             Block block = event.getBlock();
@@ -438,16 +458,84 @@ public class AntiFarming extends ListenerModule
     }
 
     /**
-     * When a player place kelp or seagrass in markd water.
+     * Cancel water source generation by placing kelp or sea grass.
      * 
      * @param event Event that occurred.
      */
     @EventHandler(ignoreCancelled = true)
     public void onPlaceKelpOrSeaGrass(BlockPlaceEvent event) {
+        if (canPlayerMoveWater(event.getPlayer())) return;
+
         Block placedBlock = event.getBlockPlaced();
-        if ((placedBlock.getType() == Material.KELP || placedBlock.getType() == Material.SEAGRASS)
-                && blockModule.isMarked(placedBlock)) {
-            event.setCancelled(true);
+        if (placedBlock.getType() == Material.KELP || placedBlock.getType() == Material.SEAGRASS)
+        {
+            // Placed kelp or sea grass will keep water from evapolated. Cancel it.
+            if (blockModule.isMarked(placedBlock))
+            {
+                event.setCancelled(true);
+                return;
+            }
+
+            // Kelp or sea grass in flowing water will generate water source.
+            // Allow placing only in water source.
+            BlockData replacedData = event.getBlockReplacedState().getBlockData();
+            if (replacedData instanceof Levelled && ((Levelled) replacedData).getLevel() != 0)
+            {
+                event.setCancelled(true);
+            }
+        }
+    }
+
+    /**
+     * Cancel water source generation by kelp growth.
+     * 
+     * @param event Event that occurred.
+     */
+    @EventHandler(ignoreCancelled = true)
+    public void onKelpGrowth(BlockSpreadEvent event) {
+        if (!isDontMoveWaterEnabled(event.getBlock().getWorld())) return;
+
+        if (event.getSource().getType() == Material.KELP)
+        {
+            BlockData replaced = event.getNewState().getBlockData();
+            if (replaced instanceof Levelled && ((Levelled) replaced).getLevel() != 0)
+            {
+                event.setCancelled(true);
+            }
+        }
+    }
+
+    /**
+     * Cancel water source generation by kelp or seagrass growth using bonemeal.
+     * 
+     * @param event Event that occurred.
+     */
+    @EventHandler(ignoreCancelled = true)
+    public void onBlockFertilize(BlockFertilizeEvent event) {
+        if (canPlayerMoveWater(event.getPlayer())) return;
+
+        // Remove all water source generation
+        Iterator<BlockState> it = event.getBlocks().iterator();
+        while (it.hasNext())
+        {
+            BlockState state = it.next();
+            if (state.getType() != Material.KELP && state.getType() != Material.SEAGRASS
+                    && state.getType() != Material.TALL_SEAGRASS) continue;
+
+            BlockData replaced = state.getLocation().getBlock().getBlockData();
+            if (replaced instanceof Levelled && ((Levelled) replaced).getLevel() != 0)
+            {
+                it.remove();
+            }
+            // Fix top disappeared tall sea grass.
+            else if (state.getType() == Material.TALL_GRASS)
+            {
+                BlockData up = state.getBlock().getRelative(BlockFace.UP).getBlockData();
+                if (up instanceof Levelled && ((Levelled) up).getLevel() != 0)
+                {
+                    state.setType(Material.SEAGRASS);
+                }
+            }
         }
     }
 }
