@@ -70,6 +70,8 @@ public class AntiFarming extends ListenerModule
 
     private BlockModule blockModule;
 
+    private MsgModule msgModule;
+
 
     public AntiFarming(ExtraHardMode plugin)
     {
@@ -84,6 +86,7 @@ public class AntiFarming extends ListenerModule
         CFG = plugin.getModuleForClass(RootConfig.class);
         playerModule = plugin.getModuleForClass(PlayerModule.class);
         blockModule = plugin.getModuleForClass(BlockModule.class);
+        msgModule = plugin.getModuleForClass(MsgModule.class);
     }
 
 
@@ -384,32 +387,12 @@ public class AntiFarming extends ListenerModule
             if (result == Material.MELON_SEEDS || result == Material.PUMPKIN_SEEDS)
             {
                 event.setCancelled(true);
-                plugin.getModuleForClass(MsgModule.class).send(player, MessageNode.NO_CRAFTING_MELON_SEEDS);
+                msgModule.send(player, MessageNode.NO_CRAFTING_MELON_SEEDS);
                 return;
             }
         }
     }
 
-    /**
-     * Check if the feature {@code DontMoveWater} is enabled.
-     * 
-     * @param world world to check the feature is enabled.
-     * @return If enabled return true. Otherwise false.
-     */
-    private boolean isDontMoveWaterEnabled(World world) {
-        return CFG.getBoolean(RootNode.DONT_MOVE_WATER_SOURCE_BLOCKS, world.getName());
-    }
-
-    /**
-     * Check if player can move or generate water without ice.
-     * 
-     * @param player Player to check.
-     * @return If player can move water without ice, return true. Otherwise false.
-     */
-    private boolean canPlayerMoveWater(Player player) {
-        final boolean playerBypasses = playerModule.playerBypasses(player, Feature.ANTIFARMING);
-        return playerBypasses || !isDontMoveWaterEnabled(player.getWorld());
-    }
 
     /**
      * when a player empties a bucket...
@@ -419,8 +402,15 @@ public class AntiFarming extends ListenerModule
     @EventHandler(priority = EventPriority.NORMAL)
     public void onPlayerEmptyBucket(PlayerBucketEmptyEvent event)
     {
+        Player player = event.getPlayer();
+        World world = player.getWorld();
+
+        final boolean playerbypasses = playerModule.playerBypasses(player, Feature.ANTIFARMING);
+        final boolean dontMoveWaterEnabled = CFG.getBoolean(RootNode.DONT_MOVE_WATER_SOURCE_BLOCKS, world.getName());
+
         // FEATURE: can't move water source blocks
-        if (!canPlayerMoveWater(event.getPlayer()) && (event.getBucket() != Material.LAVA_BUCKET && event.getBucket() != Material.MILK_BUCKET))
+        if (!playerbypasses && dontMoveWaterEnabled
+                && (event.getBucket() != Material.LAVA_BUCKET && event.getBucket() != Material.MILK_BUCKET))
         {
             // plan to change this block into a non-source block on the next tick
             Block block = event.getBlock();
@@ -457,6 +447,17 @@ public class AntiFarming extends ListenerModule
         }
     }
 
+
+    /**
+     * Check if kelp or seagrass can change flowing water into water source.
+     * 
+     * @param world world to check the feature is enabled.
+     * @return If kelp or seagrass can change water, return true. Otherwise false.
+     */
+    private boolean canKelpOrSeagrassChangeFlowingWater(World world) {
+        return !CFG.getBoolean(RootNode.KELP_OR_SEAGRASS_CANT_CHANGE_FLOWING_WATER, world.getName());
+    }
+
     /**
      * Cancel water source generation by placing kelp or sea grass.
      * 
@@ -464,15 +465,18 @@ public class AntiFarming extends ListenerModule
      */
     @EventHandler(ignoreCancelled = true)
     public void onPlaceKelpOrSeaGrass(BlockPlaceEvent event) {
-        if (canPlayerMoveWater(event.getPlayer())) return;
-
         Block placedBlock = event.getBlockPlaced();
+
+        if (canKelpOrSeagrassChangeFlowingWater(placedBlock.getWorld())
+                || playerModule.playerBypasses(event.getPlayer(), Feature.ANTIFARMING)) return;
+        
         if (placedBlock.getType() == Material.KELP || placedBlock.getType() == Material.SEAGRASS)
         {
             // Placed kelp or sea grass will keep water from evapolated. Cancel it.
             if (blockModule.isMarked(placedBlock))
             {
                 event.setCancelled(true);
+                msgModule.send(event.getPlayer(), MessageNode.KELP_OR_SEAGRASS_CANT_CHANGE_FLOWING_WATER);
                 return;
             }
 
@@ -482,6 +486,7 @@ public class AntiFarming extends ListenerModule
             if (replacedData instanceof Levelled && ((Levelled) replacedData).getLevel() != 0)
             {
                 event.setCancelled(true);
+                msgModule.send(event.getPlayer(), MessageNode.KELP_OR_SEAGRASS_CANT_CHANGE_FLOWING_WATER);
             }
         }
     }
@@ -493,7 +498,7 @@ public class AntiFarming extends ListenerModule
      */
     @EventHandler(ignoreCancelled = true)
     public void onKelpGrowth(BlockSpreadEvent event) {
-        if (!isDontMoveWaterEnabled(event.getBlock().getWorld())) return;
+        if (canKelpOrSeagrassChangeFlowingWater(event.getBlock().getWorld())) return;
 
         if (event.getSource().getType() == Material.KELP)
         {
@@ -512,7 +517,10 @@ public class AntiFarming extends ListenerModule
      */
     @EventHandler(ignoreCancelled = true)
     public void onBlockFertilize(BlockFertilizeEvent event) {
-        if (canPlayerMoveWater(event.getPlayer())) return;
+        if (canKelpOrSeagrassChangeFlowingWater(event.getBlock().getWorld())
+                || playerModule.playerBypasses(event.getPlayer(), Feature.ANTIFARMING)) return;
+
+        boolean resultChanged = false;
 
         // Remove all water source generation
         Iterator<BlockState> it = event.getBlocks().iterator();
@@ -526,6 +534,7 @@ public class AntiFarming extends ListenerModule
             if (replaced instanceof Levelled && ((Levelled) replaced).getLevel() != 0)
             {
                 it.remove();
+                resultChanged = true;
             }
             // Fix top disappeared tall sea grass.
             else if (state.getType() == Material.TALL_GRASS)
@@ -534,8 +543,12 @@ public class AntiFarming extends ListenerModule
                 if (up instanceof Levelled && ((Levelled) up).getLevel() != 0)
                 {
                     state.setType(Material.SEAGRASS);
+                    resultChanged = true;
                 }
             }
         }
+
+        if (resultChanged)
+            msgModule.send(event.getPlayer(), MessageNode.KELP_OR_SEAGRASS_CANT_CHANGE_FLOWING_WATER);
     }
 }

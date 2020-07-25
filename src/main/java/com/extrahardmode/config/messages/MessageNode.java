@@ -289,6 +289,11 @@ public enum MessageNode implements ConfigNode
     ANIMAL_OVERCROWD_CONTROL
             ("AnimalOverCrowd.Msg", MsgCategory.NOTIFICATION, "animal_overcrowd",
                 "Animals need space! Consider putting them in a bigger area"),
+    KELP_OR_SEAGRASS_CANT_CHANGE_FLOWING_WATER_MODE
+            ("KelpOrSeagrassCantChangeFlowingWater.Mode", MsgCategory.NOTIFICATION),
+    KELP_OR_SEAGRASS_CANT_CHANGE_FLOWING_WATER
+            ("KelpOrSeagrassCantChangeFlowingWater.Msg", MsgCategory.NOTIFICATION, "kelp_or_seagrass_cant_change_flowing_water",
+                "Kelp or seagrass are weak, so they cannot grow in flowing water."),
     
     //General Advice
     NETHER_WARNING_MODE

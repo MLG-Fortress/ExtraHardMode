@@ -846,6 +846,10 @@ public enum RootNode implements ConfigNode
      */
     DONT_MOVE_WATER_SOURCE_BLOCKS("Farming.Buckets Dont Move Water Sources", VarType.BOOLEAN, true),
     /**
+     * whether players may create water source blocks using kelp or seagrass
+     */
+    KELP_OR_SEAGRASS_CANT_CHANGE_FLOWING_WATER("Farming.Kelp Or Seagrass Cant Change Flowing Water", VarType.BOOLEAN, true),
+    /**
      * wheter animals should drop exp
      */
     ANIMAL_EXP_NERF("Farming.Animal Experience Nerf", VarType.BOOLEAN, true),
