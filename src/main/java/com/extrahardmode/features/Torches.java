@@ -39,12 +39,13 @@ import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.block.data.BlockData;
+import org.bukkit.block.data.Directional;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
-import org.bukkit.material.Torch;
 
 /**
  * Torches
@@ -123,9 +124,14 @@ public class Torches extends ListenerModule
 
             if (LooseTags.TORCH.isTagged(blockType))
             {
-//                Torch torch = new Torch(blockType);
-//                Material attachmentMaterial = block.getRelative(torch.getAttachedFace()).getType();
-                Material attachmentMaterial = placeEvent.getBlockAgainst().getType();
+
+                BlockData blockData = block.getBlockData();
+                Material attachmentMaterial = (blockData instanceof Directional)
+                        // wall torch
+                        ? block.getRelative(((Directional) blockData).getFacing().getOppositeFace()).getType() 
+                        // torch on ground
+                        : block.getRelative(BlockFace.DOWN).getType();
+
                 switch (attachmentMaterial)
                 {
                     case DIRT:
