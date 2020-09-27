@@ -230,11 +230,15 @@ public class AntiFarming extends ListenerModule
 
         final boolean dontMoveWaterEnabled = CFG.getBoolean(RootNode.DONT_MOVE_WATER_SOURCE_BLOCKS, world.getName());
 
-        // FEATURE: can't move water source blocks
+        // FEATURE: can't move water source blocks, including buckets of fish
         if (dontMoveWaterEnabled)
         {
+            Material material = event.getItem().getType();
+
             // only care about water
-            if (event.getItem().getType() == Material.WATER_BUCKET)
+            if (material == Material.WATER_BUCKET || material == Material.COD_BUCKET ||
+                material == Material.PUFFERFISH_BUCKET || material == Material.SALMON_BUCKET ||
+                material == Material.TROPICAL_FISH_BUCKET)
             {
                 // plan to evaporate the water next tick
                 Block block = event.getVelocity().toLocation(world).getBlock();
@@ -394,8 +398,13 @@ public class AntiFarming extends ListenerModule
         final boolean dontMoveWaterEnabled = CFG.getBoolean(RootNode.DONT_MOVE_WATER_SOURCE_BLOCKS, world.getName());
         final boolean playerBypasses = playerModule.playerBypasses(player, Feature.ANTIFARMING);
 
-        // FEATURE: can't move water source blocks
-        if (!playerBypasses && dontMoveWaterEnabled && (event.getBucket() != Material.LAVA_BUCKET && event.getBucket() != Material.MILK_BUCKET))
+        Material material = event.getBucket();
+
+        // FEATURE: can't move water source blocks, including buckets of fish
+        if (!playerBypasses && dontMoveWaterEnabled &&
+                (material == Material.WATER_BUCKET || material == Material.COD_BUCKET ||
+                material == Material.PUFFERFISH_BUCKET || material == Material.SALMON_BUCKET ||
+                material == Material.TROPICAL_FISH_BUCKET))
         {
             // plan to change this block into a non-source block on the next tick
             Block block = event.getBlock();
