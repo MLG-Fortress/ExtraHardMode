@@ -176,7 +176,7 @@ public class Glydia extends ListenerModule
         {
             if (glydiaDropsEggs)
             {
-                ItemStack itemStack = new ItemStack(Material.INFESTED_STONE, 2, (short) 120);
+                ItemStack itemStack = new ItemStack(Material.VILLAGER_SPAWN_EGG, 2, (short) 120);
                 world.dropItemNaturally(entity.getLocation().add(10, 0, 0), itemStack);
             }
 
