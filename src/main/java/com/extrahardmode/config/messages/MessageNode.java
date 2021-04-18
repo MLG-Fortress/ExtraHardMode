@@ -24,7 +24,6 @@ package com.extrahardmode.config.messages;
 
 
 import com.extrahardmode.service.config.ConfigNode;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -289,8 +288,8 @@ public enum MessageNode implements ConfigNode
             ("AnimalOverCrowd.Mode", MsgCategory.NOTIFICATION),
     ANIMAL_OVERCROWD_CONTROL
             ("AnimalOverCrowd.Msg", MsgCategory.NOTIFICATION, "animal_overcrowd",
-                    "Animals need space! Consider putting them in a bigger area"),
-
+                "Animals need space! Consider putting them in a bigger area"),
+    
     //General Advice
     NETHER_WARNING_MODE
             ("NetherWarning.Mode", MsgCategory.TUTORIAL),
@@ -477,6 +476,7 @@ public enum MessageNode implements ConfigNode
      * Get the default category of this message.
      *
      * @return type
+     *
      * @see MessageConfig#getCat(MessageNode)
      */
     public MsgCategory getDefaultCategory()

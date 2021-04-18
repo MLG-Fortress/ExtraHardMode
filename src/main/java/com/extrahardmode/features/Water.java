@@ -220,7 +220,7 @@ public class Water extends ListenerModule
             return;
 
         // FEATURE: players can't swim when they're carrying a lot of weight
-        Player player = (Player) event.getEntity();
+        Player player = (Player)event.getEntity();
         PlayerData playerData = plugin.getModuleForClass(DataStoreModule.class).getPlayerData(player.getName());
         playerData.cachedWeightStatus = -1.0F;
     }

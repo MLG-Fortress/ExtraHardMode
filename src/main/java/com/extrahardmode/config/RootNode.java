@@ -82,7 +82,9 @@ public enum RootNode implements ConfigNode
             "If activated ops automatically bypass. Disable if you want your ops to be able to play with ehm."),
 
     /**
-     * ################## # HARDENED STONE # ##################
+     * ##################
+     * # HARDENED STONE #
+     * ##################
      */
     _COMMENT_HARD_STONE("World Rules.Mining.Inhibit Tunneling",
             "Hardened blocks require certain tools to be broken and will wear those tools down quicker",
@@ -254,7 +256,9 @@ public enum RootNode implements ConfigNode
     EXTINGUISHING_FIRE_IGNITES_PLAYERS("Player.Extinguishing Fires Ignites Player", VarType.BOOLEAN, true,
             "Set the player on fire when he tries to extinguish fire with his bare hand."),
     /**
-     * ################ # PLAYER DEATH # ################
+     * ################
+     * # PLAYER DEATH #
+     * ################
      */
     _COMMENT_PLAYER_DEATH("Player.Death",
             "On death, a small portion of the player's inventory disappears forever,",
@@ -302,7 +306,9 @@ public enum RootNode implements ConfigNode
     PLAYER_RESPAWN_FOOD_LEVEL("Player.Death.Respawn Foodlevel", VarType.INTEGER, SubType.HEALTH, 15,
             "How many food hunches a player will spawn with"),
     /**
-     * ######################### # SWIMMING RESTRICTIONS # #########################
+     * #########################
+     * # SWIMMING RESTRICTIONS #
+     * #########################
      */
     _COMMENT_SWIMMING("Player.No Swimming When Too Heavy",
             "Adds a weight system to your inventory. If your inventory exceeds the weight you will be pulled down ",
@@ -405,8 +411,11 @@ public enum RootNode implements ConfigNode
     MONSTER_SPAWNS_IN_LIGHT_MAX_Y("General Monster Rules.Monsters Spawn In Light.Max Y", VarType.INTEGER, SubType.Y_VALUE, Disable.ZERO, 50),
 
     /**
-     * max light value for monsters to spawn in the light 0-3  = bats spawn at depth 0-7  = mobs spawn in overworld normally 8-11 = mobs are hostile but do not burn 12+  = mobs
-     * except spiders, creepers, and witches burn (blazes hostile)
+     * max light value for monsters to spawn in the light
+     * 0-3  = bats spawn at depth
+     * 0-7  = mobs spawn in overworld normally
+     * 8-11 = mobs are hostile but do not burn
+     * 12+  = mobs except spiders, creepers, and witches burn (blazes hostile)
      */
     MONSTER_SPAWNS_IN_LIGHT_MAX_LIGHT("General Monster Rules.Monsters Spawn In Light.Max Light", VarType.INTEGER, SubType.NATURAL_NUMBER, Disable.ZERO, 10,
             "0-3: bats spawning, 0-7 normal mob spawning, 8-11 mobs are hostile but don't burn, 12+ mobs burn"),
@@ -418,12 +427,16 @@ public enum RootNode implements ConfigNode
             "Spawns monsters at locations where player has been previously."),
 
     /**
-     * ########## # HORSES # ##########
+     * ##########
+     * # HORSES #
+     * ##########
      */
     HORSE_CHEST_BLOCK_BELOW("Horses.Block Usage Of Chest Below", VarType.INTEGER, SubType.Y_VALUE, Disable.ZERO, 55),
 
     /**
-     * ########### # ZOMBIES # ###########
+     * ###########
+     * # ZOMBIES #
+     * ###########
      */
     _COMMENT_ZOMBIES("Zombies", "Instead of speeding Zombies up, a Zombie will slow a player down for a few seconds when the player is hit by a zombie.",
             "Zombies may resurrect when slain. They will respawn after a few seconds and might ambush a player."),
@@ -709,7 +722,7 @@ public enum RootNode implements ConfigNode
      * percentage of rabbits which spawn as killerbunnies
      */
     BONUS_KILLERBUNNY_SPAWN_PERCENT("KillerBunny.Bonus Spawn Percent", VarType.INTEGER, SubType.PERCENTAGE, 1),
-
+    
     /**
      * ###########
      * # Vindicator #
@@ -848,7 +861,7 @@ public enum RootNode implements ConfigNode
     /**
      * Threshold/Number of animals before start damaging animals
      */
-    ANIMAL_OVERCROWD_THRESHOLD("Farming.Animal Overcrowding Control.Threshold", VarType.INTEGER, SubType.NATURAL_NUMBER, 10,
+    ANIMAL_OVERCROWD_THRESHOLD("Farming.Animal Overcrowding Control.Threshold", VarType.INTEGER, SubType.NATURAL_NUMBER, 10, 
             "Maximum amount of animals allowed in a small area before they start dying"),
     /**
      * #############################
@@ -1094,8 +1107,7 @@ public enum RootNode implements ConfigNode
     /**
      * Damage the world below border
      */
-    EXPLOSIONS_GHAST_ABOVE_WORLD_GRIEF("Explosions.Ghasts.Above Border.World Damage", VarType.BOOLEAN, true),
-    ;
+    EXPLOSIONS_GHAST_ABOVE_WORLD_GRIEF("Explosions.Ghasts.Above Border.World Damage", VarType.BOOLEAN, true),;
 
     /**
      * Path.

@@ -35,17 +35,14 @@ public class WeightCheckTask implements Runnable
     public void run()
     {
         Iterator<UUID> lastClicksIter = mLastClicks.keySet().iterator();
-        while (lastClicksIter.hasNext())
-        {
+        while(lastClicksIter.hasNext()){
             UUID playerUuuid = lastClicksIter.next();
             Player player = mPlugin.getServer().getPlayer(playerUuuid);
             //Remove players that haven't clicked in their inventory for 5 seconds
-            if (System.currentTimeMillis() - mLastClicks.get(playerUuuid) > 5000 || player == null)
-            {
+            if (System.currentTimeMillis() - mLastClicks.get(playerUuuid) > 5000 || player == null) {
                 lastClicksIter.remove();
                 mMessenger.hidePopup(player, MsgCategory.WEIGHT_MSG.getUniqueIdentifier());
-            } else
-            {
+            } else {
                 final double armorPoints = CFG.getDouble(RootNode.NO_SWIMMING_IN_ARMOR_ARMOR_POINTS, player.getWorld().getName());
                 final double invPoints = CFG.getDouble(RootNode.NO_SWIMMING_IN_ARMOR_INV_POINTS, player.getWorld().getName());
                 final double toolPoints = CFG.getDouble(RootNode.NO_SWIMMING_IN_ARMOR_TOOL_POINTS, player.getWorld().getName());

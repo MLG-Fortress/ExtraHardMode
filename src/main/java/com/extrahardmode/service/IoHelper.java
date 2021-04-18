@@ -20,6 +20,7 @@ public class IoHelper
      * @param sourceFile to copy from
      * @param destFile   to copy to
      * @param append     append the content of the the sourcefile to the destination file
+     *
      * @throws IOException if bad stuff happens
      */
     public static void copyFile(File sourceFile, File destFile, boolean append) throws IOException
@@ -61,7 +62,7 @@ public class IoHelper
     {
         try
         {
-            File newFile = new File(newName);
+        	File newFile = new File(newName);
             Files.move(currentFile, newFile);
         } catch (IOException e)
         {

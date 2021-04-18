@@ -437,19 +437,16 @@ public class AntiFarming extends ListenerModule
         }
     }
 
-
     /**
      * When a player place kelp or seagrass in markd water.
-     *
+     * 
      * @param event Event that occurred.
      */
     @EventHandler(ignoreCancelled = true)
-    public void onPlaceKelpOrSeaGrass(BlockPlaceEvent event)
-    {
+    public void onPlaceKelpOrSeaGrass(BlockPlaceEvent event) {
         Block placedBlock = event.getBlockPlaced();
         if ((placedBlock.getType() == Material.KELP || placedBlock.getType() == Material.SEAGRASS)
-                && blockModule.isMarked(placedBlock))
-        {
+                && blockModule.isMarked(placedBlock)) {
             event.setCancelled(true);
         }
     }

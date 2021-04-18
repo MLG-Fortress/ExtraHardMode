@@ -41,9 +41,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 
-/**
- * A MonsterGrinder Inhibitor which disables drops for Monsters which appear to be farmed or which have been killed in conditions where the Player had a clear advantage
- */
+/** A MonsterGrinder Inhibitor which disables drops for Monsters which appear to be farmed or which have been killed in conditions where the Player had a clear advantage */
 public class AntiGrinder extends ListenerModule
 {
     private RootConfig CFG;
@@ -68,9 +66,7 @@ public class AntiGrinder extends ListenerModule
     }
 
 
-    /**
-     * Your basic constructor of choice
-     */
+    /** Your basic constructor of choice */
     public AntiGrinder(ExtraHardMode plugin)
     {
         super(plugin);
@@ -175,7 +171,8 @@ public class AntiGrinder extends ListenerModule
                         "(was from a spawner or environmental damage was >50% )");
                 clearDrops(event);
                 return false;
-            } else
+            }
+            else
             {   //Evaluate if this kill was a too easy kill
                 switch (entity.getType())
                 {
@@ -252,7 +249,7 @@ public class AntiGrinder extends ListenerModule
                                     return clearDrops(event);
                                 }
 
-                                // monster doesn't have room above to hurdle a foot level block, unable to advance toward killer
+                                    // monster doesn't have room above to hurdle a foot level block, unable to advance toward killer
                                 else
                                 {
                                     Block bottom = middleLocation.getBlock().getRelative(BlockFace.DOWN);

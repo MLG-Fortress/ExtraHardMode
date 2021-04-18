@@ -57,8 +57,8 @@ import java.util.List;
 /**
  * Glydia is the Enderdragon changes to her include:
  * <p/>
- * additional attacks , more loot including villager eggs and dragon egg , messages when challenging the dragon and dying , Limited Building in the End , Blazes, Zombies, aggro
- * Enderman
+ * additional attacks , more loot including villager eggs and dragon egg , messages when challenging the dragon and
+ * dying , Limited Building in the End , Blazes, Zombies, aggro Enderman
  */
 public class Glydia extends ListenerModule
 {
@@ -363,9 +363,9 @@ public class Glydia extends ListenerModule
             // if he's there, full health
             if (enderDragon != null)
             {
-                final int enderDragonHealth = CFG.getInt(RootNode.ENDER_DRAGON_HEALTH, world.getName());
-                enderDragon.setMaxHealth(enderDragonHealth);
-                enderDragon.setHealth(enderDragon.getMaxHealth());
+            	final int enderDragonHealth = CFG.getInt(RootNode.ENDER_DRAGON_HEALTH, world.getName());
+            	enderDragon.setMaxHealth(enderDragonHealth);
+            	enderDragon.setHealth(enderDragon.getMaxHealth());
             }
 
             // otherwise, spawn one
@@ -376,25 +376,23 @@ public class Glydia extends ListenerModule
         }
     }
 
-
     /**
-     * when ender dragon spawns set new max health
+     * when ender dragon spawns
+     * set new max health
+     * 
      */
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
-    public void onEnderDragonSpawn(final CreatureSpawnEvent event)
-    {
-        if (event.getEntityType() == EntityType.ENDER_DRAGON)
-        {
-            Location location = event.getLocation();
-            World world = location.getWorld();
-            final int enderDragonHealth = CFG.getInt(RootNode.ENDER_DRAGON_HEALTH, world.getName());
-            if (enderDragonHealth <= 0)
-                return;
+    public void onEnderDragonSpawn(final CreatureSpawnEvent event) {
+        if (event.getEntityType() == EntityType.ENDER_DRAGON) {
+        	Location location = event.getLocation();
+        	World world = location.getWorld();
+        	final int enderDragonHealth = CFG.getInt(RootNode.ENDER_DRAGON_HEALTH, world.getName());
+        	if (enderDragonHealth <= 0)
+        	    return;
             event.getEntity().setMaxHealth(enderDragonHealth);
             event.getEntity().setHealth(event.getEntity().getMaxHealth());
         }
     }
-
 
     /**
      * when an item spawns
@@ -430,7 +428,6 @@ public class Glydia extends ListenerModule
         }
     }
 
-
     /**
      * When an explosion occurs
      * <p/>
@@ -453,133 +450,132 @@ public class Glydia extends ListenerModule
             Entity spawnedMonster = null;
             if (fireball.getShooter() != null && EntityHelper.shooterType(fireball) == EntityType.ENDER_DRAGON)
             {
-                final boolean alternativeFireball = CFG.getBoolean(RootNode.ALTERNATIVE_FIREBALL, world.getName());
+            	final boolean alternativeFireball = CFG.getBoolean(RootNode.ALTERNATIVE_FIREBALL, world.getName());
 
-                //Start of "ALTERNATIVE_FIREBALL" spawning method
-                if (alternativeFireball)
-                {
+            	//Start of "ALTERNATIVE_FIREBALL" spawning method
+            	if(alternativeFireball) {
+                	
+                	int random = plugin.getRandom().nextInt(150);
+                	if (random < 100)
+                	{
+    	                if (random < 10)
+    	                {
+    	                    spawnedMonster = entity.getWorld().spawnEntity(entity.getLocation(), EntityType.BLAZE);
+    	                    for (int x1 = -2; x1 <= 2; x1++)
+    	                    {
+    	                        for (int z1 = -2; z1 <= 2; z1++)
+    	                        {
+    	                            for (int y1 = 2; y1 >= -2; y1--)
+    	                            {
+    	                                Block block = fireball.getLocation().add(x1, y1, z1).getBlock();
+    	                                Material underType = block.getRelative(BlockFace.DOWN).getType();
+    	                                if (block.getType() == Material.AIR && underType != Material.AIR && underType != Material.FIRE)
+    	                                {
+    	                                    block.setType(Material.FIRE);
+    	                                }
+    	                            }
+    	                        }
+    	                    }
 
-                    int random = plugin.getRandom().nextInt(150);
-                    if (random < 100)
-                    {
-                        if (random < 10)
-                        {
-                            spawnedMonster = entity.getWorld().spawnEntity(entity.getLocation(), EntityType.BLAZE);
-                            for (int x1 = -2; x1 <= 2; x1++)
-                            {
-                                for (int z1 = -2; z1 <= 2; z1++)
-                                {
-                                    for (int y1 = 2; y1 >= -2; y1--)
-                                    {
-                                        Block block = fireball.getLocation().add(x1, y1, z1).getBlock();
-                                        Material underType = block.getRelative(BlockFace.DOWN).getType();
-                                        if (block.getType() == Material.AIR && underType != Material.AIR && underType != Material.FIRE)
-                                        {
-                                            block.setType(Material.FIRE);
-                                        }
-                                    }
-                                }
-                            }
+    	                    Location location = fireball.getLocation().add(0, 1, 0);
+    	                    for (int i = 0; i < 10; i++)
+    	                    {
+    	                        FallingBlock fire = world.spawnFallingBlock(location, Material.FIRE, (byte) 0);
+    	                        Vector velocity = Vector.getRandom();
+    	                        if (velocity.getY() < 0)
+    	                        {
+    	                            velocity.setY(velocity.getY() * -1);
+    	                        }
 
-                            Location location = fireball.getLocation().add(0, 1, 0);
-                            for (int i = 0; i < 10; i++)
-                            {
-                                FallingBlock fire = world.spawnFallingBlock(location, Material.FIRE, (byte) 0);
-                                Vector velocity = Vector.getRandom();
-                                if (velocity.getY() < 0)
-                                {
-                                    velocity.setY(velocity.getY() * -1);
-                                }
+    	                        if (plugin.getRandom().nextBoolean())
+    	                        {
+    	                            velocity.setZ(velocity.getZ() * -1);
+    	                        }
 
-                                if (plugin.getRandom().nextBoolean())
-                                {
-                                    velocity.setZ(velocity.getZ() * -1);
-                                }
+    	                        if (plugin.getRandom().nextBoolean())
+    	                        {
+    	                            velocity.setX(velocity.getX() * -1);
+    	                        }
 
-                                if (plugin.getRandom().nextBoolean())
-                                {
-                                    velocity.setX(velocity.getX() * -1);
-                                }
+    	                        fire.setVelocity(velocity);
+    	                    }
 
-                                fire.setVelocity(velocity);
-                            }
+    	                } else if (random < 50)
+    	                {
 
-                        } else if (random < 50)
-                        {
-
-                            for (int i = 0; i < 2; i++)
-                            {
-                                spawnedMonster = entity.getWorld().spawnEntity(entity.getLocation(), EntityType.ZOMBIE_VILLAGER);
-                                EntityHelper.markLootLess(plugin, (LivingEntity) spawnedMonster);
-                            }
-                        } else if (random < 80)
-                        {
-                            for (int i = 0; i < 2; i++)
-                            {
-                                spawnedMonster = entity.getWorld().spawnEntity(entity.getLocation(), EntityType.SKELETON);
-                            }
-                        } else
-                        {
-                            spawnedMonster = entity.getWorld().spawnEntity(entity.getLocation(), EntityType.ENDERMAN);
-                        }
-                    }
-                }
-                //End of "ALTERNATIVE_FIREBALL" spawning method.
+    	                    for (int i = 0; i < 2; i++)
+    	                    {
+    	                        spawnedMonster = entity.getWorld().spawnEntity(entity.getLocation(), EntityType.ZOMBIE_VILLAGER);
+    	                        EntityHelper.markLootLess(plugin, (LivingEntity) spawnedMonster);
+    	                    }
+    	                } else if (random < 80)
+    	                {	             
+    	                	for (int i = 0; i < 2; i++)
+    		                {                   
+    		                	spawnedMonster = entity.getWorld().spawnEntity(entity.getLocation(), EntityType.SKELETON);
+    		                }
+    	                }
+    	                else 
+    	                {
+    	                    spawnedMonster = entity.getWorld().spawnEntity(entity.getLocation(), EntityType.ENDERMAN);
+    	                }
+                	}
+            	}
+            	//End of "ALTERNATIVE_FIREBALL" spawning method.
                 //Begin of the normal spawning method.
-                else
-                {
-                    int random = plugin.getRandom().nextInt(100);
-                    if (random < 40)
-                    {
-                        spawnedMonster = entity.getWorld().spawnEntity(entity.getLocation(), EntityType.BLAZE);
+            	else {
+            		 int random = plugin.getRandom().nextInt(100);
+                     if (random < 40)
+                     {
+                         spawnedMonster = entity.getWorld().spawnEntity(entity.getLocation(), EntityType.BLAZE);
 
-                        for (int x1 = -2; x1 <= 2; x1++)
-                        {
-                            for (int z1 = -2; z1 <= 2; z1++)
-                            {
-                                for (int y1 = 2; y1 >= -2; y1--)
-                                {
-                                    Block block = fireball.getLocation().add(x1, y1, z1).getBlock();
-                                    Material underType = block.getRelative(BlockFace.DOWN).getType();
-                                    if (block.getType() == Material.AIR && underType != Material.AIR && underType != Material.FIRE)
-                                    {
-                                        block.setType(Material.FIRE);
-                                    }
-                                }
-                            }
-                        }
+                         for (int x1 = -2; x1 <= 2; x1++)
+                         {
+                             for (int z1 = -2; z1 <= 2; z1++)
+                             {
+                                 for (int y1 = 2; y1 >= -2; y1--)
+                                 {
+                                     Block block = fireball.getLocation().add(x1, y1, z1).getBlock();
+                                     Material underType = block.getRelative(BlockFace.DOWN).getType();
+                                     if (block.getType() == Material.AIR && underType != Material.AIR && underType != Material.FIRE)
+                                     {
+                                         block.setType(Material.FIRE);
+                                     }
+                                 }
+                             }
+                         }
 
-                        Location location = fireball.getLocation().add(0, 1, 0);
-                        for (int i = 0; i < 10; i++)
-                        {
-                            FallingBlock fire = world.spawnFallingBlock(location, Material.FIRE, (byte) 0);
-                            Vector velocity = Vector.getRandom();
-                            if (velocity.getY() < 0)
-                            {
-                                velocity.setY(velocity.getY() * -1);
-                            }
-                            if (plugin.getRandom().nextBoolean())
-                            {
-                                velocity.setZ(velocity.getZ() * -1);
-                            }
-                            if (plugin.getRandom().nextBoolean())
-                            {
-                                velocity.setX(velocity.getX() * -1);
-                            }
-                            fire.setVelocity(velocity);
-                        }
-                    } else if (random < 70)
-                    {
-                        for (int i = 0; i < 2; i++)
-                        {
-                            spawnedMonster = entity.getWorld().spawnEntity(entity.getLocation(), EntityType.ZOMBIE_VILLAGER);
-                            EntityHelper.markLootLess(plugin, (LivingEntity) spawnedMonster);
-                        }
-                    } else
-                    {
-                        spawnedMonster = entity.getWorld().spawnEntity(entity.getLocation(), EntityType.ENDERMAN);
-                    }
-                }
+                         Location location = fireball.getLocation().add(0, 1, 0);
+                         for (int i = 0; i < 10; i++)
+                         {
+                             FallingBlock fire = world.spawnFallingBlock(location, Material.FIRE, (byte) 0);
+                             Vector velocity = Vector.getRandom();
+                             if (velocity.getY() < 0)
+                             {
+                                 velocity.setY(velocity.getY() * -1);
+                             }
+                             if (plugin.getRandom().nextBoolean())
+                             {
+                                 velocity.setZ(velocity.getZ() * -1);
+                             }
+                             if (plugin.getRandom().nextBoolean())
+                             {
+                                 velocity.setX(velocity.getX() * -1);
+                             }
+                             fire.setVelocity(velocity);
+                         }
+                     } else if (random < 70)
+                     {
+                         for (int i = 0; i < 2; i++)
+                         {
+                             spawnedMonster = entity.getWorld().spawnEntity(entity.getLocation(), EntityType.ZOMBIE_VILLAGER);
+                             EntityHelper.markLootLess(plugin, (LivingEntity) spawnedMonster);
+                         }
+                     } else
+                     {
+                         spawnedMonster = entity.getWorld().spawnEntity(entity.getLocation(), EntityType.ENDERMAN);
+                     }
+            	}
             }
 
             if (spawnedMonster != null)

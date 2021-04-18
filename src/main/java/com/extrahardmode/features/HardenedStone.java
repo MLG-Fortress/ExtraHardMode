@@ -55,7 +55,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Hardened Stone is there to make branchmining harder/impossible Only Iron/Diamond Picks can break stone , Tools break faster when breaking stone , Breaking ore causes surounding
+ * Hardened Stone is there to make branchmining harder/impossible
+ * Only Iron/Diamond Picks can break stone , Tools break faster when breaking stone , Breaking ore causes surounding
  * stone to fall , Various Fixes to prevent working around the hardened stone
  */
 public class HardenedStone extends ListenerModule
@@ -129,7 +130,8 @@ public class HardenedStone extends ListenerModule
                     toolUnbreakingMap.put(material, unbreakingDurability);
                 }
             }
-        } catch (Throwable rock)
+        }
+        catch (Throwable rock)
         {
             plugin.getLogger().severe("Mining.Inhibit Tunneling config node is not properly formatted. Should be MATERIAL@durability in blocks e.g. IRON_PICKAXE@32 for each entry.");
             return;
@@ -227,7 +229,8 @@ public class HardenedStone extends ListenerModule
 
 
     /**
-     * When a piston extends prevent players from circumventing hardened stone rules by placing ore, then pushing the ore next to stone before breaking it
+     * When a piston extends prevent players from circumventing hardened stone rules by placing ore, then pushing the
+     * ore next to stone before breaking it
      *
      * @param event - Event that occurred
      */
@@ -259,7 +262,8 @@ public class HardenedStone extends ListenerModule
 
 
     /**
-     * When a piston pulls... prevent players from circumventing hardened stone rules by placing ore, then pulling the ore next to stone before breaking it
+     * When a piston pulls... prevent players from circumventing hardened stone rules by placing ore, then pulling the
+     * ore next to stone before breaking it
      *
      * @param event - Event that occurred.
      */

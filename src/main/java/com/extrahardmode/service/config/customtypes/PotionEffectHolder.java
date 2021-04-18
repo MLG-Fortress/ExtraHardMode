@@ -73,6 +73,7 @@ public class PotionEffectHolder
      * Load a PotionEffect from disk
      *
      * @param section to load from
+     *
      * @return loaded object or null if an error occurred
      */
     public static PotionEffectHolder loadFromConfig(ConfigurationSection section)

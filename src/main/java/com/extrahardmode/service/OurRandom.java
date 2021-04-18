@@ -33,6 +33,7 @@ public class OurRandom
      * Get a random index given the weights
      *
      * @param itemWeights list of weights as integers
+     *
      * @return the index of the items chosen
      */
     public static int weightedRandom(Integer[] itemWeights)

@@ -56,9 +56,7 @@ import java.util.UUID;
  */
 public class Skeletors extends ListenerModule
 {
-    /**
-     * Configuration
-     */
+    /** Configuration */
     private RootConfig CFG;
 
     private final static String key_knockbackArrow = "ehm.skeletors.knockbackarrow";
@@ -252,9 +250,7 @@ public class Skeletors extends ListenerModule
     }
 
 
-    /**
-     * When a skeleton dies kill all the spawned silverfish aswell
-     */
+    /** When a skeleton dies kill all the spawned silverfish aswell */
     @EventHandler
     public void onSkeletonDeath(EntityDeathEvent event)
     {
@@ -360,6 +356,7 @@ public class Skeletors extends ListenerModule
      *
      * @param entity entity to get the minions for
      * @param plugin owning plugin to access meta
+     *
      * @return Unique ids of all minions that have been spawned (minions can be dead)
      */
     @SuppressWarnings("unchecked")
@@ -380,6 +377,7 @@ public class Skeletors extends ListenerModule
      *
      * @param entity entity to get minion count
      * @param plugin owning plugin to access MetaData
+     *
      * @return count or 0 if not set
      */
     public static int getTotalMinionsSummonedBySkeli(LivingEntity entity, Plugin plugin)
@@ -426,6 +424,7 @@ public class Skeletors extends ListenerModule
      *
      * @param minion minion to get the parent for
      * @param plugin owning plugin for MetaData
+     *
      * @return id of parent or id of minion if parent not set
      */
     public static UUID getParentOfMinion(LivingEntity minion, Plugin plugin)
@@ -439,8 +438,6 @@ public class Skeletors extends ListenerModule
         }
         return minion.getUniqueId();
     }
-
-
     /**
      * When an Entity spawns: Spawn a Skeleton sometimes instead of a EnderMan in the end.
      *

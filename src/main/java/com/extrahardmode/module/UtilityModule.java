@@ -88,6 +88,7 @@ public class UtilityModule extends EHMModule
      *
      * @param item   Item to damage
      * @param blocks amount of blocks the item can break
+     *
      * @return the damaged Item, can be completely broken
      */
     public static ItemStack damage(ItemStack item, int blocks)

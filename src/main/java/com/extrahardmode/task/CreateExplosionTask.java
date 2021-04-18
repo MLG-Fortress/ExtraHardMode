@@ -31,8 +31,9 @@ import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 
 /**
- * Creates Explosions. The type determines the power, if there should be fire and the blockDmg. The size of the explosion is determined by the y-level. There are basically 2
- * settings for every explosion, below and above the specified y-level.
+ * Creates Explosions. The type determines the power, if there should be fire and the blockDmg. The size of the
+ * explosion is determined by the y-level. There are basically 2 settings for every explosion, below and above the
+ * specified y-level.
  * <p/>
  * Fires an Explosion Event before every Event with a creeper as Entity
  */

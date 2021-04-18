@@ -11,7 +11,7 @@ import java.util.Map;
  * Holds a relationship. BlockTypes can be retrieved by their key BlockType. F.e stone -> cobblestone
  *
  * @deprecated Was originally used to hold the now-deprecated BlockTypes. Maybe now just overkill? idk.
- * <p>
+ *
  * Only used for the "soften surrounding stone" feature, turning one block (e.g. stone) into another (e.g. cobblestone)
  */
 @Deprecated

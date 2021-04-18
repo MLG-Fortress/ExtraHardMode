@@ -25,8 +25,8 @@ public class EhmZombieRespawnEvent extends Event implements Cancellable
     /**
      * Your constructor of choice
      *
-     * @param player killer if it was a Player kill
-     * @param zombie that was killed
+     * @param player        killer if it was a Player kill
+     * @param zombie        that was killed
      */
     public EhmZombieRespawnEvent(final Player player, final Zombie zombie)
     {
@@ -38,9 +38,9 @@ public class EhmZombieRespawnEvent extends Event implements Cancellable
     /**
      * Your constructor of choice
      *
-     * @param player    killer if it was a Player kill
-     * @param zombie    that was killed
-     * @param cancelled if the Event is cancelled by default
+     * @param player        killer if it was a Player kill
+     * @param zombie        that was killed
+     * @param cancelled     if the Event is cancelled by default
      */
     public EhmZombieRespawnEvent(final Player player, final Zombie zombie, boolean cancelled)
     {
@@ -65,6 +65,7 @@ public class EhmZombieRespawnEvent extends Event implements Cancellable
     {
         return player;
     }
+
 
 
     /**

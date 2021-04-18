@@ -19,9 +19,7 @@ import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.inventory.*;
 
-/**
- * @author Diemex
- */
+/** @author Diemex */
 public class MoreTnt extends ListenerModule
 {
     private RootConfig CFG;
@@ -44,9 +42,7 @@ public class MoreTnt extends ListenerModule
     }
 
 
-    /**
-     * Gets called just when an ItemStack is about to be crafted Sets the amount in the result slot to the appropriate number
-     */
+    /** Gets called just when an ItemStack is about to be crafted Sets the amount in the result slot to the appropriate number */
     @EventHandler
     public void beforeCraft(PrepareItemCraftEvent event)
     {

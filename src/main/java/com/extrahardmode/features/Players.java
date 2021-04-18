@@ -59,7 +59,8 @@ import java.util.Map;
 /**
  * Playerchanges include
  * <p/>
- * less health/food on respawn , loss of some of their inventory , enhanced environmental damage , catching the player on fire if extinguishing fires by hand
+ * less health/food on respawn , loss of some of their inventory , enhanced environmental damage , catching the player
+ * on fire if extinguishing fires by hand
  */
 public class Players extends ListenerModule
 {
@@ -101,10 +102,11 @@ public class Players extends ListenerModule
         }
     }
 
-
     /**
-     * Armor weight task Using a runnable per-player instead of one runnable to iterate through all players allows us to be somewhat more compatible with other plugins that change
-     * player speed, by not constantly setting the player's walkspeed when not necessary.
+     * Armor weight task
+     * Using a runnable per-player instead of one runnable to iterate through all players
+     * allows us to be somewhat more compatible with other plugins that change player speed,
+     * by not constantly setting the player's walkspeed when not necessary.
      */
     @EventHandler
     void onPlayerJoin(PlayerJoinEvent event)
@@ -112,7 +114,6 @@ public class Players extends ListenerModule
         if (isArmorWeightEnabled)
             armorCheckingPlayers.put(event.getPlayer(), plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new ArmorWeightTask(plugin, event.getPlayer()), 20L * 5, 20L * 3));
     }
-
 
     /**
      * Fix #55 (not resetting player speed when entering a EHM-disabled world)

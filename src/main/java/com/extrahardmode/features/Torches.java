@@ -109,7 +109,7 @@ public class Torches extends ListenerModule
                     case TORCH:
                     case WALL_TORCH:
                     case JACK_O_LANTERN:
-                        messenger.send(player, MessageNode.NO_TORCHES_HERE, PermissionNode.SILENT_NO_TORCHES_HERE, Sound.ENTITY_GENERIC_EXTINGUISH_FIRE, 20);
+                        messenger.send(player, MessageNode.NO_TORCHES_HERE, PermissionNode.SILENT_NO_TORCHES_HERE, Sound.ENTITY_GENERIC_EXTINGUISH_FIRE , 20);
                         placeEvent.setCancelled(true);
                         return;
                 }
@@ -128,7 +128,7 @@ public class Torches extends ListenerModule
                 BlockData blockData = block.getBlockData();
                 Material attachmentMaterial = (blockData instanceof Directional)
                         // wall torch
-                        ? block.getRelative(((Directional) blockData).getFacing().getOppositeFace()).getType()
+                        ? block.getRelative(((Directional) blockData).getFacing().getOppositeFace()).getType() 
                         // torch on ground
                         : block.getRelative(BlockFace.DOWN).getType();
 
@@ -144,7 +144,7 @@ public class Torches extends ListenerModule
                     case PODZOL:
                     case SOUL_SAND:
                         if (soundFizzEnabled)
-                            messenger.send(player, MessageNode.LIMITED_TORCH_PLACEMENTS, PermissionNode.SILENT_LIMITED_TORCH_PLACEMENT, Sound.ENTITY_GENERIC_EXTINGUISH_FIRE, 20);
+                            messenger.send(player, MessageNode.LIMITED_TORCH_PLACEMENTS, PermissionNode.SILENT_LIMITED_TORCH_PLACEMENT, Sound.ENTITY_GENERIC_EXTINGUISH_FIRE , 20);
                         placeEvent.setCancelled(true);
                 }
             }

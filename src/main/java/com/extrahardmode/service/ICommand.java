@@ -40,6 +40,7 @@ public interface ICommand
      * @param command - Command used.
      * @param label   - Label.
      * @param args    - Command arguments.
+     *
      * @return True if valid command and executed. Else false.
      */
     boolean execute(final ExtraHardMode plugin, final CommandSender sender, final Command command, final String label, String[] args);

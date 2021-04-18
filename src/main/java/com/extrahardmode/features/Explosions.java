@@ -53,9 +53,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-/**
- * Various changes to Explosions including:
- */
+/** Various changes to Explosions including: */
 public class Explosions extends ListenerModule
 {
     private RootConfig CFG;
@@ -91,7 +89,8 @@ public class Explosions extends ListenerModule
 
 
     /**
-     * Regular listener: Bigger (custom) explosions
+     * Regular listener:
+     * Bigger (custom) explosions
      */
     //    ___ ___ ___ _   _ _      _   ___   _    ___ ___ _____ ___ _  _ ___ ___
     //   | _ \ __/ __| | | | |    /_\ | _ \ | |  |_ _/ __|_   _| __| \| | __| _ \

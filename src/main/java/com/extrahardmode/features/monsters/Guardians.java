@@ -37,7 +37,6 @@ public class Guardians extends ListenerModule
         CFG = plugin.getModuleForClass(RootConfig.class);
     }
 
-
     /**
      * When an Entity spawns: Spawn a Guardians sometimes instead of a Squid
      *
@@ -60,7 +59,7 @@ public class Guardians extends ListenerModule
 
         // FEATURE: Guardians spawns naturally 
         if (entityType == EntityType.SQUID && world.getEnvironment() == World.Environment.NORMAL
-                && entity.getLocation().getBlock().getBiome() == Biome.DEEP_OCEAN
+                && entity.getLocation().getBlock().getBiome() == Biome.DEEP_OCEAN 
                 || entity.getLocation().getBlock().getBiome() == Biome.OCEAN
                 && event.getSpawnReason() == CreatureSpawnEvent.SpawnReason.NATURAL)
         {

@@ -18,30 +18,23 @@ import java.util.List;
 /**
  * @author Diemex
  */
-public class EnabledCommand implements ICommand
-{
+public class EnabledCommand implements ICommand {
     @Override
-    public boolean execute(ExtraHardMode plugin, CommandSender sender, Command command, String label, String[] args)
-    {
-        if (sender.hasPermission(PermissionNode.ADMIN.getNode()))
-        {
+    public boolean execute(ExtraHardMode plugin, CommandSender sender, Command command, String label, String[] args) {
+        if (sender.hasPermission(PermissionNode.ADMIN.getNode())) {
             World world = null;
-            if (sender instanceof Player)
-            {
+            if (sender instanceof Player) {
                 Player player = (Player) sender;
-                if (args.length > 0)
-                {
+                if (args.length > 0) {
                     world = plugin.getServer().getWorld(args[0]);
                     sender.sendMessage(String.format("A world named %s doesn't exist", args[0]));
                 }
                 if (world == null)
                     world = player.getWorld();
-            } else
-            {
+            } else {
                 if (args.length > 0)
                     world = plugin.getServer().getWorld(args[0]);
-                if (world == null)
-                {
+                if (world == null) {
                     sender.sendMessage(String.format("A world named %s doesn't exist", args[0]));
                     return false;
                 }
@@ -50,8 +43,7 @@ public class EnabledCommand implements ICommand
             boolean enabled = Arrays.asList(CFG.getEnabledWorlds()).contains(world.getName());
             if (CFG.isEnabledForAll())
                 sender.sendMessage(ChatColor.GREEN + "ExtraHardMode is enabled for all worlds");
-            else
-            {
+            else {
                 if (CFG.getEnabledWorlds().length > 0)
                     sender.sendMessage(String.format("%sEHM enabled for: %s", ChatColor.GREEN, Arrays.toString(CFG.getEnabledWorlds())));
                 //All this is for disabled worlds

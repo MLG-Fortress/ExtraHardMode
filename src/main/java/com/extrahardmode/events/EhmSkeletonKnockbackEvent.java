@@ -29,8 +29,8 @@ public class EhmSkeletonKnockbackEvent extends Event implements Cancellable
     /**
      * Constructor
      *
-     * @param entity              the Entity getting shot by the Skeli
-     * @param skeleton            Skeleton shooting the Player
+     * @param entity            the Entity getting shot by the Skeli
+     * @param skeleton          Skeleton shooting the Player
      * @param knockbackPercentage the percentage of arrows knocking the Player back
      */
     public EhmSkeletonKnockbackEvent(Entity entity, Skeleton skeleton, Vector velocity, int knockbackPercentage)

@@ -46,14 +46,10 @@ import java.util.List;
 import java.util.UUID;
 import java.util.regex.Pattern;
 
-/**
- * Module that manages blocks and physics logic.
- */
+/** Module that manages blocks and physics logic. */
 public class BlockModule extends EHMModule
 {
-    /**
-     * Marks a block/location for whatever reason... currently used by waterbucket restrictions
-     */
+    /** Marks a block/location for whatever reason... currently used by waterbucket restrictions */
     private final String MARK = "ExtraHardMode.Mark";
 
     private RootConfig CFG;
@@ -103,6 +99,7 @@ public class BlockModule extends EHMModule
      *
      * @param block          Block to apply physics to.
      * @param damageEntities if Entities should be damaged
+     *
      * @return the UUID of this FallingBlock
      */
     public UUID applyPhysics(Block block, boolean damageEntities)
@@ -183,6 +180,7 @@ public class BlockModule extends EHMModule
      * Has this block been marked?
      *
      * @param block to check
+     *
      * @return if it has been marked
      */
     public boolean isMarked(Block block)
@@ -196,6 +194,7 @@ public class BlockModule extends EHMModule
      *
      * @param block        - Block to check.
      * @param newDataValue - Data value to replace.
+     *
      * @return True if plant should die, else false.
      */
     public boolean plantDies(Block block, MaterialData newDataValue)
@@ -229,40 +228,40 @@ public class BlockModule extends EHMModule
             //TODO: 1.13
             if (newDataValue.getData() >= fullGrowthValue)
             {
-                int deathProbability = lossRate;
+                    int deathProbability = lossRate;
 
-                // plants in the dark always die
-                if (block.getLightFromSky() < 10)
-                {
-                    deathProbability = 100;
-                } else
-                {
-                    Biome biome = block.getBiome();
-
-                    // the desert environment is very rough on crops
-                    if ((biome == Biome.DESERT || biome == Biome.DESERT_HILLS) && aridDesertsEnabled)
+                    // plants in the dark always die
+                    if (block.getLightFromSky() < 10)
                     {
-                        deathProbability += 50;
+                        deathProbability = 100;
+                    } else
+                    {
+                        Biome biome = block.getBiome();
+
+                        // the desert environment is very rough on crops
+                        if ((biome == Biome.DESERT || biome == Biome.DESERT_HILLS) && aridDesertsEnabled)
+                        {
+                            deathProbability += 50;
+                        }
+
+                        // unwatered crops are more likely to die
+                        Block belowBlock = block.getRelative(BlockFace.DOWN);
+                        byte moistureLevel = 0;
+                        if (belowBlock.getType() == Material.FARMLAND)
+                        {
+                            moistureLevel = belowBlock.getData();
+                        }
+
+                        if (moistureLevel == 0)
+                        {
+                            deathProbability += 25;
+                        }
                     }
 
-                    // unwatered crops are more likely to die
-                    Block belowBlock = block.getRelative(BlockFace.DOWN);
-                    byte moistureLevel = 0;
-                    if (belowBlock.getType() == Material.FARMLAND)
+                    if (plugin.random(deathProbability))
                     {
-                        moistureLevel = belowBlock.getData();
+                        return true;
                     }
-
-                    if (moistureLevel == 0)
-                    {
-                        deathProbability += 25;
-                    }
-                }
-
-                if (plugin.random(deathProbability))
-                {
-                    return true;
-                }
             }
         }
 
@@ -270,9 +269,7 @@ public class BlockModule extends EHMModule
     }
 
 
-    /**
-     * Get all "touching" BlockFaces including top/bottom
-     */
+    /** Get all "touching" BlockFaces including top/bottom */
     public BlockFace[] getTouchingFaces()
     {
         return new BlockFace[]{
@@ -312,7 +309,8 @@ public class BlockModule extends EHMModule
      * @param loc    Center of the search area
      * @param height how many blocks up to check
      * @param radius of the search (cubic search radius)
-     * @param tag    of Material to search for
+     * @param tag   of Material to search for
+     *
      * @return all the Block with the given Type in the specified radius
      */
     public Block[] getBlocksInArea(Location loc, int height, int radius, Tag tag)
@@ -341,6 +339,7 @@ public class BlockModule extends EHMModule
      * Will a FallingBlock which lands on this Material break and drop to the ground?
      *
      * @param mat to check
+     *
      * @return boolean
      */
     public boolean breaksFallingBlock(Material mat)
@@ -358,9 +357,7 @@ public class BlockModule extends EHMModule
     }
 
 
-    /**
-     * Returns if Material is a plant that should be affected by the farming Rules
-     */
+    /** Returns if Material is a plant that should be affected by the farming Rules */
     public boolean isPlant(Material material)
     {
         return material.equals(Material.WHEAT)
@@ -376,6 +373,7 @@ public class BlockModule extends EHMModule
      * Is this Material food for horses?
      *
      * @param material material to test
+     *
      * @return true if vegetable
      */
     public static boolean isHorseFood(Material material)
@@ -388,9 +386,7 @@ public class BlockModule extends EHMModule
     }
 
 
-    /**
-     * Is the given material a tool, e.g. doesn't stack
-     */
+    /** Is the given material a tool, e.g. doesn't stack */
     public static boolean isTool(Material material)
     {
         return material.name().endsWith("AXE") //axe & pickaxe
@@ -406,9 +402,7 @@ public class BlockModule extends EHMModule
     }
 
 
-    /**
-     * is the given material armor
-     */
+    /** is the given material armor */
     public boolean isArmor(Material material)
     {
         return material.name().endsWith("HELMET")
@@ -418,9 +412,7 @@ public class BlockModule extends EHMModule
     }
 
 
-    /**
-     * Consider this block a natural block for spawning?
-     */
+    /** Consider this block a natural block for spawning? */
     public boolean isNaturalSpawnMaterial(Material material)
     {
         return material == Material.GRASS_BLOCK
@@ -437,9 +429,7 @@ public class BlockModule extends EHMModule
     }
 
 
-    /**
-     * Is this a natural block for netherspawning?
-     */
+    /** Is this a natural block for netherspawning? */
     public boolean isNaturalNetherSpawn(Material material)
     {
         switch (material)
