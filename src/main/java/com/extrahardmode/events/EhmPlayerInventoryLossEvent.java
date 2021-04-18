@@ -47,8 +47,8 @@ public class EhmPlayerInventoryLossEvent extends Event implements Cancellable
     /**
      * Constructor
      *
-     * @param event death event that caused the loss of items
-     * @param drops  all items that got lost
+     * @param event          death event that caused the loss of items
+     * @param drops          all items that got lost
      * @param stacksToRemove stacks that will be removed
      */
     public EhmPlayerInventoryLossEvent(PlayerDeathEvent event, List<ItemStack> drops, List<ItemStack> stacksToRemove)

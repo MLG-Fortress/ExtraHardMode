@@ -35,20 +35,30 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-/** Manages miscellaneous data. */
+/**
+ * Manages miscellaneous data.
+ */
 public class DataStoreModule extends EHMModule
 {
 
-    /** In-memory cache for player data */
+    /**
+     * In-memory cache for player data
+     */
     private final Map<String, PlayerData> playerNameToPlayerDataMap = new ConcurrentHashMap<String, PlayerData>();
 
-    /** List of previous locations. */
+    /**
+     * List of previous locations.
+     */
     private final List<SimpleEntry<Player, Location>> previousLocations = new CopyOnWriteArrayList<SimpleEntry<Player, Location>>();
 
-    /** List of Players fighting the dragon */
+    /**
+     * List of Players fighting the dragon
+     */
     private final List<String> playersFightingDragon = new ArrayList<String>();
 
-    /** Config */
+    /**
+     * Config
+     */
     private RootConfig CFG;
 
 
@@ -96,7 +106,6 @@ public class DataStoreModule extends EHMModule
      * Retrieves player data from memory
      *
      * @param playerName - Name of player.
-     *
      * @return PlayerData associated with it.
      */
     public PlayerData getPlayerData(String playerName)

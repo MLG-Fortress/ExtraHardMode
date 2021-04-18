@@ -32,8 +32,7 @@ public enum Status
      */
     ADJUSTED,
     /**
-     * This value should be rewritten back to config, but hasn't been adjusted yet, or needs to be adjusted by another
-     * method
+     * This value should be rewritten back to config, but hasn't been adjusted yet, or needs to be adjusted by another method
      */
     NEEDS_TO_BE_ADJUSTED,
     /**

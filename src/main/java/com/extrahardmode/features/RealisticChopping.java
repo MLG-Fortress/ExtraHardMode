@@ -113,8 +113,7 @@ public class RealisticChopping extends ListenerModule
                 {
                     isTree = true;
                     break;
-                }
-                else if (!Tag.LOGS.isTagged(upType))
+                } else if (!Tag.LOGS.isTagged(upType))
                 {
                     break;
                 }
@@ -137,12 +136,10 @@ public class RealisticChopping extends ListenerModule
                             if (!Tag.LOGS.isTagged(log.getRelative(BlockFace.DOWN).getType()))
                                 plugin.getServer().getScheduler().runTaskLater(plugin, new FallingLogsTask(plugin, log), plugin.getRandom().nextInt(50/*so they don't fall at once*/));
                         }
-                    }
-                    else if (Tag.LOGS.isTagged(aboveLogType))
+                    } else if (Tag.LOGS.isTagged(aboveLogType))
                     {
                         blockModule.applyPhysics(aboveLog, false);
-                    }
-                    else
+                    } else
                     {
                         break;
                     }

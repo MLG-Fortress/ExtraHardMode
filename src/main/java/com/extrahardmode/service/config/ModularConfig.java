@@ -48,8 +48,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Modular configuration class that utilizes a ConfigNode enumeration as easy access and storage of configuration option
- * values.
+ * Modular configuration class that utilizes a ConfigNode enumeration as easy access and storage of configuration option values.
  *
  * @author Mitsugaru
  */
@@ -160,7 +159,6 @@ public abstract class ModularConfig extends EHMModule
      * Get the integer value of the node.
      *
      * @param node - Node to use.
-     *
      * @return Value of the node. Returns -1 if unknown.
      */
     public int getInt(final ConfigNode node)
@@ -192,7 +190,6 @@ public abstract class ModularConfig extends EHMModule
      * Get the string value of the node.
      *
      * @param node - Node to use.
-     *
      * @return Value of the node. Returns and empty string if unknown.
      */
     protected String getString(final ConfigNode node)
@@ -222,7 +219,6 @@ public abstract class ModularConfig extends EHMModule
      * Get the list value of the node.
      *
      * @param node - Node to use.
-     *
      * @return Value of the node. Returns an empty list if unknown.
      */
     @SuppressWarnings("unchecked")
@@ -254,7 +250,6 @@ public abstract class ModularConfig extends EHMModule
      * Get the double value of the node.
      *
      * @param node - Node to use.
-     *
      * @return Value of the node. Returns 0 if unknown.
      */
     public double getDouble(final ConfigNode node)
@@ -286,7 +281,6 @@ public abstract class ModularConfig extends EHMModule
      * Get the boolean value of the node.
      *
      * @param node - Node to use.
-     *
      * @return Value of the node. Returns false if unknown.
      */
     public boolean getBoolean(final ConfigNode node)
@@ -312,7 +306,6 @@ public abstract class ModularConfig extends EHMModule
      * Get the (chat)color value of the node.
      *
      * @param node - Node to use.
-     *
      * @return Value of the node. Returns null if no color set.
      */
     public ChatColor getColor(final ConfigNode node)

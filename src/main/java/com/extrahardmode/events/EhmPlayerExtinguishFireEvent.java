@@ -30,7 +30,7 @@ public class EhmPlayerExtinguishFireEvent extends Event implements Cancellable
     /**
      * Constructor
      *
-     * @param player player that hit fire
+     * @param player    player that hit fire
      * @param burnTicks ticks player will be on fire
      */
     public EhmPlayerExtinguishFireEvent(Player player, int burnTicks)

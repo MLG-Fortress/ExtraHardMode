@@ -40,8 +40,8 @@ import java.nio.charset.Charset;
 import java.util.*;
 
 /**
- * A Wrapper that contains <ul> <li>a FileConfiguration</li> <li>A reference to the config file</li> <li>Information
- * about the Mode this Config is loaded in</li> <li>Information about which status this Config is in</li> <li></li></ul>
+ * A Wrapper that contains <ul> <li>a FileConfiguration</li> <li>A reference to the config file</li> <li>Information about the Mode this Config is loaded in</li> <li>Information
+ * about which status this Config is in</li> <li></li></ul>
  */
 public class EHMConfig
 {
@@ -409,7 +409,7 @@ public class EHMConfig
      */
     public void loadWorlds()
     {
-        mWorlds.addAll((List<String>)mLoadedNodes.get(RootNode.WORLDS));
+        mWorlds.addAll((List<String>) mLoadedNodes.get(RootNode.WORLDS));
 
         //Check for all worlds placeholder = Enables plugin for all worlds
         for (String world : mWorlds)
@@ -554,7 +554,7 @@ public class EHMConfig
                 {
                     if (value instanceof Material)
                     {
-                        outConfig.set(node.getPath(), ((Material)value).name());
+                        outConfig.set(node.getPath(), ((Material) value).name());
                         break;
                     }
                 }

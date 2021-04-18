@@ -1,7 +1,9 @@
 package com.extrahardmode.task;
 
 
-/** @author Diemex */
+/**
+ * @author Diemex
+ */
 
 import com.extrahardmode.module.EntityHelper;
 import org.bukkit.entity.LivingEntity;

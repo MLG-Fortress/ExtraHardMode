@@ -69,6 +69,7 @@ import com.extrahardmode.module.MsgPersistModule;
 import com.extrahardmode.module.PlayerModule;
 import com.extrahardmode.module.UtilityModule;
 import com.extrahardmode.module.temporaryblock.TemporaryBlockHandler;
+import com.extrahardmode.placeholder.Placeholder;
 import com.extrahardmode.service.IModule;
 import com.extrahardmode.service.OurRandom;
 import com.extrahardmode.task.MoreMonstersTask;
@@ -176,7 +177,7 @@ public class ExtraHardMode extends JavaPlugin
         registerModule(CaveSpider.class, new CaveSpider(this));
         registerModule(Guardians.class, new Guardians(this));
         registerModule(Vex.class, new Vex(this));
-        
+
         //Compatibility
         registerModule(CompatHandler.class, new CompatHandler(this));
         registerModule(ExplosionCompatStorage.class, new ExplosionCompatStorage(this));
@@ -209,7 +210,11 @@ public class ExtraHardMode extends JavaPlugin
         */
         //Metrics Plotter, this gets included by maven
         new ConfigPlotter(this, getModuleForClass(RootConfig.class));
+
+        //Register Placeholder
+        new Placeholder(this).register();
     }
+
 
     public void debug(World world, String message)
     {
@@ -236,7 +241,6 @@ public class ExtraHardMode extends JavaPlugin
      * Computes random chance
      *
      * @param percentChance - Percentage of success.
-     *
      * @return True if it was successful, else false.
      */
     public boolean random(int percentChance)
@@ -267,7 +271,6 @@ public class ExtraHardMode extends JavaPlugin
      *
      * @param clazz  - Class of the instance.
      * @param module - Module instance.
-     *
      * @throws IllegalArgumentException - Thrown if an argument is null.
      */
     <T extends IModule> void registerModule(Class<T> clazz, T module)
@@ -291,7 +294,6 @@ public class ExtraHardMode extends JavaPlugin
      * Deregister a module.
      *
      * @param clazz - Class of the instance.
-     *
      * @return Module that was removed. Returns null if no instance of the module is registered.
      */
     public <T extends IModule> T deregisterModuleForClass(Class<T> clazz)
@@ -315,7 +317,6 @@ public class ExtraHardMode extends JavaPlugin
      * Retrieve a registered module.
      *
      * @param clazz - Class identifier.
-     *
      * @return Module instance. Returns null is an instance of the given class has not been registered with the API.
      */
     public <T extends IModule> T getModuleForClass(Class<T> clazz)
@@ -334,8 +335,10 @@ public class ExtraHardMode extends JavaPlugin
         return modules;
     }
 
+
     /**
      * Determines if a config node is enabled in any world
+     *
      * @param node
      * @return True if enabled in a world, false if disabled everywhere
      */

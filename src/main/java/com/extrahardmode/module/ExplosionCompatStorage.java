@@ -7,7 +7,9 @@ import org.apache.commons.lang.Validate;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 
-/** @author Diemex */
+/**
+ * @author Diemex
+ */
 public class ExplosionCompatStorage extends EHMModule
 {
     private Entity explosionCause;
@@ -56,7 +58,9 @@ public class ExplosionCompatStorage extends EHMModule
     }
 
 
-    /** Clear the current explosion from the queue. */
+    /**
+     * Clear the current explosion from the queue.
+     */
     public void clearQueue()
     {
         this.explosionCause = null;

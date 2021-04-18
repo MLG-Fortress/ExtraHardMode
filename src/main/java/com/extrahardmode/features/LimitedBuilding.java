@@ -72,8 +72,7 @@ public class LimitedBuilding extends ListenerModule
 
 
     /**
-     * FEATURE: players can't place blocks from weird angles (using shift to hover over in the air beyond the edge of
-     * solid ground) or directly beneath themselves, for that matter
+     * FEATURE: players can't place blocks from weird angles (using shift to hover over in the air beyond the edge of solid ground) or directly beneath themselves, for that matter
      */
     @EventHandler(ignoreCancelled = true, priority = EventPriority.LOWEST)
     public void onBlockPlace(BlockPlaceEvent placeEvent)

@@ -37,6 +37,7 @@ public class Vindicator extends ListenerModule
         CFG = plugin.getModuleForClass(RootConfig.class);
     }
 
+
     /**
      * When an Entity spawns: Spawn a Vindicator sometimes instead of a Skeleton
      *

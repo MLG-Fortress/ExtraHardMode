@@ -13,7 +13,6 @@ public class Validation
      *
      * @param node  the ConfigNode to validate, validates according to the SubType of the ConfigNode
      * @param value the current value to validate
-     *
      * @return validated value, if value null then defaultValue is returned
      */
     public static Integer validateInt(final ConfigNode node, Object value)
@@ -70,7 +69,6 @@ public class Validation
      *
      * @param node  - Root node to validate.
      * @param value - Integer to validate
-     *
      * @return validated value
      */
     public static Integer validateYCoordinate(ConfigNode node, Integer value)
@@ -95,7 +93,6 @@ public class Validation
      *
      * @param node  - Root node to validate.
      * @param value - Integer to validate
-     *
      * @return validated value
      */
     public static Integer validatePercentage(ConfigNode node, Integer value)
@@ -118,7 +115,6 @@ public class Validation
      * @param minVal the minimum value the config is allowed to have
      * @param maxVal the maximum value for the config, if == minVal then it doesn't get checked
      * @param value  - Integer to validate
-     *
      * @return validated value
      */
     public static Integer validateCustomBounds(ConfigNode node, int minVal, int maxVal, Integer value)

@@ -75,7 +75,6 @@ public class FindAndReplace
      * Run the ReplaceOperation on the given String
      *
      * @param input string to search in
-     *
      * @return the input string with the replaced strings
      */
     public String replace(String input)

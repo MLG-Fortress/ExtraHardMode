@@ -139,8 +139,7 @@ public class Physics extends ListenerModule
 
 
     /**
-     * Called when an Entity forms a Block - Damage Player when a FallingBlock hits him
-     * provide compatibility for block loggers that don't log correctly
+     * Called when an Entity forms a Block - Damage Player when a FallingBlock hits him provide compatibility for block loggers that don't log correctly
      */
     @EventHandler(priority = EventPriority.HIGHEST) //so we are pretty late and hopefully don't get cancelled afterwards
     public void whenBlockLands(EntityChangeBlockEvent event)

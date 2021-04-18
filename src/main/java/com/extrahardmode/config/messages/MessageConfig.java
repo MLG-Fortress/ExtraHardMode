@@ -37,13 +37,19 @@ import java.io.*;
 import java.nio.charset.Charset;
 import java.util.logging.Level;
 
-/** Configuration handler for the messages.yml file. */
+/**
+ * Configuration handler for the messages.yml file.
+ */
 public class MessageConfig extends ModularConfig
 {
-    /** File reference. */
+    /**
+     * File reference.
+     */
     private final File file;
 
-    /** Configuration object reference. */
+    /**
+     * Configuration object reference.
+     */
     private final YamlConfiguration config;
 
 
@@ -253,8 +259,8 @@ public class MessageConfig extends ModularConfig
      * Match the value of the node to the MsgCategory, also gets the mode of a given message if found
      *
      * @param node node to check
-     *
-     * @return the {@link com.extrahardmode.config.messages.MsgCategory} enum value of the node or null if the enum name of the node doesn't end with _MODE or value of the node is not found.
+     * @return the {@link com.extrahardmode.config.messages.MsgCategory} enum value of the node or null if the enum name of the node doesn't end with _MODE or value of the node is
+     * not found.
      */
     public MsgCategory getCat(MessageNode node)
     {

@@ -43,7 +43,9 @@ public class PlayerModule extends EHMModule
     private RootConfig CFG;
 
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public PlayerModule(ExtraHardMode plugin)
     {
         super(plugin);
@@ -80,7 +82,9 @@ public class PlayerModule extends EHMModule
     }
 
 
-    /** Is the player currently on a ladder? */
+    /**
+     * Is the player currently on a ladder?
+     */
     public boolean isPlayerOnLadder(Player player)
     {
         return player.getLocation().getBlock().getType().equals(Material.LADDER);
@@ -134,7 +138,6 @@ public class PlayerModule extends EHMModule
      *
      * @param inv     to count in
      * @param toCount the Material to count
-     *
      * @return the number of items as Integer
      */
     public static int countInvItem(PlayerInventory inv, Material toCount)
@@ -155,7 +158,6 @@ public class PlayerModule extends EHMModule
      * Get the percentage of how much less damage a player will take.
      *
      * @param player to check the armor contents for
-     *
      * @return the percentage as double. Example 0.8 when full armor is worn
      */
     public static float getArmorPoints(final Player player)

@@ -11,17 +11,20 @@ public class TemporaryBlockBreakEvent extends Event implements Cancellable
     private final TemporaryBlock temporaryBlock;
     private boolean cancel = false;
 
+
     @Override
     public void setCancelled(boolean cancel)
     {
         this.cancel = cancel;
     }
 
+
     @Override
     public boolean isCancelled()
     {
         return this.cancel;
     }
+
 
     public TemporaryBlockBreakEvent(TemporaryBlock temporaryBlock)
     {

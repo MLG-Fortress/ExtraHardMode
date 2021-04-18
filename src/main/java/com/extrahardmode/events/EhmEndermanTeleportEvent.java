@@ -59,7 +59,7 @@ public class EhmEndermanTeleportEvent extends Event implements Cancellable
     /**
      * Constructor
      *
-     * @param shooter           Player shooting the arrow
+     * @param shooter Player shooting the arrow
      */
     public EhmEndermanTeleportEvent(Player shooter, Enderman enderman, Location teleportTo, boolean cancelled)
     {

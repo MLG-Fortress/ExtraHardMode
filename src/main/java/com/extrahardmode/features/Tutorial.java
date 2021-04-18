@@ -273,8 +273,9 @@ public class Tutorial extends ListenerModule
                             break;
                         }
                     }
-                }
-                catch (IllegalArgumentException e) {} //ignore custom biomes
+                } catch (IllegalArgumentException e)
+                {
+                } //ignore custom biomes
 
             }
         }

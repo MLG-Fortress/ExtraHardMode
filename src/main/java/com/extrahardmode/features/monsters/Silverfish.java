@@ -85,7 +85,9 @@ public class Silverfish extends ListenerModule
     }
 
 
-    /** When an entity dies, drop cobble for SilverFish */
+    /**
+     * When an entity dies, drop cobble for SilverFish
+     */
     @EventHandler
     public void onEntityDeath(EntityDeathEvent event)
     {

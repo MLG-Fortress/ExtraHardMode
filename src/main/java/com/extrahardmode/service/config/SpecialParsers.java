@@ -25,13 +25,11 @@ package com.extrahardmode.service.config;
 import org.bukkit.ChatColor;
 
 /**
- * Parses a given StringList into a Map containing the block ids and metadatavalues if existing The supported input can
- * be formatted like this
+ * Parses a given StringList into a Map containing the block ids and metadatavalues if existing The supported input can be formatted like this
  * <p/>
  * 13:1,2,3 | COBBLESTONE.2.3.4 | 13:3.4.5
  * <p/>
- * The first number/string is always expected to be the string everything after that can be seperated by any symbol
- * which isn't a number/character
+ * The first number/string is always expected to be the string everything after that can be seperated by any symbol which isn't a number/character
  * <p/>
  * So 13:1@4%3 -> [13]{1,3,4} 13 is the blockid and 1,3,4 is the blockmetadatavalues which are allowed
  *
@@ -44,7 +42,6 @@ public class SpecialParsers
      * Match a ChatColor
      *
      * @param input input string to match
-     *
      * @return ChatColor or null if not a valid ChatColor
      */
     public static ChatColor parseColor(String input)

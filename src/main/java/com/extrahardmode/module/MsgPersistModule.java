@@ -35,7 +35,9 @@ import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
 
-/** @author Diemex */
+/**
+ * @author Diemex
+ */
 public class MsgPersistModule extends EHMModule
 {
     private final String dbFile;
@@ -46,10 +48,14 @@ public class MsgPersistModule extends EHMModule
 
     private MessageConfig messages;
 
-    /** Buffer player ids (playerName, playerId) */
+    /**
+     * Buffer player ids (playerName, playerId)
+     */
     private Map<String, Integer> playerIdBuffer;
 
-    /** Cache data from the db (playerid, message, value) */
+    /**
+     * Cache data from the db (playerid, message, value)
+     */
     private Table<Integer, MessageNode, Integer> cache;
 
 
@@ -83,7 +89,9 @@ public class MsgPersistModule extends EHMModule
     }
 
 
-    /** Make sure JDBC is enabled/loaded */
+    /**
+     * Make sure JDBC is enabled/loaded
+     */
     protected void testJDBC()
     {
         try
@@ -101,7 +109,6 @@ public class MsgPersistModule extends EHMModule
      * Get the id of the Player. Buffers id in a Map. Creates new id if Player not in the db yet.
      *
      * @param playerName name of the Player
-     *
      * @return id of Player
      */
     private int getPlayerId(String playerName)
@@ -173,7 +180,9 @@ public class MsgPersistModule extends EHMModule
     }
 
 
-    /** Creates tables if they do not exist. */
+    /**
+     * Creates tables if they do not exist.
+     */
     private void initializeTables()
     {
         Connection conn = null;
@@ -298,7 +307,6 @@ public class MsgPersistModule extends EHMModule
      *
      * @param node       which message
      * @param playerName player which has seen this message
-     *
      * @return count >= 0
      */
     public int getCountFor(MessageNode node, String playerName)
@@ -312,7 +320,6 @@ public class MsgPersistModule extends EHMModule
      *
      * @param node     to get the count for
      * @param playerId id of the player to get the count for
-     *
      * @return how often this message has been displayed
      */
     private int getCountFor(MessageNode node, int playerId)
@@ -381,6 +388,7 @@ public class MsgPersistModule extends EHMModule
             }
         }
     }
+
 
     private void incrementCache(int id, MessageNode node, int count)
     {

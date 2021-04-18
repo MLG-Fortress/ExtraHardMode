@@ -13,7 +13,7 @@ import java.util.concurrent.Callable;
  * Output all the choosen modules to mcstats in nice plots
  *
  * @author Diemex
- *
+ * <p>
  * Well, now it goes to bstats.
  */
 public class ConfigPlotter
@@ -95,7 +95,7 @@ public class ConfigPlotter
                     case ANIMAL_EXP_NERF:
                     case ANIMAL_OVERCROWD_CONTROL:
                     case BETTER_TNT:
-                    //case BETTER_TREE_CHOPPING:
+                        //case BETTER_TREE_CHOPPING:
                     case BLAZES_EXPLODE_ON_DEATH:
                     case CANT_CRAFT_MELONSEEDS:
                     case CHARGED_CREEPERS_EXPLODE_ON_HIT:

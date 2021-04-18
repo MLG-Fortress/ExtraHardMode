@@ -124,8 +124,7 @@ public abstract class CommandHandler implements CommandExecutor
 
 
     /**
-     * Command loop that will go through the linked handlers until it finds the appropriate handler or command execution
-     * handler to do the logic for.
+     * Command loop that will go through the linked handlers until it finds the appropriate handler or command execution handler to do the logic for.
      */
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
@@ -163,26 +162,22 @@ public abstract class CommandHandler implements CommandExecutor
 
 
     /**
-     * Method that is called on a CommandHandler if there is no additional arguments given that specify a specific
-     * command.
+     * Method that is called on a CommandHandler if there is no additional arguments given that specify a specific command.
      *
      * @param sender  - Sender of the command.
      * @param command - Command used.
      * @param label   - Command label.
-     *
      * @return True if handled. Should not need to return false...
      */
     protected abstract boolean noArgs(CommandSender sender, Command command, String label);
 
     /**
-     * Allow for the command handler to have special logic for unknown commands. Useful for when expecting a player name
-     * parameter on a root command handler command.
+     * Allow for the command handler to have special logic for unknown commands. Useful for when expecting a player name parameter on a root command handler command.
      *
      * @param sender  - Sender of the command.
      * @param command - Command used.
      * @param label   - Command label.
      * @param args    - Arguments.
-     *
      * @return True if handled. Should not need to return false...
      */
     protected abstract boolean unknownCommand(CommandSender sender, Command command, String label, String[] args);
@@ -192,7 +187,6 @@ public abstract class CommandHandler implements CommandExecutor
      * Shortens the given string array by removing the first entry.
      *
      * @param args - Array to shorten.
-     *
      * @return Shortened array.
      */
     String[] shortenArgs(String[] args)

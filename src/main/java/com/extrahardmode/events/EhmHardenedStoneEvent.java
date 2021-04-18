@@ -29,8 +29,8 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.ItemStack;
 
 /**
- * This Event is called when EHM determines if a tool is supposed to be affected by the hardened stone code. It will be
- * called everytime when a Player breaks stone also if the tool wouldn't be able to break the Block.
+ * This Event is called when EHM determines if a tool is supposed to be affected by the hardened stone code. It will be called everytime when a Player breaks stone also if the tool
+ * wouldn't be able to break the Block.
  * <p/>
  * This allows for plugins to step over the toolcheck and add their own tools. (bukkitforge etc.)
  *
@@ -58,7 +58,7 @@ public class EhmHardenedStoneEvent extends Event
     /**
      * Constructor
      *
-     * @param tool      the tool which broke the Stone
+     * @param tool        the tool which broke the Stone
      * @param numOfBlocks amount of blocks tool can mine
      */
     public EhmHardenedStoneEvent(Player player, ItemStack tool, int numOfBlocks)
@@ -114,8 +114,7 @@ public class EhmHardenedStoneEvent extends Event
 
 
     /**
-     * Set the amount of blocks the tool can mine Just set this higher than 0 and ehm will allow the tool to break
-     * blocks
+     * Set the amount of blocks the tool can mine Just set this higher than 0 and ehm will allow the tool to break blocks
      */
     public void setNumOfBlocks(short blocks)
     {

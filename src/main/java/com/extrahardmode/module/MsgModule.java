@@ -40,7 +40,9 @@ import org.bukkit.entity.Player;
 import java.util.Calendar;
 import java.util.List;
 
-/** @author Max */
+/**
+ * @author Max
+ */
 public class MsgModule extends EHMModule
 {
     private MessageConfig messages;
@@ -51,7 +53,9 @@ public class MsgModule extends EHMModule
     private final Table<String, MessageNode, Long> timeouts = HashBasedTable.create();
 
 
-    /** Constructor */
+    /**
+     * Constructor
+     */
     public MsgModule(ExtraHardMode plugin)
     {
         super(plugin);

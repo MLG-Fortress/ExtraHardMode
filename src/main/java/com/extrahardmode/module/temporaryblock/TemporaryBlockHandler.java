@@ -29,11 +29,7 @@ public class TemporaryBlockHandler extends ListenerModule
 
 
     /**
-     * int addTemporaryBlock(Block block)
-     * removeBlock (int)
-     * onBlockBreak -> mark as broken
-     * onTempBlockBreakEvent
-     * onZombieRespawnTask -> check if broken
+     * int addTemporaryBlock(Block block) removeBlock (int) onBlockBreak -> mark as broken onTempBlockBreakEvent onZombieRespawnTask -> check if broken
      */
     @EventHandler(priority = EventPriority.LOWEST)
     public void onBlockBreak(BlockBreakEvent event)
@@ -45,6 +41,7 @@ public class TemporaryBlockHandler extends ListenerModule
         }
     }
 
+
     //Also account for water
     @EventHandler(ignoreCancelled = true)
     public void onWaterBreakBlock(BlockFromToEvent event)
@@ -55,6 +52,7 @@ public class TemporaryBlockHandler extends ListenerModule
             event.getToBlock().setType(Material.AIR, false);
         }
     }
+
 
     //And explosions
     @EventHandler(ignoreCancelled = true)
@@ -71,6 +69,7 @@ public class TemporaryBlockHandler extends ListenerModule
         }
     }
 
+
     //And also other plugin-caused explosions (and beds in the nether)
     @EventHandler(ignoreCancelled = true)
     public void onBlockExplosionBreak(BlockExplodeEvent event)
@@ -86,6 +85,7 @@ public class TemporaryBlockHandler extends ListenerModule
         }
     }
 
+
     private boolean fireTemporaryBlockBreakEvent(Block block)
     {
         if (temporaryBlockList.containsKey(LiteLocation.fromLocation(block.getLocation())))
@@ -98,7 +98,6 @@ public class TemporaryBlockHandler extends ListenerModule
         }
         return false;
     }
-
 
 
     public TemporaryBlock addTemporaryBlock(Location loc, Object... data)

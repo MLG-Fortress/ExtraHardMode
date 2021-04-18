@@ -53,7 +53,9 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.potion.PotionEffect;
 
-/** Zombies <p> can resurrect themselves , make players slow when hit </p> */
+/**
+ * Zombies <p> can resurrect themselves , make players slow when hit </p>
+ */
 public class Zombies extends ListenerModule
 {
     private RootConfig CFG;
@@ -133,7 +135,7 @@ public class Zombies extends ListenerModule
                         if (block.getType() != Material.AIR)
                         {
                             Location location = block.getLocation();
-                            location.setY(location.getY()+1);
+                            location.setY(location.getY() + 1);
                             block = location.getBlock();
                             if (block.getType() != Material.AIR)
                                 return;
@@ -141,7 +143,7 @@ public class Zombies extends ListenerModule
                         block.setType(Material.ZOMBIE_HEAD);
                         //Random rotation
                         BlockFace[] faces = BlockModule.getHorizontalAdjacentFaces();
-                        Rotatable skull = (Rotatable)block.getBlockData();
+                        Rotatable skull = (Rotatable) block.getBlockData();
                         skull.setRotation(faces[OurRandom.nextInt(faces.length)]);
                         block.setBlockData(skull);
                         tempBlock = temporaryBlockHandler.addTemporaryBlock(block.getLocation(), "respawn_skull");
@@ -210,7 +212,9 @@ public class Zombies extends ListenerModule
     }
 
 
-    /** Flag Zombies that have been called in as reinforcements to not respawn */
+    /**
+     * Flag Zombies that have been called in as reinforcements to not respawn
+     */
     @EventHandler(ignoreCancelled = true)
     public void onZombieReinforcements(CreatureSpawnEvent event)
     {

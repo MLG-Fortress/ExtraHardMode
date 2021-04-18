@@ -91,7 +91,8 @@ public class MoreMonstersTask implements Runnable
 
             // another tweakable value to damped in case we overshoot the light or depth values
             // and end up with too many mobs
-            if (OurRandom.percentChance(threshold)) {
+            if (OurRandom.percentChance(threshold))
+            {
                 try
                 {
                     location = verifyLocation(location);
@@ -107,7 +108,8 @@ public class MoreMonstersTask implements Runnable
                             EntityHelper.markAsOurs(plugin, mob);
                         }
                     }
-                } catch (IllegalArgumentException ignored) {
+                } catch (IllegalArgumentException ignored)
+                {
                     // in case the player is in a different world from the saved location
                 }
             }
@@ -117,21 +119,25 @@ public class MoreMonstersTask implements Runnable
         // plan for the next pass
         dataStore.getPreviousLocations().clear();
 
-          for (Player player : plugin.getServer().getOnlinePlayers())
-          {
-              Location verifiedLocation = null;
-              //only if player hasn't got bypass and is in survival check location
-              if (!playerModule.playerBypasses(player, Feature.MONSTERRULES)) {
-                  verifiedLocation = verifyLocation(player.getLocation());
-              }
+        for (Player player : plugin.getServer().getOnlinePlayers())
+        {
+            Location verifiedLocation = null;
+            //only if player hasn't got bypass and is in survival check location
+            if (!playerModule.playerBypasses(player, Feature.MONSTERRULES))
+            {
+                verifiedLocation = verifyLocation(player.getLocation());
+            }
 
-              if (verifiedLocation != null) {
-                  dataStore.getPreviousLocations().add(new SimpleEntry<Player, Location>(player, verifiedLocation));
-              }
-          }
+            if (verifiedLocation != null)
+            {
+                dataStore.getPreviousLocations().add(new SimpleEntry<Player, Location>(player, verifiedLocation));
+            }
+        }
     }
 
-    private void log(String msg) {
+
+    private void log(String msg)
+    {
         plugin.getLogger().fine(msg);
     }
 
@@ -161,11 +167,13 @@ public class MoreMonstersTask implements Runnable
         final int maxLight = CFG.getInt(RootNode.MONSTER_SPAWNS_IN_LIGHT_MAX_LIGHT, world.getName());
         boolean lightOk = lightLvl <= maxLight;
 
-        if (worldOk && depthOk && lightOk) {
+        if (worldOk && depthOk && lightOk)
+        {
             verifiedLoc = EntityHelper.isLocSafeSpawn(location);
-        }
-        else {
-            if (!lightOk) {
+        } else
+        {
+            if (!lightOk)
+            {
                 // have had issues w/weird light levels - maybe due to moon phase or dusk/dawn?
                 log("not spawning - too light");
             }

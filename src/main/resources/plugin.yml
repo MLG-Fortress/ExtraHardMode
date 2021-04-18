@@ -7,6 +7,7 @@ author: RoboMWM
 authors: [Diemex, Big_Scary]
 #ensure that we are loaded after multiworld plugins
 softdepend: [Multiverse-Core, My_Worlds, MystCraft, Transporter, WorldGuard, Prism, LogBlock, CoreProtect, HawkEye, Crackshot]
+depend: [PlaceholderAPI]
 api-version: '1.15'
 commands:
     ehm:

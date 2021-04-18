@@ -247,7 +247,6 @@ public abstract class MultiWorldConfig extends EHMModule
      * @param world world name
      * @param clazz type of node
      * @param <T>
-     *
      * @return node value for the given world
      */
     public <T> T get(final ConfigNode node, final String world, Class<T> clazz)
@@ -270,7 +269,6 @@ public abstract class MultiWorldConfig extends EHMModule
      * Get the integer value of the node.
      *
      * @param node - Node to use.
-     *
      * @return Value of the node. Returns -1 if unknown.
      */
     public int getInt(final ConfigNode node, final String world)
@@ -301,7 +299,6 @@ public abstract class MultiWorldConfig extends EHMModule
      * Get the double value of the node.
      *
      * @param node - Node to use.
-     *
      * @return Value of the node. Returns 0 if unknown.
      */
     public double getDouble(final ConfigNode node, final String world)
@@ -332,7 +329,6 @@ public abstract class MultiWorldConfig extends EHMModule
      * Get the boolean value of the node.
      *
      * @param node - Node to use.
-     *
      * @return Value of the node. Returns false if unknown.
      */
     public boolean getBoolean(final ConfigNode node, final String world)
@@ -363,7 +359,6 @@ public abstract class MultiWorldConfig extends EHMModule
      * Get the string value of the node.
      *
      * @param node - Node to use.
-     *
      * @return Value of the node. Returns and empty string if unknown.
      */
     public String getString(final ConfigNode node, final String world)
@@ -394,7 +389,6 @@ public abstract class MultiWorldConfig extends EHMModule
      * Get the list value of the node.
      *
      * @param node - Node to use.
-     *
      * @return Value of the node. Returns an empty list if unknown.
      */
     public List<String> getStringList(final ConfigNode node, final String world)
@@ -482,6 +476,7 @@ public abstract class MultiWorldConfig extends EHMModule
         }
         return blockList;
     }
+
 
     @Deprecated
     public BlockRelationsList getBlockRelationList(final ConfigNode node, final String world)

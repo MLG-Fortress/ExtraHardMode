@@ -1,5 +1,6 @@
 package com.extrahardmode;
 
+
 import org.bukkit.Material;
 
 import java.util.HashSet;
@@ -16,6 +17,7 @@ public enum LooseTags
 
     private Set<Material> materials = new HashSet<>();
 
+
     LooseTags()
     {
         for (Material material : Material.values())
@@ -24,6 +26,7 @@ public enum LooseTags
                 materials.add(material);
         }
     }
+
 
     public boolean isTagged(Material material)
     {
