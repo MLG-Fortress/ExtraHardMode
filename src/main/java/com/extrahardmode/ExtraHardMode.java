@@ -69,6 +69,7 @@ import com.extrahardmode.module.MsgPersistModule;
 import com.extrahardmode.module.PlayerModule;
 import com.extrahardmode.module.UtilityModule;
 import com.extrahardmode.module.temporaryblock.TemporaryBlockHandler;
+import com.extrahardmode.placeholder.Placeholder;
 import com.extrahardmode.service.IModule;
 import com.extrahardmode.service.OurRandom;
 import com.extrahardmode.task.MoreMonstersTask;
@@ -209,6 +210,12 @@ public class ExtraHardMode extends JavaPlugin
         */
         //Metrics Plotter, this gets included by maven
         new ConfigPlotter(this, getModuleForClass(RootConfig.class));
+
+        //Register Placeholder
+        if(this.getServer().getPluginManager().getPlugin("PlaceholderAPI") != null)
+        {
+            new Placeholder(this).register();
+        }
     }
 
     public void debug(World world, String message)
