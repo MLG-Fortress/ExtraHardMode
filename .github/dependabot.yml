@@ -1,0 +1,33 @@
+version: 2
+updates:
+- package-ecosystem: maven
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "21:00"
+    timezone: America/Los_Angeles
+  pull-request-branch-name:
+    separator: "-"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: de.diddiz:logblock
+    versions:
+    - "> 1.8"
+  - dependency-name: junit:junit
+    versions:
+    - "> 4.11"
+  - dependency-name: org.mockito:mockito-all
+    versions:
+    - "> 1.9.5"
+  - dependency-name: org.powermock:powermock-api-mockito
+    versions:
+    - "> 1.5"
+  - dependency-name: org.powermock:powermock-core
+    versions:
+    - "> 1.5"
+  - dependency-name: org.powermock:powermock-module-junit4
+    versions:
+    - "> 1.5"
+  - dependency-name: org.bstats:bstats-bukkit
+    versions:
+    - 2.1.0
