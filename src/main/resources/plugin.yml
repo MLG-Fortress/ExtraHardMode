@@ -1,4 +1,4 @@
-name: ExtraHardMode
+name: Sexmod
 main: com.extrahardmode.ExtraHardMode
 version: '${project.version}-${git.commit.id.abbrev}'
 description: Add new challenges to minecraft
