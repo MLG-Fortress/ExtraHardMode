@@ -72,7 +72,7 @@ public class NotificationHolder
         {
             if (sb.length() != 0)
                 sb.append(" ");
-            Validate.isTrue(line.length() <= 16, "Scoreboards have a max of 16 characters per line. Given line was " + line.length() + " long. Content: \"" + line + "\"");
+            Validate.isTrue(line.length() <= 40, "Scoreboards have a max of 40 characters per line. Given line was " + line.length() + " long. Content: \"" + line + "\"");
             sb.append(line);
         }
         this.msgText = sb.toString();

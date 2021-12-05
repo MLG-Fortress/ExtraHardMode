@@ -65,7 +65,7 @@ public class StringUtil
 
         MsgLineHolder line = new MsgLineHolder();
         int offset = 0;
-        int maxLineLength = lineColor != null ? 14 : 16; //Reserve 2 chars for the color code
+        int maxLineLength = lineColor != null ? 38 : 40; //Reserve 2 chars for the color code
         //Append every word to a line
         for (int i = 0; i < words.length; i++)
         {
