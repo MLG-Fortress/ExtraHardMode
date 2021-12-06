@@ -141,7 +141,7 @@ public class Spiders extends ListenerModule
                         continue;
 
                     // only place web on the ground, not hanging up in the air
-                    for (int i = 0; i < 5 || block.getY() < 0; i++)
+                    for (int i = 0; i < 5 || block.getY() < -64; i++)
                     {
                         if (block.getRelative(BlockFace.DOWN).getType() == Material.AIR)
                             block = block.getRelative(BlockFace.DOWN);
