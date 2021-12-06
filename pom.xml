@@ -29,7 +29,7 @@
     <version>3.15.0</version>
     <name>ExtraHardMode</name>
     <description>New game rules and mechanics for Minecraft.</description>
-    <url>http://dev.bukkit.org/projects/fun-hard-mode</url>
+    <url>https://dev.bukkit.org/projects/fun-hard-mode</url>
 
     <!-- Properties -->
     <properties>
@@ -166,11 +166,11 @@
         </repository>
         <repository>
             <id>github-releases</id>
-            <url>http://di3mex.github.io/repo_bukkit/releases/</url>
+            <url>https://di3mex.github.io/repo_bukkit/releases/</url>
         </repository>
         <repository>
             <id>github-snapshots</id>
-            <url>http://di3mex.github.io/repo_bukkit/snapshots/</url>
+            <url>https://di3mex.github.io/repo_bukkit/snapshots/</url>
         </repository>
         <!--<repository>-->
             <!--<id>prism-repo</id>-->
@@ -178,21 +178,21 @@
         <!--</repository>-->
         <repository>
             <id>md_5-releases</id>
-            <url>http://repo.md-5.net/content/repositories/releases/</url>
+            <url>https://repo.md-5.net/content/repositories/releases/</url>
         </repository>
         <repository>
             <id>md_5-snapshots</id>
-            <url>http://repo.md-5.net/content/repositories/snapshots/</url>
+            <url>https://repo.md-5.net/content/repositories/snapshots/</url>
         </repository>
         <!-- Spigot Repo -->
         <repository>
             <id>spigot-repo</id>
-            <url>http://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
         <!--WorldGuard Repo -->
         <repository>
             <id>sk89q-repo</id>
-            <url>http://maven.sk89q.com/repo/</url>
+            <url>https://maven.sk89q.com/repo/</url>
         </repository>
         <repository>
             <id>jitpack.io</id>
