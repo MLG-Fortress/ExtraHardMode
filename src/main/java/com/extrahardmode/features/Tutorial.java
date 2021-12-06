@@ -267,7 +267,6 @@ public class Tutorial extends ListenerModule
                     switch (block.getBiome())
                     {
                         case DESERT:
-                        case DESERT_HILLS:
                         {
                             messenger.send(player, MessageNode.ANTIFARMING_DESSERT_WARNING);
                             break;

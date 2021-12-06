@@ -210,7 +210,7 @@ public class AntiFarming extends ListenerModule
         if (aridDesertsEnabled)
         {
             Biome biome = block.getBiome();
-            if (biome == Biome.DESERT || biome == Biome.DESERT_HILLS)
+            if (biome == Biome.DESERT)
             {
                 event.setCancelled(true);
             }

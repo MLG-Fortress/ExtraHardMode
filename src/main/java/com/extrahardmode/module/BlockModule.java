@@ -239,7 +239,7 @@ public class BlockModule extends EHMModule
                         Biome biome = block.getBiome();
 
                         // the desert environment is very rough on crops
-                        if ((biome == Biome.DESERT || biome == Biome.DESERT_HILLS) && aridDesertsEnabled)
+                        if ((biome == Biome.DESERT) && aridDesertsEnabled)
                         {
                             deathProbability += 50;
                         }
