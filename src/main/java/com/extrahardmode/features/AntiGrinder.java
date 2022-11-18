@@ -82,13 +82,22 @@ public class AntiGrinder extends ListenerModule
     }
 
 
+    @EventHandler(priority = EventPriority.LOW)
+    public void onEntitySpawn(CreatureSpawnEvent event) {
+        event.setCancelled(!handleEntitySpawn(event));
+    }
+
+    @EventHandler
+    public void onEntityDeath(EntityDeathEvent event) {
+        handleEntityDeath(event);
+    }
+
     /**
      * When an Animal/Monster spawns check if the Location is "natural"
      *
      * @return true succeeded and false if cancelled or marked lootless
      */
-    @EventHandler(priority = EventPriority.LOW)
-    public boolean onEntitySpawn(CreatureSpawnEvent event)
+    public boolean handleEntitySpawn(CreatureSpawnEvent event)
     {
         Location location = event.getLocation();
         World world = location.getWorld();
@@ -120,21 +129,18 @@ public class AntiGrinder extends ListenerModule
                         case NORMAL:
                             if (!blockModule.isNaturalSpawnMaterial(underBlockType))
                             {
-                                event.setCancelled(true);
                                 return false;
                             }
                             break;
                         case NETHER:
                             if (!blockModule.isNaturalNetherSpawn(underBlockType))
                             {
-                                event.setCancelled(true);
                                 return false;
                             }
                             break;
                         case THE_END:
                             if (underBlockType != Material.END_STONE && underBlockType != Material.OBSIDIAN && underBlockType != Material.AIR/*dragon*/)
                             {
-                                event.setCancelled(true);
                                 return false;
                             }
                             break;
@@ -153,8 +159,7 @@ public class AntiGrinder extends ListenerModule
      *
      * @return true if drops loot, false if loot was blocked
      */
-    @EventHandler
-    public boolean onEntityDeath(EntityDeathEvent event)
+    public boolean handleEntityDeath(EntityDeathEvent event)
     {
         LivingEntity entity = event.getEntity();
         World world = entity.getWorld();

@@ -63,10 +63,10 @@ public class TestAntiGrinder
     public void spawnerSpawns()
     {
         CreatureSpawnEvent event = new MockCreatureSpawnEvent(EntityType.BLAZE, "world", CreatureSpawnEvent.SpawnReason.SPAWNER).get();
-        assertFalse("Spawners should drop no exp", module.onEntitySpawn(event));
+        assertFalse("Spawners should drop no exp", module.handleEntitySpawn(event));
 
         event = new MockCreatureSpawnEvent(EntityType.ENDERMAN, "world", CreatureSpawnEvent.SpawnReason.SPAWNER).get();
-        assertFalse("Spawners should drop no exp", module.onEntitySpawn(event));
+        assertFalse("Spawners should drop no exp", module.handleEntitySpawn(event));
     }
 
 
@@ -92,7 +92,7 @@ public class TestAntiGrinder
         MockWorld world = event.getWorld();
         world.setEnvironment(World.Environment.NORMAL);
 
-        assertTrue("Zombie spawn succeeds", module.onEntitySpawn(event.get()));
+        assertTrue("Zombie spawn succeeds", module.handleEntitySpawn(event.get()));
     }
 
 
@@ -118,7 +118,7 @@ public class TestAntiGrinder
         MockWorld world = event.getWorld();
         world.setEnvironment(World.Environment.NETHER);
 
-        assertTrue("Natural spawn in the Nether failed", module.onEntitySpawn(event.get()));
+        assertTrue("Natural spawn in the Nether failed", module.handleEntitySpawn(event.get()));
 
 
         world.setEnvironment(World.Environment.NETHER);
@@ -127,7 +127,7 @@ public class TestAntiGrinder
         relative.setMaterial(Material.COBBLESTONE);
         block.setRelative(BlockFace.DOWN, relative.get());
 
-        assertFalse("Natural spawn in a not natural Location succeeded", module.onEntitySpawn(event.get()));
+        assertFalse("Natural spawn in a not natural Location succeeded", module.handleEntitySpawn(event.get()));
 
 
         //NetherRack doesn't spawn in the OverWorld
@@ -136,6 +136,6 @@ public class TestAntiGrinder
 
         world.setEnvironment(World.Environment.NORMAL);
 
-        assertFalse("Spawn on NetherRack in the OverWorld should have failed", module.onEntitySpawn(event.get()));
+        assertFalse("Spawn on NetherRack in the OverWorld should have failed", module.handleEntitySpawn(event.get()));
     }
 }
