@@ -76,11 +76,7 @@ public class CompatHandler extends EHMModule
         //BlockLoggers//
         //Prism - removed
         //HawkEye Reloaded - removed
-//
-        //        //CoreProtect
-        //        CompatCoreProtect compatCoreProtect = new CompatCoreProtect(plugin);
-        //        if (compatCoreProtect.isEnabled())
-        //            blockLoggerPls.add(compatCoreProtect);
+        //CoreProtect - removed
     }
 
 

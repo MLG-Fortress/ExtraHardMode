@@ -28,10 +28,11 @@ jobs:
         run: echo "SHORT_SHA=${GITHUB_SHA::7}" >> $GITHUB_ENV
 
       - name: Create Release
+        if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ github.ref_name }}
-          name: Test Release ${{ github.ref_name }}-${{ env.SHORT_SHA }}
+          name: ${{ github.ref_name }}-${{ env.SHORT_SHA }}
           body: |
             Automatic release for ${{ github.ref_name }}
           draft: false
