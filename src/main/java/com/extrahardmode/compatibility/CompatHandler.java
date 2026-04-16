@@ -90,15 +90,10 @@ public class CompatHandler extends EHMModule
 //            //Static API I guess, stop wasting my time any further or you are gonna get removed
 //        }
 //
-//        //CoreProtect
-//        CompatCoreProtect compatCoreProtect = new CompatCoreProtect(plugin);
-//        if (compatCoreProtect.isEnabled())
-//            blockLoggerPls.add(compatCoreProtect);
-//
-//        //LogBlock
-//        CompatLogBlock compatLogBlock = new CompatLogBlock(plugin);
-//        if (compatLogBlock.isEnabled())
-//            blockLoggerPls.add(compatLogBlock);
+        //        //CoreProtect
+        //        CompatCoreProtect compatCoreProtect = new CompatCoreProtect(plugin);
+        //        if (compatCoreProtect.isEnabled())
+        //            blockLoggerPls.add(compatCoreProtect);
     }
 
 

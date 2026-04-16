@@ -316,12 +316,7 @@
             <version>22.4</version>
             <scope>provided</scope>
         </dependency>
-        <!-- LogBlock -->
-        <dependency>
-            <groupId>de.diddiz</groupId>
-            <artifactId>logblock</artifactId>
-            <version>1.94</version>
-        </dependency>
+        <!-- LogBlock - removed due to broken POM and unused -->
 
         <dependency>
             <groupId>org.bstats</groupId>
