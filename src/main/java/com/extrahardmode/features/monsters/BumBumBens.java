@@ -122,7 +122,7 @@ public class BumBumBens extends ListenerModule
                 plugin.getServer().getPluginManager().callEvent(dropTntEvent);
                 if (!dropTntEvent.isCancelled())
                 {
-                    world.spawnEntity(entity.getLocation(), EntityType.PRIMED_TNT);
+                    world.spawnEntity(entity.getLocation(), EntityType.TNT);
                     if (creeperSound)
                         world.playEffect(entity.getLocation(), Effect.GHAST_SHRIEK, 1, 35);
                 }

@@ -148,7 +148,7 @@ public class HardenedStone extends ListenerModule
                 int blocks = 0;
                 Integer toolSettings = toolDurabilityMap.get(tool);
 
-                if (toolUnbreakingMap.containsKey(tool) && inHandStack.containsEnchantment(Enchantment.DURABILITY))
+                if (toolUnbreakingMap.containsKey(tool) && inHandStack.containsEnchantment(Enchantment.UNBREAKING))
                     toolSettings *= toolUnbreakingMap.get(tool);
 
                 if (toolSettings != null)

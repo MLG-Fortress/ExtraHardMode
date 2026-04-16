@@ -137,7 +137,7 @@ public class AnimalCrowdControl extends ListenerModule {
                     }
                     
                     if(dizziness < maxDizziness) {
-                       world.spawnParticle(Particle.VILLAGER_ANGRY, animal.getLocation(), 1); //TODO: confirm if this works
+                       world.spawnParticle(Particle.ANGRY_VILLAGER, animal.getLocation(), 1); //TODO: confirm if this works
                     }
                     dizziness++;
                 }

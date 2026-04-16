@@ -111,10 +111,10 @@ public class Horses extends ListenerModule
                 case BLOCK_EXPLOSION:
                 case ENTITY_EXPLOSION:
                     if (event.getDamage() > 2.0)
-                        horse.addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, 20 * 15, 3));
+                        horse.addPotionEffect(new PotionEffect(PotionEffectType.NAUSEA, 20 * 15, 3));
                     break;
                 case FALL:
-                    horse.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, (int) (20 * event.getDamage()), 4));
+                    horse.addPotionEffect(new PotionEffect(PotionEffectType.SLOWNESS, (int) (20 * event.getDamage()), 4));
                     event.setDamage(event.getDamage() * 2);
                     break;
                 case SUFFOCATION:

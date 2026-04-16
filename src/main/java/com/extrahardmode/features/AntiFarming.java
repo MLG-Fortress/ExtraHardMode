@@ -313,13 +313,14 @@ public class AntiFarming extends ListenerModule
 
         if (restrictedSquidSpawns && entity.getType() == EntityType.SQUID && reason.equals(CreatureSpawnEvent.SpawnReason.NATURAL))
         {
-            switch (entity.getLocation().getBlock().getBiome())
+            org.bukkit.block.Biome biome = entity.getLocation().getBlock().getBiome();
+            if (biome == org.bukkit.block.Biome.DEEP_OCEAN || biome == org.bukkit.block.Biome.OCEAN)
             {
-                case DEEP_OCEAN:
-                case OCEAN:
-                    return;
-                default:
-                    event.setCancelled(true);
+                return;
+            }
+            else
+            {
+                event.setCancelled(true);
             }
         }
     }

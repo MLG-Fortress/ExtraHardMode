@@ -224,11 +224,11 @@ public enum RootNode implements ConfigNode
 
     ENHANCED_DMG_FALL_MULT("Player.Enhanced Environmental Injuries.Fall.Dmg Multiplier", VarType.DOUBLE, 2.0),
 
-    ENHANCED_DMG_FALL("Player.Enhanced Environmental Injuries.Fall", VarType.POTION_EFFECT, new PotionEffectHolder(PotionEffectType.SLOW, 4 * 20, 2)),
+    ENHANCED_DMG_FALL("Player.Enhanced Environmental Injuries.Fall", VarType.POTION_EFFECT, new PotionEffectHolder(PotionEffectType.SLOWNESS, 4 * 20, 2)),
 
     ENHANCED_DMG_EXPLOSION_MULT("Player.Enhanced Environmental Injuries.Explosion.Dmg Multiplier", VarType.DOUBLE, 1.0),
 
-    ENHANCED_DMG_EXPLOSION("Player.Enhanced Environmental Injuries.Explosion", VarType.POTION_EFFECT, new PotionEffectHolder(PotionEffectType.CONFUSION, 15 * 20, 3)),
+    ENHANCED_DMG_EXPLOSION("Player.Enhanced Environmental Injuries.Explosion", VarType.POTION_EFFECT, new PotionEffectHolder(PotionEffectType.NAUSEA, 15 * 20, 3)),
 
     ENHANCED_DMG_SUFFOCATION_MULT("Player.Enhanced Environmental Injuries.Suffocation.Dmg Multiplier", VarType.DOUBLE, 5.0),
 
@@ -445,7 +445,7 @@ public enum RootNode implements ConfigNode
      */
     ZOMBIES_DEBILITATE_PLAYERS("Zombies.Slow Players.Enable", VarType.BOOLEAN, true),
 
-    ZOMBIES_DEBILITATE_PLAYERS_EFFECT("Zombies.Slow Players.Effect", VarType.POTION_EFFECT, new PotionEffectHolder(PotionEffectType.SLOW, 5 * 20, 1),
+    ZOMBIES_DEBILITATE_PLAYERS_EFFECT("Zombies.Slow Players.Effect", VarType.POTION_EFFECT, new PotionEffectHolder(PotionEffectType.SLOWNESS, 5 * 20, 1),
             "Effect to apply to the player when he is hit."),
 
     ZOMBIES_DEBILITATE_PLAYERS_EFFECT_STACK("Zombies.Slow Players.Stack Effect.Enable", VarType.BOOLEAN, true,
@@ -1452,7 +1452,7 @@ public enum RootNode implements ConfigNode
         {
             super();
             this.add(Material.DIRT.name());
-            this.add(Material.GRASS.name());
+            this.add(Material.SHORT_GRASS.name());
             this.add(Material.COBBLESTONE.name());
             this.add(Material.MOSSY_COBBLESTONE.name());
             this.add(Material.STONE_SLAB.name());

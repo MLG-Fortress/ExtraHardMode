@@ -145,7 +145,7 @@ public class MonsterRules extends ListenerModule
 
         // FEATURE: don't allow explosions to destroy items on the ground
         // REASONS: enhanced TNT explodes 5 times
-        if (entityType == EntityType.DROPPED_ITEM && (event.getCause() == EntityDamageEvent.DamageCause.BLOCK_EXPLOSION || event.getCause() == EntityDamageEvent.DamageCause.ENTITY_EXPLOSION))
+        if (entityType == EntityType.ITEM && (event.getCause() == EntityDamageEvent.DamageCause.BLOCK_EXPLOSION || event.getCause() == EntityDamageEvent.DamageCause.ENTITY_EXPLOSION))
         {
             event.setCancelled(true);
         }

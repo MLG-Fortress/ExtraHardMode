@@ -136,7 +136,7 @@ public class Torches extends ListenerModule
                 {
                     case DIRT:
                     case GRASS_BLOCK:
-                    case GRASS:
+                    case SHORT_GRASS:
                     case SAND:
                     case GRAVEL:
                     case COARSE_DIRT:

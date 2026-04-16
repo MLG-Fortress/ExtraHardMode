@@ -264,13 +264,9 @@ public class Tutorial extends ListenerModule
             {
                 try
                 {
-                    switch (block.getBiome())
+                    if (block.getBiome() == org.bukkit.block.Biome.DESERT)
                     {
-                        case DESERT:
-                        {
-                            messenger.send(player, MessageNode.ANTIFARMING_DESSERT_WARNING);
-                            break;
-                        }
+                        messenger.send(player, MessageNode.ANTIFARMING_DESSERT_WARNING);
                     }
                 }
                 catch (IllegalArgumentException e) {} //ignore custom biomes

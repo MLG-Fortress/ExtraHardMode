@@ -246,7 +246,7 @@ public class Skeletors extends ListenerModule
     {
         final boolean tempFix = CFG.getBoolean(RootNode.SILVERFISH_TEMP_POTION_EFFECT_FIX, event.getLocation().getWorld().getName());
         if (event.getEntityType() == EntityType.SILVERFISH && tempFix)
-            event.getEntity().addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, Integer.MAX_VALUE, 1, false));
+            event.getEntity().addPotionEffect(new PotionEffect(PotionEffectType.NAUSEA, Integer.MAX_VALUE, 1, false));
     }
 
 
