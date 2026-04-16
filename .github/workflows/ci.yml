@@ -2,8 +2,8 @@ name: Build and Release JAR
 
 on:
   push:
-    tags:
-      - 'v*'
+    branches:
+      - '**'
 
 jobs:
   build:
@@ -25,10 +25,11 @@ jobs:
         run: mvn clean package -DskipTests
 
       - name: Create Release
+        if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ github.ref_name }}
-          name: Release ${{ github.ref_name }}
+          name: Test Release ${{ github.ref_name }}-${{ substr(github.sha, 0, 7) }}
           body: |
             Automatic release for ${{ github.ref_name }}
           draft: false
