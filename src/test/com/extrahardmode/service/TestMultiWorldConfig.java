@@ -28,16 +28,9 @@ import com.extrahardmode.service.config.Mode;
 import com.extrahardmode.service.config.MultiWorldConfig;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.plugin.PluginLogger;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
 
-@RunWith(PowerMockRunner.class)
-//@PrepareForTest({MultiWorldConfig.class, JavaPlugin.class, PluginLogger.class}) //Breaks in JDK 11 apparently
 public class TestMultiWorldConfig
 {
     private final ExtraHardMode plugin = new MockExtraHardMode().get();

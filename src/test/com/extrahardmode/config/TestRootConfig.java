@@ -23,11 +23,11 @@ package com.extrahardmode.config;
 
 
 import com.extrahardmode.ExtraHardMode;
+import com.extrahardmode.mocks.BukkitTestBootstrap;
 import com.extrahardmode.mocks.MockExtraHardMode;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -40,10 +40,22 @@ import static org.junit.Assert.assertTrue;
  * Test the MultiWorldConfig
  */
 
-@RunWith(PowerMockRunner.class)
-//@PrepareForTest({RootConfig.class, ExtraHardMode.class}) //Breaks in JDK 11 apparently
 public class TestRootConfig
 {
+    @BeforeClass
+    public static void beforeClass()
+    {
+        BukkitTestBootstrap.install();
+    }
+
+
+    @AfterClass
+    public static void afterClass()
+    {
+        BukkitTestBootstrap.reset();
+    }
+
+
     //Mock Plugin
     private final ExtraHardMode plugin = new MockExtraHardMode().get();
 

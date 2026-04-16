@@ -25,6 +25,7 @@ package com.extrahardmode.features;
 import com.extrahardmode.ExtraHardMode;
 import com.extrahardmode.config.RootConfig;
 import com.extrahardmode.config.RootNode;
+import com.extrahardmode.mocks.BukkitTestBootstrap;
 import com.extrahardmode.mocks.MockBlock;
 import com.extrahardmode.mocks.MockExtraHardMode;
 import com.extrahardmode.mocks.MockLocation;
@@ -36,6 +37,8 @@ import org.bukkit.World;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.entity.CreatureSpawnEvent;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -44,6 +47,20 @@ import static org.junit.Assert.assertTrue;
 
 public class TestAntiGrinder
 {
+    @BeforeClass
+    public static void beforeClass()
+    {
+        BukkitTestBootstrap.install();
+    }
+
+
+    @AfterClass
+    public static void afterClass()
+    {
+        BukkitTestBootstrap.reset();
+    }
+
+
     private final ExtraHardMode plugin = new MockExtraHardMode().get();
 
     private final RootConfig CFG = new RootConfig(plugin);

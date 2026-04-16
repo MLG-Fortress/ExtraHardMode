@@ -22,6 +22,7 @@
 package com.extrahardmode.modules;
 
 
+import com.extrahardmode.mocks.BukkitTestBootstrap;
 import com.extrahardmode.mocks.MockExtraHardMode;
 import com.extrahardmode.mocks.MockPlayer;
 import com.extrahardmode.mocks.MockPlayerInventory;
@@ -29,6 +30,8 @@ import com.extrahardmode.module.PlayerModule;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -39,6 +42,20 @@ import static org.junit.Assert.assertEquals;
  */
 public class TestInventoryWeight
 {
+    @BeforeClass
+    public static void beforeClass()
+    {
+        BukkitTestBootstrap.install();
+    }
+
+
+    @AfterClass
+    public static void afterClass()
+    {
+        BukkitTestBootstrap.reset();
+    }
+
+
     private PlayerModule module;
 
     private final Player myPlayer = new MockPlayer("Diemex94").get();
