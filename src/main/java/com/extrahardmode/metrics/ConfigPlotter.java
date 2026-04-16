@@ -5,7 +5,9 @@ import com.extrahardmode.config.RootConfig;
 import com.extrahardmode.config.RootNode;
 import com.extrahardmode.service.config.ConfigNode;
 import org.bstats.bukkit.Metrics;
+import org.bstats.charts.SimplePie;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.concurrent.Callable;
 
@@ -38,9 +40,9 @@ public class ConfigPlotter
         Metrics metrics;
         try
         {
-            metrics = new Metrics(plugin, 3342);
+            metrics = new Metrics((JavaPlugin) plugin, 3342);
 
-            metrics.addCustomChart(new Metrics.SimplePie("bukkit_implementation", new Callable<String>()
+            metrics.addCustomChart(new SimplePie("bukkit_implementation", new Callable<String>()
             {
                 @Override
                 public String call() throws Exception
@@ -144,7 +146,7 @@ public class ConfigPlotter
                                 break;
                         }
 
-                        metrics.addCustomChart(new Metrics.SimplePie(node.toString(), () -> result));
+                        metrics.addCustomChart(new SimplePie(node.toString(), () -> result));
                         break;
                     }
                     //Please add future config nodes here, the bstats site defaults IDs to lowercase and does not allow editing of existing charts, nor easy bulk input of new ones...
