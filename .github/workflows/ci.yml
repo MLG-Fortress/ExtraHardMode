@@ -4,9 +4,9 @@ on:
   push:
     branches:
       - '**'
-    tags:
-      - '**'
   pull_request:
+  release:
+    types: [published]
 
 jobs:
   build-and-release:
@@ -18,35 +18,25 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up JDK 21
+      - name: Set up JDK 25
         uses: actions/setup-java@v4
         with:
-          java-version: '21'
+          java-version: '25'
           distribution: 'temurin'
 
       - name: Build and Test
         run: mvn --batch-mode clean verify
 
-      - name: Get short SHA
-        if: startsWith(github.ref, 'refs/tags/')
-        run: echo "SHORT_SHA=${GITHUB_SHA::7}" >> $GITHUB_ENV
-
       - name: Extract Final Artifact Name from POM
-        if: startsWith(github.ref, 'refs/tags/')
+        if: github.event_name == 'release'
         id: pom-info
         # help:evaluate safely extracts the exact <finalName> from pom.xml
         run: |
           FINAL_NAME=$(mvn help:evaluate -Dexpression=project.build.finalName -q -DforceStdout)
-          echo "JAR_NAME=${FINAL_NAME}" >> $GITHUB_ENV
+          echo "jar_name=${FINAL_NAME}" >> "$GITHUB_OUTPUT"
 
-      - name: Create Release
-        if: startsWith(github.ref, 'refs/tags/')
+      - name: Upload JAR to Release
+        if: github.event_name == 'release'
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ github.ref_name }}
-          name: Release ${{ github.ref_name }}-${{ env.SHORT_SHA }}
-          body: |
-            Automated release for version ${{ github.ref_name }}
-          draft: false
-          prerelease: false
-          files: target/${{ env.JAR_NAME }}.jar
+          files: target/${{ steps.pom-info.outputs.jar_name }}.jar
