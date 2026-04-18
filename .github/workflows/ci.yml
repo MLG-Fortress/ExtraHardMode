@@ -1,40 +1,52 @@
-name: Build and Release JAR
+name: CI/CD
 
 on:
   push:
     branches:
       - '**'
+    tags:
+      - '**'
+  pull_request:
 
 jobs:
-  build:
+  build-and-release:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # Required to create releases and upload assets
+      contents: write 
+    
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
-          java-version: 21
-          distribution: temurin
-          cache: maven
+          java-version: '21'
+          distribution: 'temurin'
 
-      - name: Build with Maven
-        run: mvn clean package -DskipTests
+      - name: Build and Test
+        run: mvn --batch-mode clean verify
 
       - name: Get short SHA
+        if: startsWith(github.ref, 'refs/tags/')
         run: echo "SHORT_SHA=${GITHUB_SHA::7}" >> $GITHUB_ENV
+
+      - name: Extract Final Artifact Name from POM
+        if: startsWith(github.ref, 'refs/tags/')
+        id: pom-info
+        # help:evaluate safely extracts the exact <finalName> from pom.xml
+        run: |
+          FINAL_NAME=$(mvn help:evaluate -Dexpression=project.build.finalName -q -DforceStdout)
+          echo "JAR_NAME=${FINAL_NAME}" >> $GITHUB_ENV
 
       - name: Create Release
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ github.ref_name }}
-          name: ${{ github.ref_name }}-${{ env.SHORT_SHA }}
+          name: Release ${{ github.ref_name }}-${{ env.SHORT_SHA }}
           body: |
-            Automatic release for ${{ github.ref_name }}
+            Automated release for version ${{ github.ref_name }}
           draft: false
-          prerelease: true
-          files: target/ExtraHardMode.jar
+          prerelease: false
+          files: target/${{ env.JAR_NAME }}.jar
