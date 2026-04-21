@@ -25,7 +25,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Build and Test
-        run: mvn --batch-mode clean verify
+        run: mvn --batch-mode --no-transfer-progress clean verify
 
       - name: Extract Final Artifact Name from POM
         if: github.event_name == 'release'
